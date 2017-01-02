@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables"
+/*
+ * General
+ * ========================================================================== */
+html, body
+    height: 100%
+    width: 100%
+.shadow
+    -webkit-box-shadow: 0px 2px 5px -1px rgba(46,46,46,1)
+    -moz-box-shadow: 0px 2px 5px -1px rgba(46,46,46,1)
+    box-shadow: 0px 2px 5px -1px rgba(46,46,46,1)
+.shadow-second
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(87,87,87,0.20)
+    -moz-box-shadow: 0px 1px 4px 0px rgba(87,87,87,0.20)
+    box-shadow: 0px 1px 4px 0px rgba(87,87,87,0.20)
+.shadow-tertiary
+    -webkit-box-shadow: 0px 5px 6px -5px rgba(184,184,184,1)
+    -moz-box-shadow: 0px 5px 6px -5px rgba(184,184,184,1)
+    box-shadow: 0px 5px 6px -5px rgba(184,184,184,1)
+.shadow-inside
+    -webkit-box-shadow: inset 0px -13px 76px -51px rgba(0,0,0,0.75)
+    -moz-box-shadow: inset 0px -13px 76px -51px rgba(0,0,0,0.75)
+    box-shadow: inset 0px -13px 76px -51px rgba(0,0,0,0.75)
+.shadow-fourth
+    -webkit-box-shadow: 0px 1.1px 5.1px -1px rgba(77,77,77,1)
+    -moz-box-shadow: 0px 1.1px 5.1px -1px rgba(77,77,77,1)
+    box-shadow: 0px 1.1px 5.1px -1px rgba(77,77,77,1)
+.shadow-btn
+    -webkit-box-shadow: 0px 3px 4px -2px rgba(135,135,135,1)
+    -moz-box-shadow: 0px 3px 4px -2px rgba(135,135,135,1)
+    box-shadow: 0px 3px 4px -2px rgba(135,135,135,1)
+    color: $primary-color-text !important
+/*
+ * Buttons
+ * ========================================================================== */
+.btn-first
+    @extend .shadow-btn
+    background-color: $primary-color
+    &:hover, &:active, &:focus
+        background-color: rgba($primary-color, 0.5)
