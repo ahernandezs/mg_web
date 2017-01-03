@@ -8,12 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { LoginComponent } from './components/login/index';
 import { PageNotFoundComponent } from './components/share/page-not-found/index';
+import { AccessComponent } from './components/login/access/index';
+import { RegistryComponent } from './components/login/registry/index';
+import { DashboardComponent } from './components/dashboard/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AccessComponent,
+    RegistryComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<h3>Acceso</h3>
+<p>
+  First layout contained in the layout father
+</p>
+<div class="row">
+    <div class="col-xs-10 offset-xs-1 col-md-4 offset-md-2">
+        <a (click)="changeView('registry')" routerLinkActive="active"
+            role="button" class="btn btn-cancel btn-block">
+            Registrarme
+        </a>
+    </div>
+    <div class="col-xs-10 offset-xs-1 col-md-4">
+        <a routerLink="/dashboard" routerLinkActive="active" role="button"
+            class="btn btn-confirm btn-block">
+            Ingresar
+        </a>
+    </div>
+</div>

@@ -34,8 +34,13 @@ html, body
 /*
  * Buttons
  * ========================================================================== */
-.btn-first
+.btn-confirm
     @extend .shadow-btn
     background-color: $primary-color
     &:hover, &:active, &:focus
         background-color: rgba($primary-color, 0.5)
+.btn-cancel
+    color: $primary-color !important
+    background-color: $primary-color-text
+    &:hover, &:active, &:focus
+        background-color: rgba($divider_2, 0.5)
