@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { LoginComponent } from './components/login/index';
 import { PageNotFoundComponent } from './components/share/page-not-found/index';
@@ -25,7 +26,8 @@ import { DashboardComponent } from './components/dashboard/index';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
