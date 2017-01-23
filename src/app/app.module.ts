@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './components/share/page-not-found/index';
 import { AccessComponent } from './components/login/access/index';
 import { RegistryComponent } from './components/login/registry/index';
 import { DashboardComponent } from './components/dashboard/index';
+import { OperationComponent } from './components/operation/operation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './components/dashboard/index';
     PageNotFoundComponent,
     AccessComponent,
     RegistryComponent,
-    DashboardComponent
+    DashboardComponent,
+    OperationComponent
   ],
   imports: [
     BrowserModule,
