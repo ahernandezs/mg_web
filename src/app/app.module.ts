@@ -17,7 +17,6 @@ import { CompleteComponent } from './components/reports//complete/complete.compo
 import { BillingComponent } from './components/reports//billing/billing.component';
 import { ClarificationComponent } from './components/reports//clarification/clarification.component';
 import { ReportsComponent } from './components/reports/reports.component';
-import { HeaderComponent } from './components/share/header/header.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { HeaderComponent } from './components/share/header/header.component';
     CompleteComponent,
     BillingComponent,
     ClarificationComponent,
-    ReportsComponent,
-    HeaderComponent
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
