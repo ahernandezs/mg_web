@@ -10,9 +10,14 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LoginComponent } from './components/login/index';
 import { PageNotFoundComponent } from './components/share/page-not-found/index';
 import { AccessComponent } from './components/login/access/index';
-import { RegistryComponent } from './components/login/registry/index';
-import { DashboardComponent } from './components/dashboard/index';
-import { OperationComponent } from './components/operation/operation.component';
+
+import { DashboardComponent } from './components/reports/dashboard/index';
+import { OperationComponent } from './components/reports/operation/operation.component';
+import { CompleteComponent } from './components/reports//complete/complete.component';
+import { BillingComponent } from './components/reports//billing/billing.component';
+import { ClarificationComponent } from './components/reports//clarification/clarification.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { HeaderComponent } from './components/share/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +25,13 @@ import { OperationComponent } from './components/operation/operation.component';
     LoginComponent,
     PageNotFoundComponent,
     AccessComponent,
-    RegistryComponent,
     DashboardComponent,
-    OperationComponent
+    OperationComponent,
+    CompleteComponent,
+    BillingComponent,
+    ClarificationComponent,
+    ReportsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

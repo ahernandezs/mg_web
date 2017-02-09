@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row header">
+        PROSA
+    </div>
+    <div class="row menu">
+        <nav class="nav">
+            <ul>
+                <li>
+                    <a (click)="changeView('dashboard')" routerLinkActive="active"
+                        role="button">
+                        DASHBOARD
+                    </a>
+                </li>
+                <li>
+                    <a (click)="changeView('complete')" routerLinkActive="active"
+                        role="button">
+                        REPORTE LOG COMPLETO
+                    </a>
+                </li>
+                <li>
+                    <a (click)="changeView('billing')" routerLinkActive="active"
+                        role="button">
+                        REPORTE VALIDACIÓN PARA FACTURACIÓN
+                    </a>
+                </li>
+                <li>
+                    <a (click)="changeView('operation')" routerLinkActive="active"
+                        role="button">
+                        REPORTE DE OPERACIÓN
+                    </a>
+                </li>
+                <li>
+                    <a (click)="changeView('clarification')" routerLinkActive="active"
+                        role="button">
+                        ACLARACIONES
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <div *ngIf="myUrl == 'dashboard'">
+            <app-dashboard (routeView)="changeViewHandler($event)"></app-dashboard>
+        </div>
+        <div *ngIf="myUrl == 'complete'">
+            <app-complete (routeView)="changeViewHandler($event)"></app-complete>
+        </div>
+        <div *ngIf="myUrl == 'billing'">
+            <app-billing (routeView)="changeViewHandler($event)"></app-billing>
+        </div>
+        <div *ngIf="myUrl == 'operation'">
+            <app-operation (routeView)="changeViewHandler($event)"></app-operation>
+        </div>
+        <div *ngIf="myUrl == 'clarification'">
+            <app-clarification (routeView)="changeViewHandler($event)"></app-clarification>
+        </div>
+    </div>
+</div>

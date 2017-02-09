@@ -1,16 +1,16 @@
-<h3>Acceso</h3>
+<h2>Acceso</h2>
 <p>
-  First layout contained in the layout father
+    Genera y administra reportes, revisa los estados de reportes y detalles de las transacciones de los clientes de prosa
 </p>
 <div class="row">
-    <div class="col-xs-10 offset-xs-1 col-md-4 offset-md-2">
-        <a (click)="changeView('registry')" routerLinkActive="active"
-            role="button" class="btn btn-cancel btn-block">
-            Registrarme
-        </a>
+    <div>
+        <input type="text" placeholder="Usuario"/>
     </div>
-    <div class="col-xs-10 offset-xs-1 col-md-4">
-        <a routerLink="/dashboard" routerLinkActive="active" role="button"
+    <div>
+        <input type="password" placeholder="Contraseña"/>
+    </div>
+    <div class="col-xs-10 offset-xs-4 col-md-4">
+        <a routerLink="/reports" routerLinkActive="active" role="button"
             class="btn btn-confirm btn-block">
             Ingresar
         </a>
