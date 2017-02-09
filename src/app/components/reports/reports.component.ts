@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  selector: 'app-reports',
+  templateUrl: './reports.component.html',
+  styleUrls: ['./reports.component.sass']
 })
-export class LoginComponent implements OnInit {
-    
+export class ReportsComponent implements OnInit {
+
     private myUrl:any;
 
     constructor(private route: ActivatedRoute) {
@@ -20,14 +20,12 @@ export class LoginComponent implements OnInit {
           (error: any) => console.debug("Error getting the path", error));
     }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+      this.myUrl = 'dashboard';
+  }
 
-    /**
-    * Event handler for changing the current view.
-    * @param view String
-    */
-    changeViewHandler(view: String) {
+    changeView(view: String) {
         this.myUrl = view;
     }
+
 }

@@ -1,16 +1,13 @@
 <div class="container">
+    <div class="row header">
+        PROSA
+    </div>
     <div class="row">
-        <div class="col-xs-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-            <div class="card text-xs-center shadow-second">
-                <h1>Bienvenido</h1>
-                <p>
-                    <small>Layout container</small>
-                </p>
-                <div *ngIf="myUrl == 'login'">
+        <h1>BIENVENIDO</h1>
+        <div class="login">
+            <div class="col-xs-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="card text-xs-center shadow-second">
                     <app-access (routeView)="changeViewHandler($event)"></app-access>
-                </div>
-                <div *ngIf="myUrl == 'registry'">
-                    <app-registry (routeView)="changeViewHandler($event)"></app-registry>
                 </div>
             </div>
         </div>
