@@ -22,16 +22,11 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChartLabels:Array<any> = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
   public lineChartType:string = 'line';
-  public pieChartType:string = 'pie';
+  public pieChartType:string = 'doughnut';
 
   // Pie
   public pieChartLabels:string[] = ['Reportes', 'Operaciones', 'Bancos'];
   public pieChartData:number[] = [300, 500, 100];
-
-  public randomizeType():void {
-    this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
-    this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
-  }
 
   public chartClicked(e:any):void {
     //console.log(e);
@@ -40,4 +35,5 @@ export class DashboardComponent implements OnInit {
   public chartHovered(e:any):void {
     //console.log(e);
   }
+
 }

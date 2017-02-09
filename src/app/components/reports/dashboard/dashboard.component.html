@@ -1,21 +1,59 @@
-<div class="col-md-6">
-  <canvas baseChart
-              [data]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [chartType]="lineChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
+<div class="row">
+  <div class="card col-md-6">
+    TRANSACCIONES DEL DÍA 10 ENERO 2017
+    <canvas baseChart
+                [data]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <div class="card col-md-6">
+    LISTA DE TRANSACCIONES
+    <table>
+      <tr>
+        <th>Nombre del banco</th>
+        <th>Mes actual</th>
+        <th>Mes anterior</th>
+      </tr>
+      <tr>
+          <td>Banco 1</td>
+          <td>324423</td>
+          <td>324453</td>
+      </tr>
+    </table>
+  </div>
 </div>
-<div class="col-md-6">
-  <canvas baseChart
-              [data]="pieChartData"
-              [labels]="pieChartLabels"
-              [chartType]="pieChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
+<div class="row">
+  <div class="card col-md-4">
+    REPORTE DE LOG COMPLETO
+    <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    <button class="btn-confirm">Ver Reportes</button>
+  </div>
+  <div class="card col-md-4">
+    VALIDACIÓN PARA FACTURACION
+      <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    <button class="btn-confirm">Ver Reportes</button>
+  </div>
+  <div class="card col-md-4">
+    REPORTE DE OPERACION
+    <div>
+      Ultima operación realizada
+    </div>
+    <div>
+      2m ago
+    </div>
+    <button class="btn-confirm">Ver Reportes</button>
+  </div>
 </div>
-<!--div class="col-md-12 text-center" style="margin-top: 10px;height: 50%">
-  <button (click)="randomizeType()" style="display: inline-block"
-    class="btn btn-confirm btn-block">Cambiar valores</button>
-</div-->
