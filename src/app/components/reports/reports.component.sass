@@ -17,6 +17,9 @@
             height: 25px
         i
             cursor: pointer
+            font-size: 1.8em
+            vertical-align: middle
+            margin: 0 0.5em
         span
             margin: 0 0.5em
             vertical-align: middle
@@ -33,16 +36,64 @@
                     object-fit: cover
     .bottom-header
         background: $primary-color-dark
+        .icon-menu
+            font-size: 1.4em
+            margin-top: 0.2em
+            cursor: pointer
+            display: none
         ul
             li
                 font-size: 0.7em
                 color: $primary-text-color-light
                 display: inline-block
                 padding: 1em 2em
-                &.active
+                &:hover, &.active
                     color: white
                     padding-bottom: 0.6em
                     border-bottom: 4px solid $primary-color
 
 #content
-    padding-top: 105px
+    padding-top: 110px
+
+//Responsive
+@media screen and(max-width: 1200px)
+    #header
+        .bottom-header
+            ul
+                li
+                    padding: 1em 0.5em
+
+@media screen and(max-width: 1024px)
+    #header
+        .bottom-header
+            .icon-menu
+                display: block
+            ul
+                display: none
+                position: absolute
+                z-index: 999
+                top: 8px
+                left: 50px
+                background: white
+                overflow: hidden;
+                +border-radius(0.2em)
+                +box-shadow(rgba(0,0,0,0.4))
+                li
+                    display: block;
+                    padding: 0.8em
+                    border-bottom: 1px solid $primary-text-color-light
+                    &:hover,&.active
+                        background: $primary-color
+                        padding: 0.8em
+                        border-bottom: 1px solid $primary-text-color-light
+                &.active
+                    display: block
+
+@media screen and(max-width: 768px)
+    #header
+        .upper-header
+            text-align: center 
+            .text-right
+                text-align: center !important
+    #content
+        padding-top: 140px

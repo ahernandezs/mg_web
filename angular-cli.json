@@ -19,7 +19,8 @@
       "mobile": false,
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "styles.sass"
+        "styles.sass",
+        "assets/fonts/css/metricgraphic.css"
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.min.js"
@@ -31,7 +32,9 @@
       }
     }
   ],
-  "addons": [],
+  "addons": [
+    "assets/fonts/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
+  ],
   "packages": [],
   "e2e": {
     "protractor": {
