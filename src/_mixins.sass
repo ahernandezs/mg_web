@@ -1,0 +1,33 @@
+//MIXINS
+
+=border-radius($radius)
+    border-radius: $radius
+    -webkit-border-radius: $radius
+    -moz-border-radius: $radius
+
+=animation-ease($seconds)
+    transition: all $seconds ease
+    -ms-transition: all $seconds ease
+    -webkit-transition: all $seconds ease
+    -o-transition: all $seconds ease
+    -moz-transition: all $seconds ease
+
+=rotate($degrees)
+	-ms-transform: rotate($degrees)
+    -webkit-transform: rotate($degrees)
+    transform: rotate($degrees)
+
+=box-sizing($default: border-box)
+    -webkit-box-sizing: $default
+    -moz-box-sizing: $default
+    box-sizing: $default
+
+=box-shadow($shadow: rgba($color, $alpha))
+	-moz-box-shadow: 0 4px 10px $shadow
+	-webkit-box-shadow: 0 4px 10px $shadow
+	box-shadow: 0 4px 10px $shadow
+
+=transform-translate-y($var)
+    -ms-transform: translateY($var)
+    -webkit-transform: translateY($var)
+    transform: translateY($var)

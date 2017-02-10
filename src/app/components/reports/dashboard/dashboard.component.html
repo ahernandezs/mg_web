@@ -1,59 +1,115 @@
 <div class="row">
-  <div class="card col-md-6">
-    TRANSACCIONES DEL DÍA 10 ENERO 2017
-    <canvas baseChart
-                [data]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+  <div class="col-md-7">
+    <div class="card shadow-second">
+      <h3>Transacciones del d&iacute;a 10 enero 2017</h3>
+      <canvas baseChart
+                  [data]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+    </div>
   </div>
-  <div class="card col-md-6">
-    LISTA DE TRANSACCIONES
-    <table>
-      <tr>
-        <th>Nombre del banco</th>
-        <th>Mes actual</th>
-        <th>Mes anterior</th>
-      </tr>
-      <tr>
-          <td>Banco 1</td>
-          <td>324423</td>
-          <td>324453</td>
-      </tr>
-    </table>
+  <div class="col-md-5">
+    <div class="card shadow-second">
+      <h3>Lista de transacciones</h3>
+      <div class="table-container">
+        <table class="table">
+          <tr>
+            <th>Nombre del banco</th>
+            <th>Mes actual</th>
+            <th>Mes anterior</th>
+          </tr>
+          <tr>
+              <td>Banco 1</td>
+              <td>324423</td>
+              <td>324453</td>
+          </tr>
+          <tr>
+              <td>Banco 1</td>
+              <td>324423</td>
+              <td>324453</td>
+          </tr>
+          <tr>
+              <td>Banco 1</td>
+              <td>324423</td>
+              <td>324453</td>
+          </tr>
+          <tr>
+              <td>Banco 1</td>
+              <td>324423</td>
+              <td>324453</td>
+          </tr>
+          <tr>
+              <td>Banco 1</td>
+              <td>324423</td>
+              <td>324453</td>
+          </tr>
+          <tr>
+              <td>Banco 1</td>
+              <td>324423</td>
+              <td>324453</td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
+
 <div class="row">
-  <div class="card col-md-4">
-    REPORTE DE LOG COMPLETO
-    <canvas baseChart
-                [data]="pieChartData"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    <button class="btn-confirm">Ver Reportes</button>
-  </div>
-  <div class="card col-md-4">
-    VALIDACIÓN PARA FACTURACION
+  <div class="col-md-4">
+    <div class="card shadow-second">
+      <h3>Reporte de log completo</h3>
       <canvas baseChart
-                [data]="pieChartData"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    <button class="btn-confirm">Ver Reportes</button>
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <button class="btn-confirm btn-block">Ver Reportes</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card col-md-4">
-    REPORTE DE OPERACION
-    <div>
-      Ultima operación realizada
+  <div class="col-md-4">
+    <div class="card shadow-second">
+        <h3>Validaci&oacute;n de facturaci&oacute;n</h3>
+        <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <button class="btn-confirm btn-block">Ver Reportes</button>
+        </div>
+      </div>
     </div>
-    <div>
-      2m ago
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-second">
+      <h3>Reporte de operaci&oacute;n</h3>
+      <p>
+        &Uacute;ltima operación realizada
+        <span>2m ago</span>
+      </p>
+      <p>
+        &Uacute;ltima operación realizada
+        <span>2m ago</span>
+      </p>
+      <p>
+        &Uacute;ltima operación realizada
+        <span>2m ago</span>
+      </p>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <button class="btn-confirm btn-block">Ver Reportes</button>
+        </div>
+      </div>
     </div>
-    <button class="btn-confirm">Ver Reportes</button>
   </div>
 </div>

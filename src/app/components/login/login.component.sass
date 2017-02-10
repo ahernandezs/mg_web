@@ -1,13 +1,23 @@
 @import ../../../variables
+@import ../../../mixins
 
-h1
-    color: $primary-color-text
-
-.container
-    width: 100%;
-   	height: 100%;
-    background: grey;
-
-.header
-    background: $primary-color;
-    height: 7.5vh;
+.container-fluid
+	background: url(../assets/images/bg.jpg) no-repeat center center, black
+	background-size: cover
+	height: 100vh
+	.header
+		padding: 0.5em
+		background: $primary-color
+		img
+			display: block
+			height: 30px
+			margin: auto
+	h1
+		margin: 100px auto 1.2em
+		color: white
+		font-weight: bold
+		font-size: 1.6em
+		text-transform: uppercase
+	.card
+		padding: 2em
+		+border-radius(0.2em)
