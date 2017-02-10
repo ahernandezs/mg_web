@@ -1,20 +1,21 @@
 <div id="header" class="container-fluid">
     <div class="row upper-header">
-        <div class="col-md-5 offset-md-1">
+        <div class="col-md-3 offset-md-1">
             <img src="assets/images/logo.png">
         </div>
-        <div class="col-md-5 text-right">
-            <i class="icon icon-bell">[ico]</i>
+        <div class="col-md-7 text-right">
+            <i class="icon icon-bell"></i>
             <span class="user-name">Jorge E. Velarde Escobar</span>
             <span class="profile">
                 <img src="assets/images/profile.jpg">
             </span>
-            <i class="icon icon-exit" routerLink="/login" routerLinkActive="active">[ico]</i>
+            <i class="icon icon-exit" routerLink="/login" routerLinkActive="active"></i>
         </div>
     </div>
     <div class="row bottom-header">
         <div class="col-md-10 offset-md-1">
-            <ul>
+            <i class="icon icon-menu" (click)="mainMenu = !mainMenu;"></i>
+            <ul [ngClass]="{'active': mainMenu }">
                 <li class="active">
                     <a (click)="changeView('dashboard')" routerLinkActive="active"
                         role="button">

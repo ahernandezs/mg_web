@@ -1,29 +1,38 @@
-<div class="row">
-	<input type="text" placeholder="Institución">
-	<input type="text" placeholder="Desde">
-	<input type="text" placeholder="Hasta">
-	<button class="btn-confirm">Buscar</button>
+<div class="row shadow-second control-box">
+	<div class="col-md-12">
+		<label>
+			<input type="text" placeholder="Institución">
+		</label>
+		<label>
+			<input type="text" placeholder="Desde">
+			<i class="icon icon-calendar"></i>
+		</label>
+		<label>
+			<input type="text" placeholder="Hasta">
+			<i class="icon icon-calendar"></i>
+		</label>
+		<button class="btn-confirm">Buscar</button>
+		<i class="icon icon-share float-right"></i>
+		<i class="icon icon-printer float-right"></i>
+	</div>
 </div>
 <div class="row">
-	<div class="card col-md-4">
-		<h1>Invex</h1>
-		<div>
-			25 Noviembre -24 Noviembre
-		</div>
-		<div>
-			Total de transacciones a cobrar
-		</div>
-		<div>
-			3244009
-		</div>
-		<div>
-			transacciones no cobradas
-		</div>
-		<div>
-			41242
+	<div class="col-md-4">
+		<div class="card">
+			<h3>
+				Invex
+				<span>25 Noviembre -24 Noviembre</span>
+			</h3>
+			<h4 class="charged">
+				Total de transacciones a cobrar
+				<span>3244009</span>
+			</h4>
+			<h4 class="no-charged">
+				transacciones no cobradas
+				<span>41242</span>
+			</h4>
 		</div>
 	</div>
-
 	<div class="col-md-8">
 		<table class="table generic shadow-second">
 			<thead>

@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReportsComponent implements OnInit {
 
+    mainMenu: false;
     private myUrl:any;
 
     constructor(private route: ActivatedRoute) {
