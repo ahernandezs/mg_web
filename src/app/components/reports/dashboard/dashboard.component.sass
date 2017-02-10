@@ -1,0 +1,35 @@
+@import ../../../../variables
+@import ../../../../mixins
+@import ../../../../inputs
+
+.row
+	margin: 1em 0
+	.card
+		padding: 1em
+		h3
+			text-transform: uppercase
+			font-size: 0.8em
+			color: black
+		.btn-confirm
+			text-transform: uppercase
+			font-weight: normal
+			font-size: 0.7em
+			padding: 1em
+			margin: 0
+		.table-container
+			margin: 0 -1em
+			.table
+				th
+					font-weight: normal
+					background: rgba($primary-color, 0.2)
+				tr:nth-child(odd)
+					background: rgba($primary-color, 0.05)
+				td
+					border: none
+		p
+			padding: 0.5em
+			margin: 1em
+			border-bottom: 1px solid rgba($primary-text-color, 0.1)
+			span
+				display: block
+				color: rgba($primary-text-color, 0.6)

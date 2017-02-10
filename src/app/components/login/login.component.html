@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row header">
-        PROSA
+        <div class="col-md-12">
+            <img src="assets/images/logo.png">
+        </div>
     </div>
     <div class="row">
-        <h1>BIENVENIDO</h1>
-        <div class="login">
-            <div class="col-xs-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                <div class="card text-xs-center shadow-second">
-                    <app-access (routeView)="changeViewHandler($event)"></app-access>
-                </div>
+        <div class="col-md-6 offset-md-3 text-center">
+            <h1>Bienvenido</h1>
+            <div class="card text-xs-center">
+                <app-access (routeView)="changeViewHandler($event)"></app-access>
             </div>
         </div>
     </div>

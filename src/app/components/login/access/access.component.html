@@ -1,18 +1,19 @@
-<h2>Acceso</h2>
-<p>
-    Genera y administra reportes, revisa los estados de reportes y detalles de las transacciones de los clientes de prosa
-</p>
 <div class="row">
-    <div>
-        <input type="text" placeholder="Usuario"/>
+    <div class="col-md-8 offset-md-2">
+        <h2>Acceso</h2>
+        <p>
+            Genera y administra reportes, revisa los estados de reportes y detalles de las transacciones de los clientes de prosa
+        </p>
+        <label>
+            <input type="text" placeholder="Usuario"/>
+        </label>
+        <label>
+            <input type="password" placeholder="Contraseña"/>
+        </label>
     </div>
-    <div>
-        <input type="password" placeholder="Contraseña"/>
-    </div>
-    <div class="col-xs-10 offset-xs-4 col-md-4">
-        <a routerLink="/reports" routerLinkActive="active" role="button"
-            class="btn btn-confirm btn-block">
-            Ingresar
-        </a>
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <button routerLink="/reports" routerLinkActive="active" class="btn-confirm btn-block">Ingresar</button>
     </div>
 </div>

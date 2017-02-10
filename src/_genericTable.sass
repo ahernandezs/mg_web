@@ -1,0 +1,22 @@
+//Generic table
+
+.table.generic
+	font-size: 0.6em
+	background: white
+	margin: 2em 0
+	overflow: hidden
+	+border-radius(0.2em)
+	thead
+		th
+			background: #58717b
+			color: white
+			text-align: center
+			font-weight: normal
+			border: none
+			border-right: 1px solid white
+			&:last-child
+				border: none
+	tbody
+		td
+			text-align: center
+			border: 1px solid rgba($primary-text-color, 0.1)

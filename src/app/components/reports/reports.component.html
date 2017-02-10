@@ -1,11 +1,21 @@
-<div class="container">
-    <div class="row header">
-        PROSA
+<div id="header" class="container-fluid">
+    <div class="row upper-header">
+        <div class="col-md-5 offset-md-1">
+            <img src="assets/images/logo.png">
+        </div>
+        <div class="col-md-5 text-right">
+            <i class="icon icon-bell">[ico]</i>
+            <span class="user-name">Jorge E. Velarde Escobar</span>
+            <span class="profile">
+                <img src="assets/images/profile.jpg">
+            </span>
+            <i class="icon icon-exit" routerLink="/login" routerLinkActive="active">[ico]</i>
+        </div>
     </div>
-    <div class="row menu">
-        <nav class="nav">
+    <div class="row bottom-header">
+        <div class="col-md-10 offset-md-1">
             <ul>
-                <li>
+                <li class="active">
                     <a (click)="changeView('dashboard')" routerLinkActive="active"
                         role="button">
                         DASHBOARD
@@ -36,22 +46,25 @@
                     </a>
                 </li>
             </ul>
-        </nav>
+        </div>
     </div>
-    <div>
-        <div *ngIf="myUrl == 'dashboard'">
+</div>
+
+<div id="content" class="container-fluid">
+    <div class="row">
+        <div *ngIf="myUrl == 'dashboard'" class="col-md-10 offset-md-1">
             <app-dashboard (routeView)="changeViewHandler($event)"></app-dashboard>
         </div>
-        <div *ngIf="myUrl == 'complete'">
+        <div *ngIf="myUrl == 'complete'" class="col-md-10 offset-md-1">
             <app-complete (routeView)="changeViewHandler($event)"></app-complete>
         </div>
-        <div *ngIf="myUrl == 'billing'">
+        <div *ngIf="myUrl == 'billing'" class="col-md-10 offset-md-1">
             <app-billing (routeView)="changeViewHandler($event)"></app-billing>
         </div>
-        <div *ngIf="myUrl == 'operation'">
+        <div *ngIf="myUrl == 'operation'" class="col-md-10 offset-md-1">
             <app-operation (routeView)="changeViewHandler($event)"></app-operation>
         </div>
-        <div *ngIf="myUrl == 'clarification'">
+        <div *ngIf="myUrl == 'clarification'" class="col-md-10 offset-md-1">
             <app-clarification (routeView)="changeViewHandler($event)"></app-clarification>
         </div>
     </div>
