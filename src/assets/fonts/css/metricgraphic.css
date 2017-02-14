@@ -12,7 +12,6 @@
 
 }
 
-
 [data-icon]:before {
   font-family: "metricgraphic" !important;
   content: attr(data-icon);
@@ -56,4 +55,7 @@
 }
 .icon-menu:before {
   content: "\66";
+}
+.icon-download:before {
+  content: "\67";
 }
