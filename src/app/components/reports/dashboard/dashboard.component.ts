@@ -23,10 +23,15 @@ export class DashboardComponent implements OnInit {
   public lineChartLabels:Array<any> = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
   public lineChartType:string = 'line';
   public pieChartType:string = 'doughnut';
+  public polarAreaChartType: string = 'polarArea';
 
   // Pie
   public pieChartLabels:string[] = ['Reportes', 'Operaciones', 'Bancos'];
   public pieChartData:number[] = [300, 500, 100];
+
+  //other
+  public polarAreaChartLabels:string[] = ['Monetizados','No monetizados'];
+  public polarAreaChartData:number[] = [500,300];
 
   public chartClicked(e:any):void {
     //console.log(e);
