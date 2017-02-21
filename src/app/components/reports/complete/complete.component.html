@@ -11,7 +11,7 @@
 			<input type="text" placeholder="Hasta">
 			<i class="icon icon-calendar"></i>
 		</label>
-		<button class="btn-confirm">Buscar</button>
+		<button class="btn-confirm" (click)="search()">Buscar</button>
 		<i class="icon icon-download float-right"></i>
 		<i class="icon icon-printer float-right"></i>
 	</div>
@@ -40,23 +40,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
+				<tr *ngFor="let response of completeResponse">
+					<td>{{response.id}}</td>
+					<td>{{response.user_session}}</td>
+					<td>{{response.bank}}</td>
+					<td>{{response.bank_method_name}}</td>
+					<td>{{response.elapsed_time}}</td>
+					<td>{{response.created_at}}</td>
+					<td>{{response.method_name}}</td>
+					<td>{{response.user_hash}}</td>
+					<td>{{response.user_type}}</td>
+					<td>{{response.user_agent}}</td>
+					<td>{{response.user_version}}</td>
+					<td>{{response.user_device_id}}</td>
+					<td>{{response.method_pay}}</td>
+					<td>{{response.method_status}}</td>
+					<td>{{response.method_result}}</td>
+					<td>{{response.ip}}</td>
 				</tr>
 			</tbody>
 		</table>

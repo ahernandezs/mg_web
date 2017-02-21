@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ReportsService } from '../../../services/reports.services';
+import { CompleteResponse } from '../../../models/complete-response';
+
 @Component({
   selector: 'app-complete',
   templateUrl: './complete.component.html',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private reportsService: ReportsService,
+  ) { }
+
+  public completeResponse;
 
   ngOnInit() {
+  }
+
+  search() {
+    this.reportsService.complete()
+      .subscribe(
+          response => {
+            this.completeResponse =  response;
+          },
+          err => {
+            console.log(err);
+          }
+    );
   }
 
 }

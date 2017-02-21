@@ -18,6 +18,8 @@ import { BillingComponent } from './components/reports//billing/billing.componen
 import { ClarificationComponent } from './components/reports//clarification/clarification.component';
 import { ReportsComponent } from './components/reports/reports.component';
 
+import { ReportsService } from './services/reports.services'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,7 @@ import { ReportsComponent } from './components/reports/reports.component';
     AppRoutingModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [ReportsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
