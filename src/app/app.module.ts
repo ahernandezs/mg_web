@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { CalendarModule } from 'primeng/primeng';
 
 import { LoginComponent } from './components/login/index';
 import { PageNotFoundComponent } from './components/share/page-not-found/index';
@@ -38,7 +39,8 @@ import { ReportsService } from './services/reports.services'
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    CalendarModule
   ],
   providers: [ReportsService],
   bootstrap: [AppComponent]

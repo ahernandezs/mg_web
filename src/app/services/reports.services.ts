@@ -19,7 +19,7 @@ export class ReportsService {
 		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
 
-		return this.http.get(environment.baseURL + 'app/mocks/complete.json', options)
+		return this.http.get(environment.baseURL + 'complete.json', options)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}

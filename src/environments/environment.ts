@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseURL: '/'
+  baseURL: '/app/mocks/'
 };
