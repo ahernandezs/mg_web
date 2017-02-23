@@ -4,11 +4,11 @@
 			<input type="text" placeholder="Institución">
 		</label>
 		<label>
-			<input type="text" placeholder="Desde">
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<input type="text" placeholder="Hasta">
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
