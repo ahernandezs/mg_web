@@ -3,9 +3,11 @@
     <div class="card shadow-second">
       <h3>Transacciones del d&iacute;a 10 enero 2017</h3>
       <canvas baseChart
-                  [data]="lineChartData"
+                  [datasets]="lineChartData"
                   [labels]="lineChartLabels"
                   [options]="lineChartOptions"
+                  [colors]='lineChartColors'
+                  [legend]="lineChartLegend"
                   [chartType]="lineChartType"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
@@ -65,6 +67,7 @@
                   [data]="pieChartData"
                   [labels]="pieChartLabels"
                   [chartType]="pieChartType"
+                  [colors]='pieChartColors'
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
       <div class="row">
@@ -81,6 +84,7 @@
                   [data]="polarAreaChartData"
                   [labels]="polarAreaChartLabels"
                   [chartType]="polarAreaChartType"
+                  [colors]="polarChartColors"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"></canvas>
       <div class="row">
