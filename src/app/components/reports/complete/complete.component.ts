@@ -59,6 +59,38 @@ export class CompleteComponent implements OnInit {
       }
   }
 
+  imprimir(){
+      if(this.completeResponse != null){
+        var htmlData = this.ConvertToTable(this.completeResponse);
+        var w = window.open("about:blank");
+        w.document.write(htmlData);
+        if (navigator.appName == 'Microsoft Internet Explorer') window.print();
+        else w.print();
+      }else{
+        console.log('busca algo primero');
+    }
+  }
+
+  ConvertToTable(objArray){
+      var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+      var str = "";
+      str = '<table border="1"><tr>'
+      for (var index in objArray[0]) {
+          str += '<th>' + index + '</th>';
+      }
+      str += '</tr>' 
+      for (var i = 0; i < array.length; i++) {
+          str += '<tr>';
+          for (var index in array[i]) {
+              str += '<td>' +array[i][index] + '</td>';
+          }
+          str += '</tr>';
+      }
+
+      str += '</table>'
+      return str;
+  }
+
   ConvertToCSV(objArray) {
       var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
       var str = '';
