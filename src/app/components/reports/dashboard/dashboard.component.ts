@@ -14,9 +14,9 @@ export class DashboardComponent implements OnInit {
 
   // lineChart
   public lineChartData:Array<any> = [
-    {data: [650, 590, 700, 810, 560, 550, 400, 100], label: 'Banco 1'},
-    {data: [230, 490, 800, 210, 860, 350, 300, 900], label: 'Banco 2'},
-    {data: [650, 590, 600, 810, 450, 550, 490, 200], label: 'Banco 3'},
+    {data: [650, 590, 700, 810, 560, 550, 400, 100], label: '301000 Banco 1'},
+    {data: [230, 490, 800, 210, 860, 350, 300, 900], label: '400828 Banco 2'},
+    {data: [650, 590, 600, 810, 450, 550, 490, 200], label: '530222 Banco 3'},
   ];
   public lineChartLabels:Array<any> = ['9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
   public lineChartOptions: any={

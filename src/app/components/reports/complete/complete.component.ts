@@ -4,6 +4,8 @@ import { CalendarModule } from 'primeng/primeng';
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
 
+import { Utils} from '../../share/utils';
+
 @Component({
   selector: 'app-complete',
   templateUrl: './complete.component.html',
@@ -12,23 +14,20 @@ import { CompleteResponse } from '../../../models/complete-response';
 export class CompleteComponent implements OnInit {
 
   constructor(
-    private reportsService: ReportsService,
-  ) { }
+    private reportsService: ReportsService
+  ) {
+    this.utils = new Utils();
+   }
 
   public completeResponse;
+  utils: Utils;
+
   desde: Date;
   hasta: Date;
   es: any;
 
   ngOnInit() {
-    this.es = {
-        firstDayOfWeek: 1,
-        dayNames: ["Doming", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado"],
-        dayNamesShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
-        dayNamesMin: ["D","L","M","M","J","V","S"],
-        monthNames: [ "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre" ],
-        monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun","Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ]
-    };
+    this.es = this.utils.es;
   }
 
   search() {
@@ -45,7 +44,7 @@ export class CompleteComponent implements OnInit {
 
   export(){
       if(this.completeResponse != null){
-        var csvData = this.ConvertToCSV(this.completeResponse);
+        var csvData = this.utils.ConvertToCSV(this.completeResponse);
         var a = document.createElement("a");
         a.setAttribute('style', 'display:none;');
         document.body.appendChild(a);
@@ -61,55 +60,15 @@ export class CompleteComponent implements OnInit {
 
   imprimir(){
       if(this.completeResponse != null){
-        var htmlData = this.ConvertToTable(this.completeResponse);
+        var htmlData = this.utils.ConvertToTable(this.completeResponse);
         var w = window.open("about:blank");
         w.document.write(htmlData);
         if (navigator.appName == 'Microsoft Internet Explorer') window.print();
         else w.print();
+        w.close();
       }else{
         console.log('busca algo primero');
     }
-  }
-
-  ConvertToTable(objArray){
-      var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-      var str = "";
-      str = '<table border="1"><tr>'
-      for (var index in objArray[0]) {
-          str += '<th>' + index + '</th>';
-      }
-      str += '</tr>' 
-      for (var i = 0; i < array.length; i++) {
-          str += '<tr>';
-          for (var index in array[i]) {
-              str += '<td>' +array[i][index] + '</td>';
-          }
-          str += '</tr>';
-      }
-
-      str += '</table>'
-      return str;
-  }
-
-  ConvertToCSV(objArray) {
-      var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-      var str = '';
-      var row = "";
-
-      for (var index in objArray[0]) {
-          row += index + ',';
-      }
-      row = row.slice(0, -1);
-      str += row + '\r\n';
-      for (var i = 0; i < array.length; i++) {
-          var line = '';
-          for (var index in array[i]) {
-              if (line != '') line += ','
-              line += array[i][index];
-          }
-          str += line + '\r\n';
-      }
-      return str;
   }
 
 }
