@@ -15,7 +15,7 @@ export class Utils{
     ConvertToTable(objArray){
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
         var str = "";
-        str = '<html><head><style>table{border-collapse: collapse;font-size:0.7em} table, th, td {border:1px solid black;} th{background:#58717b;color:white} th, td {padding: 10px}tr:nth-child(even) {background-color: #f4f4f4}</style></head><body><table><tr>'
+        str = '<html><head><style>@page{size: landscape; margin: 5mm;}table{border-collapse: collapse;font-size:0.7em} table, th, td {border:1px solid black;} th{background:#58717b;color:white} th, td {padding: 10px}tr:nth-child(even) {background-color: #f4f4f4}</style></head><body><table><tr>'
         for (var index in objArray[0]) {
             str += '<th>' + index + '</th>';
         }
