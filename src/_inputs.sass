@@ -36,6 +36,41 @@ label
 		margin: 1.3em 1em 0
 		cursor: pointer
 
+//Calendar reset
+.ui-datepicker
+	background: white
+	overflow: hidden
+	+border-radius(0.3em)
+	.ui-datepicker-header
+		color: white
+		background: $primary-color
+		margin: -0.2em
+		.ui-datepicker-prev
+			background: url(assets/images/ico-arrow-left.svg)  no-repeat left center
+			background-size: 15px
+			span
+				display: none
+		.ui-datepicker-next
+			background: url(assets/images/ico-arrow-right.svg)  no-repeat right center
+			background-size: 15px
+			span
+				display: none 
+	.ui-datepicker-calendar
+		tr
+			border-bottom: 1px solid rgba(black,0.1)
+			&:last-child
+				border: none
+		td
+			a 
+				color: rgba(black, 0.8)
+				&:hover,&:active
+					color: $primary-color
+					text-decoration: underline
+			&.ui-state-disabled
+				a
+					color: rgba(black, 0.4)
+					&:hover,&:active
+						text-decoration: none
 //Responsive
 @media screen and(max-width: 768px)
 	.control-box
@@ -49,6 +84,8 @@ label
 				text-align: left
 				width: 90%
 				padding: 0.5em
+			.icon-calendar
+				float: right
 		.btn-confirm
 			width: 100%
 			margin: 1em 0
