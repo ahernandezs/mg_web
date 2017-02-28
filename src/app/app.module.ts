@@ -19,7 +19,8 @@ import { BillingComponent } from './components/reports//billing/billing.componen
 import { ClarificationComponent } from './components/reports//clarification/clarification.component';
 import { ReportsComponent } from './components/reports/reports.component';
 
-import { ReportsService } from './services/reports.services'
+import { ReportsService } from './services/reports.services';
+import { AuthService } from './services/auth.services';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,10 @@ import { ReportsService } from './services/reports.services'
     ChartsModule,
     CalendarModule
   ],
-  providers: [ReportsService],
+  providers: [
+    ReportsService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

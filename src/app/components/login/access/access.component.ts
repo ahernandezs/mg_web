@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../../../services/auth.services';
 
 @Component({
   selector: 'app-access',
@@ -7,7 +8,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
+
+  user;
+  password;
+  csrf = "d4c5f173-372f-44c5-a127-3ba11223592a";
 
   ngOnInit() {
   }
@@ -23,4 +30,16 @@ export class AccessComponent implements OnInit {
   changeView(view: String): void {
       this.routeView.emit(view);
   }
+
+  login(view: String){
+    this.authService.login(this.user, this.password, this.csrf).subscribe(
+      response => {
+        console.log("la respuesta");
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
 }
