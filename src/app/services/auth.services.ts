@@ -17,10 +17,9 @@ export class AuthService {
 
 		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
-
-        console.log("antes de mandar el post: "+user+password+csrf);
         let loginRequest = new LoginRequest(user,password,csrf);
-		return this.http.post("http://localhost:8090/MG-Core/reports/getLog", loginRequest, options)
+
+		return this.http.post(environment.baseURL+"mg/login", {"user": "fdassdf", "password": "dadsfa", "_csrf": "d4c5f173-372f-44c5-a127-3ba11223592a"}, options)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
