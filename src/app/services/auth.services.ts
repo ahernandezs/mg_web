@@ -15,11 +15,18 @@ export class AuthService {
 
 	login(user, password, csrf): Observable<any> {
 
-		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/json'});
+		user = "b830bcla";
+		password = "12345678";
+		let url = "http://ci.anzen.io/mg/login";
+
+		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
+		headers.append("Authorization", "Basic " + btoa(user + ":" + password));
+		headers.append('Access-Control-Allow-Headers', "Authorization");
+
         let options = new RequestOptions({ headers: headers });
         let loginRequest = new LoginRequest(user,password,csrf);
 
-		return this.http.post(environment.baseURL+"mg/login", {"user": "fdassdf", "password": "dadsfa", "_csrf": "d4c5f173-372f-44c5-a127-3ba11223592a"}, options)
+		return this.http.get(url, options)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
