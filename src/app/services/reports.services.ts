@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../environments/environment';
+import { HttpClient } from './http.service';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -12,7 +13,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ReportsService {
 
-	constructor(private http: Http) {}
+	constructor(private http: HttpClient) {}
 
 	complete (): Observable<CompleteResponse[]> {
 
@@ -20,26 +21,8 @@ export class ReportsService {
         let options = new RequestOptions({ headers: headers });
 
 		return this.http.get(environment.baseURL + 'complete.json', options)
-			.map(this.extractData)
-			.catch(this.handleError);
-	}
-
-	private extractData(res: Response){
-		let body = res.json();
-		return body.data || { };
-	}
-
-	private handleError(error: Response | any){
-		let errMsg: String;
-		if(error instanceof Response){
-			const body = error.json() || '';
-			const err = body.error || JSON.stringify(body);
-			errMsg = "${error.status} - ${error.statusText || ''} ${err}"
-		}else{
-			errMsg = error.message ? error.message : error.toString();
-		}
-		console.error(errMsg);
-		return Promise.reject(errMsg);
+			.map(res => res.json())
+			.catch(err => Promise.reject("Error: "+err));
 	}
 
 }

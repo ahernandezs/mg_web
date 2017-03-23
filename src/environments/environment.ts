@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseURL: '/app/mocks/'
+  baseURL: 'http://ci.anzen.io/mg/'
 };

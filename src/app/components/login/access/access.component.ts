@@ -1,40 +1,39 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-access',
   templateUrl: './access.component.html',
   styleUrls: ['./access.component.sass']
 })
-export class AccessComponent implements OnInit {
+export class AccessComponent {
+
+  user: string;
+  password: string;
 
   constructor(
-    private authService: AuthService
-  ) { }
-
-  user;
-  password;
-  csrf = "d4c5f173-372f-44c5-a127-3ba11223592a";
-
-  ngOnInit() {
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.user = '';
+    this.password = '';
   }
 
-  /**
-   * This event element will help to change the current view in the parent element <auth.component>.
-   */
-  @Output() routeView: EventEmitter<String> = new EventEmitter();
-
-  /**
-   * This event is emitted to the parent element <auth.component>.
-   */
-  changeView(view: String): void {
-      this.routeView.emit(view);
-  }
-
-  login(view: String){
-    this.authService.login(this.user, this.password, this.csrf).subscribe(
+  login(){
+    if(this.user === '' || this.password === '' ){
+      window.alert('Favor de introducir un usuario y una contraseña');
+      return;
+    }
+    this.authService.login(this.user, this.password).subscribe(
       response => {
-        console.log("la respuesta");
+        var x = document.cookie;
+        console.log('La galletita: '+x);
+/*
+Set-Cookie:X-AUTH-TOKEN=ec046c8b-f8cb-49f2-84ab-74608dd2ac50;Max-Age=10;path=/
+Set-Cookie:JSESSIONID=36818EED34CF1664B4574A7C2F726358;path=/MG-Core;HttpOnly
+*/
+        this.router.navigate(['/reports']);
       },
       err => {
         console.log(err);
