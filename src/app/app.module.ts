@@ -21,6 +21,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 
 import { ReportsService } from './services/reports.services';
 import { AuthService } from './services/auth.services';
+import { HttpClient } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AuthService } from './services/auth.services';
   ],
   providers: [
     ReportsService,
-    AuthService
+    AuthService,
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })
