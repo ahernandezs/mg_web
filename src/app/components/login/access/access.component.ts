@@ -27,15 +27,10 @@ export class AccessComponent {
     }
     this.authService.login(this.user, this.password).subscribe(
       response => {
-        var x = document.cookie;
-        console.log('La galletita: '+x);
-/*
-Set-Cookie:X-AUTH-TOKEN=ec046c8b-f8cb-49f2-84ab-74608dd2ac50;Max-Age=10;path=/
-Set-Cookie:JSESSIONID=36818EED34CF1664B4574A7C2F726358;path=/MG-Core;HttpOnly
-*/
         this.router.navigate(['/reports']);
       },
       err => {
+        window.alert('Error al autenticar');
         console.log(err);
       }
     )

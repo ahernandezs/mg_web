@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../environments/environment';
-import { HttpClient } from './http.service';
-
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
@@ -11,7 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: Http) {}
 
 	login(user, password): Observable<any> {
 
@@ -22,7 +20,7 @@ export class AuthService {
 
 		return this.http.get(environment.baseURL+'login', options)
 			.map(res => res.json())
-			.catch(err => Promise.reject("Error: "+err));
+			.catch((err: Response | any) => Promise.reject("Error: "+err));
 	}
 
 }

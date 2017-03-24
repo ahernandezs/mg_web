@@ -22,6 +22,7 @@ export class CompleteComponent implements OnInit {
   public completeResponse;
   utils: Utils;
 
+  bank;
   desde: Date;
   hasta: Date;
   es: any;
@@ -31,7 +32,11 @@ export class CompleteComponent implements OnInit {
   }
 
   search() {
-    this.reportsService.complete()
+    if(this.desde === null || this.hasta === null || this.bank === 0){
+      alert("Selecciona un rango de fechas y un banco");
+      return;
+    }
+    this.reportsService.complete(this.desde, this.hasta, this.bank)
       .subscribe(
           response => {
             this.completeResponse =  response;

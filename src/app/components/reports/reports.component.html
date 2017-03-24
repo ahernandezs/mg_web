@@ -12,33 +12,28 @@
         <div class="col-md-10 offset-md-1">
             <i class="icon icon-menu" (click)="mainMenu = !mainMenu;"></i>
             <ul [ngClass]="{'active': mainMenu }">
-                <li class="active">
-                    <a (click)="changeView('dashboard')" routerLinkActive="active"
-                        role="button">
+                <li [ngClass]="{'active': myUrl == 'dashboard'}">
+                    <a (click)="changeView('dashboard')" routerLinkActive="active" role="button">
                         DASHBOARD
                     </a>
                 </li>
-                <li>
-                    <a (click)="changeView('complete')" routerLinkActive="active"
-                        role="button">
+                <li [ngClass]="{'active': myUrl == 'complete'}">
+                    <a (click)="changeView('complete')" routerLinkActive="active" role="button">
                         REPORTE LOG COMPLETO
                     </a>
                 </li>
-                <li>
-                    <a (click)="changeView('billing')" routerLinkActive="active"
-                        role="button">
+                <li [ngClass]="{'active': myUrl == 'billing'}">
+                    <a (click)="changeView('billing')" routerLinkActive="active" role="button">
                         REPORTE VALIDACIÓN PARA FACTURACIÓN
                     </a>
                 </li>
-                <li>
-                    <a (click)="changeView('operation')" routerLinkActive="active"
-                        role="button">
+                <li [ngClass]="{'active': myUrl == 'operation'}">
+                    <a (click)="changeView('operation')" routerLinkActive="active" role="button">
                         REPORTE DE OPERACIÓN
                     </a>
                 </li>
-                <li>
-                    <a (click)="changeView('clarification')" routerLinkActive="active"
-                        role="button">
+                <li [ngClass]="{'active': myUrl == 'clarification'}">
+                    <a (click)="changeView('clarification')" routerLinkActive="active" role="button">
                         ACLARACIONES
                     </a>
                 </li>

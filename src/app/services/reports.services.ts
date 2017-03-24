@@ -15,12 +15,12 @@ export class ReportsService {
 
 	constructor(private http: HttpClient) {}
 
-	complete (): Observable<CompleteResponse[]> {
+	complete (desde, hasta, bank): Observable<CompleteResponse[]> {
 
-		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/json'});
+		let headers = new Headers({'X-AUTH-TOKEN': this.http.getSesionToken()});
         let options = new RequestOptions({ headers: headers });
 
-		return this.http.get(environment.baseURL + 'complete.json', options)
+		return this.http.get(environment.baseURL + 'getLog?dateSince='+desde+'&dateUntil='+hasta+'&client='+bank, options)
 			.map(res => res.json())
 			.catch(err => Promise.reject("Error: "+err));
 	}

@@ -1,19 +1,19 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<select name="" id="">
-				<option value="" disabled selected>Institución</option>
-				<option value="">Banca Afirme</option>
-				<option value="">Banca Mifel</option>
-				<option value="">Invex</option>
+			<select [(ngModel)]="bank">
+				<option value="0" disabled selected>Institución</option>
+				<option value="9">Banca Afirme</option>
+				<option value="13">Banca Mifel</option>
+				<option value="11">Invex</option>
 			</select>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es"></p-calendar>
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="yy-mm-dd"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es"></p-calendar>
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="yy-mm-dd"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
