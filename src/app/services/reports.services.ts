@@ -17,8 +17,10 @@ export class ReportsService {
 
 	complete (desde, hasta, bank): Observable<CompleteResponse[]> {
 
-		let headers = new Headers({'X-AUTH-TOKEN': this.http.getSesionToken()});
+		let headers = new Headers({'X-AUTH-TOKEN': localStorage.getItem('X-AUTH-TOKEN-MG')});
         let options = new RequestOptions({ headers: headers });
+
+		console.log(JSON.stringify(headers));
 
 		return this.http.get(environment.baseURL + 'getLog?dateSince='+desde+'&dateUntil='+hasta+'&client='+bank, options)
 			.map(res => res.json())
