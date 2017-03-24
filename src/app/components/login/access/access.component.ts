@@ -27,7 +27,6 @@ export class AccessComponent {
     }
     this.authService.login(this.user, this.password).subscribe(
       response => {
-        console.log('sacando el toquen...');
         var x = document.cookie.split(';');
         var toquen;
         for(var i=0; i < x.length; i++) {
@@ -36,8 +35,9 @@ export class AccessComponent {
             if (c.indexOf('X-AUTH-TOKEN=') == 0)
               toquen = c.substring('X-AUTH-TOKEN='.length,c.length);
         }
-        console.log("Metiendo el toquen: "+toquen);
         localStorage.setItem('X-AUTH-TOKEN-MG',toquen);
+        localStorage.setItem('X-AUTH-USER-MG', this.user);
+        localStorage.setItem('X-AUTH-PASS-MG', this.password);
         this.router.navigate(['/reports']);
       },
       err => {
