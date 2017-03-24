@@ -27,8 +27,17 @@ export class AccessComponent {
     }
     this.authService.login(this.user, this.password).subscribe(
       response => {
-        var x = document.cookie;
-        console.log('La galletita: '+x);
+        console.log('sacando el toquen...');
+        var x = document.cookie.split(';');
+        var toquen;
+        for(var i=0; i < x.length; i++) {
+            var c = x[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf('X-AUTH-TOKEN=') == 0)
+              toquen = c.substring('X-AUTH-TOKEN='.length,c.length);
+        }
+        console.log("Metiendo el toquen: "+toquen);
+        localStorage.setItem('X-AUTH-TOKEN-MG',toquen);
         this.router.navigate(['/reports']);
       },
       err => {
