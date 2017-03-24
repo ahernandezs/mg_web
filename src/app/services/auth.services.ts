@@ -20,7 +20,7 @@ export class AuthService {
 
 		return this.http.get(environment.baseURL+'login', options)
 			.map(res => res.json())
-			.catch((err: Response | any) => Promise.reject("Error: "+err));
+			.catch((err: Response | any) => Promise.reject(err));
 	}
 
 }

@@ -9,11 +9,11 @@
 			</select>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="yy-mm-dd"></p-calendar>
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="yy-mm-dd"></p-calendar>
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>

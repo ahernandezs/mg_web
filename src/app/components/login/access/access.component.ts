@@ -27,6 +27,8 @@ export class AccessComponent {
     }
     this.authService.login(this.user, this.password).subscribe(
       response => {
+        var x = document.cookie;
+        console.log('La galletita: '+x);
         this.router.navigate(['/reports']);
       },
       err => {
