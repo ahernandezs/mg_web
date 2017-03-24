@@ -17,6 +17,7 @@ export class HttpClient {
   }
   
   getSesionToken(): string{
+      console.log('extrayendo el toquen...');
       var x = document.cookie.split(';');
       var toquen;
       for(var i=0; i < x.length; i++) {
@@ -25,6 +26,7 @@ export class HttpClient {
           if (c.indexOf('X-AUTH-TOKEN=') == 0)
             toquen = c.substring('X-AUTH-TOKEN='.length,c.length);
       }
+      console.log("El toquen: "+toquen);
       return toquen;
   }
 
