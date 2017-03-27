@@ -32,6 +32,8 @@ export class AccessComponent {
       this.authService.login(this.user, this.password).subscribe(
         response => {
           this.blocked = false;
+          localStorage.setItem('X-AUTH-USER-MG', this.user);
+          localStorage.setItem('X-AUTH-PASS-MG', this.password);
           this.router.navigate(['/reports']);
         },
         err => {

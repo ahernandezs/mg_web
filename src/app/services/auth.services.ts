@@ -25,9 +25,10 @@ export class AuthService {
 
 	private handleError(error: Response ){
 		if(error.status === 401)
-			return Observable.throw(new Error(error.status+""));
-		//return Promise.reject(error);
-		return Observable.throw(new Error(error.status+""));
+			return;
+
+		return Promise.reject(error);
+		//return Observable.throw(new Error(error.status+""));
 	}
 
 }
