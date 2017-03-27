@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarModule } from 'primeng/primeng';
-import { DropdownModule } from 'primeng/primeng';
-import { SelectItem } from 'primeng/primeng';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
@@ -21,14 +18,17 @@ export class CompleteComponent implements OnInit {
     this.utils = new Utils();
    }
 
-  public completeResponse;
+  public completeResponse: Array<any>;
   utils: Utils;
 
   bank = 0;
   desde: Date;
   hasta: Date;
   es: any;
-  banks: SelectItem[];
+  banks;
+  message: string
+  display: boolean = false;
+  blocked: boolean = false;
 
   ngOnInit() {
     this.es = this.utils.es;
@@ -36,17 +36,31 @@ export class CompleteComponent implements OnInit {
   }
 
   search() {
-    if(this.desde === null || this.hasta === null || this.bank === 0){
-      alert("Selecciona un rango de fechas y un banco");
-    }else{
+    if(this.bank === 0){
+      this.message = "Selecciona un banco primero";
+      this.display = true;
+    } else if(typeof this.desde == 'undefined' || typeof this.hasta == 'undefined' ){
+      this.message = "Selecciona un rango de fechas";
+      this.display = true;
+    } else if(this.desde > this.hasta){
+      this.message = "La fecha final no debe ser anterior a la inicial";
+      this.display = true;
+    } else{
+      this.blocked = true;
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bank)
       .subscribe(
           response => {
+            this.blocked = false;
             this.completeResponse =  response;
-            console.log(this.completeResponse);
+            if(this.completeResponse.length === 0 ){
+              this.message = "No hay registros a mostrar";
+              this.display = true;
+            }
           },
           err => {
-            console.log(err);
+            this.blocked = false;
+            this.message = "Error al consultar";
+            this.display = true;
           }
       );
     }
@@ -64,7 +78,8 @@ export class CompleteComponent implements OnInit {
         a.download = 'SampleExport.csv';
         a.click();
       }else{
-        console.log('busca algo primero');
+        this.message = "Realiza primero una búsqueda";
+        this.display = true;
       }
   }
 
@@ -77,8 +92,9 @@ export class CompleteComponent implements OnInit {
         else w.print();
         w.close();
       }else{
-        console.log('busca algo primero');
-    }
+        this.message = "Realiza primero una búsqueda";
+        this.display = true;
+      }
   }
 
 }
