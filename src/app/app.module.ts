@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { CalendarModule } from 'primeng/primeng';
+import { DropdownModule } from 'primeng/primeng';
 
 import { LoginComponent } from './components/login/index';
 import { PageNotFoundComponent } from './components/share/page-not-found/index';
@@ -42,7 +43,8 @@ import { HttpClient } from './services/http.service';
     HttpModule,
     AppRoutingModule,
     ChartsModule,
-    CalendarModule
+    CalendarModule,
+    DropdownModule
   ],
   providers: [
     ReportsService,

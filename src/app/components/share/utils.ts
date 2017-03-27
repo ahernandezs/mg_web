@@ -1,4 +1,9 @@
+import { SelectItem } from 'primeng/primeng';
+
 export class Utils{
+
+    es: any;
+    banks: SelectItem[];
 
     constructor(){
         this.es = {
@@ -9,8 +14,43 @@ export class Utils{
             monthNames: [ "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre" ],
             monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun","Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ]
         };
+        this.banks = [];
+        this.banks.push({label: "Institución", value: 0})
+        this.banks.push({label: "Banca Afirme", value: 9});
+        this.banks.push({label: "Banca Mifel", value: 13});
+        this.banks.push({label: "Invex", value: 11});
     }
-    es: any;
+
+    getDate(fecha: Date): string{
+        let date: string = "";
+        let tmp = fecha.toString().split(' ');
+        let mes;
+        if(tmp[1]==='Jan')
+            mes = "01";
+        if(tmp[1]==='Feb')
+            mes = "02";
+        if(tmp[1]==='Mar')
+            mes = "03";
+        if(tmp[1]==='Apr')
+            mes = "04";
+        if(tmp[1]==='May')
+            mes = "05";
+        if(tmp[1]==='Jun')
+            mes = "06";
+        if(tmp[1]==='Jul')
+            mes = "07";
+        if(tmp[1]==='Aug')
+            mes = "08";
+        if(tmp[1]==='Sep')
+            mes = "09";
+        if(tmp[1]==='Oct')
+            mes = "10";
+        if(tmp[1]==='Nov')
+            mes = "11";
+        if(tmp[1]==='Dec')
+            mes = "12";
+        return tmp[3]+"-"+mes+"-"+tmp[2];
+    }
 
     ConvertToTable(objArray){
         var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
