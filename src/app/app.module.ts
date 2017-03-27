@@ -10,6 +10,7 @@ import { CalendarModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import { BlockUIModule } from 'primeng/primeng';
+import { PanelModule } from 'primeng/primeng';
 
 import { LoginComponent } from './components/login/index';
 import { PageNotFoundComponent } from './components/share/page-not-found/index';
@@ -48,7 +49,8 @@ import { HttpClient } from './services/http.service';
     CalendarModule,
     DropdownModule,
     DialogModule,
-    BlockUIModule
+    BlockUIModule,
+    PanelModule
   ],
   providers: [
     ReportsService,
