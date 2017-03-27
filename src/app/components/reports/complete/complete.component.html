@@ -1,7 +1,11 @@
+<p-dialog header="Aviso" [(visible)]="display" modal="true" draggable="false" dismissableMask="true">
+    {{message}}
+</p-dialog>
+<p-blockUI [blocked]="blocked"></p-blockUI>
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<p-dropdown [options]="banks" [(ngModel)]="bank" [panelStyle]="{'background-color': 'white'}" [style]="{'font-size': '0.8em'}"></p-dropdown>
+			<p-dropdown [options]="banks" [(ngModel)]="bank"></p-dropdown>
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
