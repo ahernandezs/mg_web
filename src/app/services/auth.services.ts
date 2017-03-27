@@ -23,10 +23,11 @@ export class AuthService {
 			.catch(this.handleError);
 	}
 
-	private handleError(error: Response | any){
+	private handleError(error: Response ){
 		if(error.status === 401)
-			return Observable.throw(new Error(error.status));
-		return Promise.reject(error);
+			return Observable.throw(new Error(error.status+""));
+		//return Promise.reject(error);
+		return Observable.throw(new Error(error.status+""));
 	}
 
 }
