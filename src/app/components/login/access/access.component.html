@@ -2,7 +2,7 @@
     {{message}}
 </p-dialog>
 <p-blockUI [blocked]="blocked" [target]="entrar"></p-blockUI>
-<div #entrar>
+<p-panel #entrar>
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h2>Acceso</h2>
@@ -22,4 +22,4 @@
             <button routerLinkActive="active" class="btn-confirm btn-block" (click)="login();">Ingresar</button>
         </div>
     </div>
-</div>
+</p-panel>
