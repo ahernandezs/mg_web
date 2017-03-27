@@ -19,17 +19,13 @@ export class AuthService {
         let options = new RequestOptions({ headers: headers });
 
 		return this.http.get(environment.baseURL+'login', options)
-			.map(this.extractData)
+			.map(res => res.json())
 			.catch(this.handleError);
 	}
 
-	private extractData(res: Response){
-		let body = res.json();
-		return body || { };
-	}
-
 	private handleError(error: Response | any){
-        console.error(error);
+		if(error.status === 401)
+			return Observable.throw(new Error(error.status));
 		return Promise.reject(error);
 	}
 
