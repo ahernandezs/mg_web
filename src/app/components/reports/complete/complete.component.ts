@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarModule } from 'primeng/primeng';
+import { DropdownModule } from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
@@ -26,27 +28,28 @@ export class CompleteComponent implements OnInit {
   desde: Date;
   hasta: Date;
   es: any;
+  banks: SelectItem[];
 
   ngOnInit() {
     this.es = this.utils.es;
+    this.banks = this.utils.banks;
   }
 
   search() {
     if(this.desde === null || this.hasta === null || this.bank === 0){
       alert("Selecciona un rango de fechas y un banco");
-      return;
-    }
-    let desde = this.desde.getFullYear()+"-"+ ((this.desde.getMonth() < 10) ? '0'+this.desde.getMonth() : this.desde.getMonth()) +"-"+((this.desde.getDay() < 10) ? '0'+this.desde.getDay() : this.desde.getDay());
-    let hasta = this.hasta.getFullYear()+"-"+ ((this.hasta.getMonth() < 10) ? '0'+this.hasta.getMonth() : this.hasta.getMonth()) +"-"+((this.hasta.getDay() < 10) ? '0'+this.hasta.getDay() : this.hasta.getDay());
-    this.reportsService.complete(desde, hasta, this.bank)
+    }else{
+      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bank)
       .subscribe(
           response => {
             this.completeResponse =  response;
+            console.log(this.completeResponse);
           },
           err => {
             console.log(err);
           }
-    );
+      );
+    }
   }
 
   export(){

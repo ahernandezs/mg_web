@@ -1,19 +1,14 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<select [(ngModel)]="bank">
-				<option value="0" disabled selected>Institución</option>
-				<option value="9">Banca Afirme</option>
-				<option value="13">Banca Mifel</option>
-				<option value="11">Invex</option>
-			</select>
+			<p-dropdown [options]="banks" [(ngModel)]="bank" [panelStyle]="{'background-color': 'white'}" [style]="{'font-size': '0.8em'}"></p-dropdown>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es"></p-calendar>
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es"></p-calendar>
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
@@ -47,20 +42,20 @@
 			<tbody>
 				<tr *ngFor="let response of completeResponse">
 					<td>{{response.id}}</td>
-					<td>{{response.user_session}}</td>
+					<td>{{response.userSession}}</td>
 					<td>{{response.bank}}</td>
-					<td>{{response.bank_method_name}}</td>
-					<td>{{response.elapsed_time}}</td>
-					<td>{{response.created_at}}</td>
-					<td>{{response.method_name}}</td>
-					<td>{{response.user_hash}}</td>
-					<td>{{response.user_type}}</td>
-					<td>{{response.user_agent}}</td>
-					<td>{{response.user_version}}</td>
-					<td>{{response.user_device_id}}</td>
-					<td>{{response.method_pay}}</td>
-					<td>{{response.method_status}}</td>
-					<td>{{response.method_result}}</td>
+					<td>{{response.bankMethodName}}</td>
+					<td>{{response.ellapsedTime}}</td>
+					<td>{{response.createdAt}}</td>
+					<td>{{response.methodName}}</td>
+					<td>{{response.userHash}}</td>
+					<td>{{response.userType}}</td>
+					<td>{{response.userAgent}}</td>
+					<td>{{response.userVersion}}</td>
+					<td>{{response.userDeviceId}}</td>
+					<td>{{response.methodPay}}</td>
+					<td>{{response.methodStatus}}</td>
+					<td>{{response.methodResult}}</td>
 					<td>{{response.ip}}</td>
 				</tr>
 			</tbody>

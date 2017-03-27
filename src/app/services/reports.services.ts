@@ -17,14 +17,11 @@ export class ReportsService {
 
 	complete (desde, hasta, bank): Observable<CompleteResponse[]> {
 
-		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
+		let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
 		headers.append("Authorization", "Basic " + btoa(localStorage.getItem('X-AUTH-USER-MG') + ":" + localStorage.getItem('X-AUTH-PASS-MG')));
 		headers.append('X-AUTH-TOKEN', localStorage.getItem('X-AUTH-TOKEN-MG'));
 		headers.append('Access-Control-Allow-Headers', "Authorization");
         let options = new RequestOptions({ headers: headers });
-
-
-		console.log(JSON.stringify(headers));
 
 		return this.http.get(environment.baseURL + 'getLog?dateSince='+desde+'&dateUntil='+hasta+'&client='+bank, options)
 			.map(res => res.json())
