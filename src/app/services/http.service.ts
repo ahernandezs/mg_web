@@ -11,7 +11,7 @@ export class HttpClient {
 
   get(url: string) {
 		let headers = new Headers();
-		headers.append('Cookie', 'JSESSIONID=' +this.getCookie());
+		headers.append('JSESSIONID',this.getCookie());
     let options = new RequestOptions({ headers: headers });
     return this.http.get(url, options);
   }
