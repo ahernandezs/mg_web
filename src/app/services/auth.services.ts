@@ -14,13 +14,23 @@ export class AuthService {
 	login(user, password): Observable<any> {
 
 		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
-		headers.append("Authorization", "Basic " + btoa(user + ":" + password));
-		headers.append('Access-Control-Allow-Headers', "Authorization");
+		headers.append('Authorization', 'Basic ' + btoa(user + ":" + password));
+		headers.append('Access-Control-Allow-Headers', 'Authorization');
         let options = new RequestOptions({ headers: headers });
 
 		return this.http.get(environment.baseURL+'login', options)
-			.map(res => res.json())
-			.catch((err: Response | any) => Promise.reject(err));
+			.map(this.extractData)
+			.catch(this.handleError);
+	}
+
+	private extractData(res: Response){
+		let body = res.json();
+		return body || { };
+	}
+
+	private handleError(error: Response | any){
+        console.error(error);
+		return Promise.reject(error);
 	}
 
 }
