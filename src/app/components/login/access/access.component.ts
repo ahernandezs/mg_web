@@ -32,23 +32,7 @@ export class AccessComponent {
       this.authService.login(this.user, this.password).subscribe(
         response => {
           this.blocked = false;
-          if(document.cookie !== null){
-            var x = document.cookie.split(';');
-            var toquen;
-            for(var i=0; i < x.length; i++) {
-                var c = x[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf('X-AUTH-TOKEN=') == 0)
-                  toquen = c.substring('X-AUTH-TOKEN='.length,c.length);
-            }
-            localStorage.setItem('X-AUTH-TOKEN-MG', toquen);
-            localStorage.setItem('X-AUTH-USER-MG', this.user);
-            localStorage.setItem('X-AUTH-PASS-MG', this.password);
-            this.router.navigate(['/reports']);
-          }else{
-            this.message = "Error al autenticar";
-            this.display = true;
-          }
+          this.router.navigate(['/reports']);
         },
         err => {
           this.blocked = false;
