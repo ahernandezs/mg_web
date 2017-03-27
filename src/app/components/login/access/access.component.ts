@@ -35,6 +35,7 @@ export class AccessComponent {
           this.router.navigate(['/reports']);
         },
         err => {
+          console.log(err);
           this.blocked = false;
           this.message = "Datos incorrectos";
           this.display = true;
