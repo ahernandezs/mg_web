@@ -10,12 +10,7 @@ export class HttpClient {
   ) {}
 
   get(url: string) {
-    //Con galletitas
-		/*let headers = new Headers();
-		headers.append('Cookie', 'JSESSIONID=' +this.getCookie());
-    let options = new RequestOptions({ headers: headers });*/
 
-    //volviendo a mandar el usuario y el password
     let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
     headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-AUTH-USER-MG') + ":" + localStorage.getItem('X-AUTH-PASS-MG')));
     headers.append('Access-Control-Allow-Headers', 'Authorization');

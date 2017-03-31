@@ -1,7 +1,19 @@
 <div class="row">
   <div class="col-md-9">
-  <div class="card shadow-second" style="width: 58vw; height: 75vh;">
-    <iframe src="https://rpm.newrelic.com/public/charts/9wglvzEWyAl" width="100%" height="100%" scrolling="no" frameborder="no"></iframe>
+  <div *ngIf="bank==='admin'"class="card shadow-second" style="width: 58vw; height: 75vh;">
+    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%">
+      <iframe width="384" height="216" src="https://insights-embed.newrelic.com/embedded_widget/6KouKR64T-um071J-lOyXZkCB5-DjgTx" frameborder="0" style="position:absolute;width:100%;height:100%"></iframe>
+    </div>
+  </div>
+
+  <div *ngIf="bank==='11'"class="card shadow-second" style="width: 58vw; height: 75vh;">
+    <iframe src="https://rpm.newrelic.com/public/charts/2nYfeq2spHf" width="500" height="300" scrolling="no" frameborder="no"></iframe>
+  </div>
+  <div *ngIf="bank==='9'"class="card shadow-second" style="width: 58vw; height: 75vh;">
+    <iframe src="https://rpm.newrelic.com/public/charts/4YYYX36MqYh" width="500" height="300" scrolling="no" frameborder="no"></iframe>
+  </div>
+  <div *ngIf="bank==='13'"class="card shadow-second" style="width: 58vw; height: 75vh;">
+    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%"><iframe width="384" height="216" src="https://insights-embed.newrelic.com/embedded_widget/hhfzAYqf7eNrC6w1nLQEpMI7-BuZwqiM" frameborder="0" style="position:absolute;width:100%;height:100%"></iframe></div>
   </div>
   </div>
   <div class="col-md-3">

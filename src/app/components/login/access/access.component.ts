@@ -34,6 +34,7 @@ export class AccessComponent {
           this.blocked = false;
           localStorage.setItem('X-AUTH-USER-MG', this.user);
           localStorage.setItem('X-AUTH-PASS-MG', this.password);
+          localStorage.setItem('X-BANK-ID-MG', response.bankId)
           this.router.navigate(['/reports']);
         },
         err => {
