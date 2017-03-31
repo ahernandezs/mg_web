@@ -29,7 +29,6 @@ export class AuthService {
 			return Promise.reject(error);;
 		}
 		return Promise.reject(error);
-		//return Observable.throw(new Error(error.status+""));
 	}
 
 }
