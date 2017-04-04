@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
+import { Complete } from '../../../models/complete';
 
 import { Utils} from '../../share/utils';
 
@@ -12,23 +13,30 @@ import { Utils} from '../../share/utils';
 })
 export class CompleteComponent implements OnInit {
 
+  completeRequest: Complete;
+  completeResponse: Array<any>;
+
+  utils: Utils;
+  banks;
+
+  bank;
+  desde: Date;
+  hasta: Date;
+  es: any;
+
+  selected: boolean;
+
+  message: string
+  display: boolean = false;
+  blocked: boolean = false;
+
   constructor(
     private reportsService: ReportsService
   ) {
     this.utils = new Utils();
+    this.completeRequest = new Complete(0,"","");
+    this.selected = false;
    }
-
-  public completeResponse: Array<any>;
-  utils: Utils;
-
-  bank = 0;
-  desde: Date;
-  hasta: Date;
-  es: any;
-  banks;
-  message: string
-  display: boolean = false;
-  blocked: boolean = false;
 
   ngOnInit() {
     this.es = this.utils.es;
@@ -46,55 +54,31 @@ export class CompleteComponent implements OnInit {
       this.message = "La fecha final no debe ser anterior a la inicial";
       this.display = true;
     } else{
-      this.blocked = true;
-      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bank)
-      .subscribe(
-          response => {
-            this.blocked = false;
-            this.completeResponse =  response;
-            if(this.completeResponse.length === 0 ){
-              this.message = "No hay registros a mostrar";
-              this.display = true;
-            }
-          },
-          err => {
-            this.blocked = false;
-            this.message = "Error al consultar";
-            this.display = true;
-          }
-      );
+      this.completeResponse = new Array<any>();
+      let bankname;
+      for(let i=0; i < this.utils.banks.length; i++){
+        if(this.utils.banks[i].value === this.bank){
+          bankname = this.utils.banks[i];
+          break;
+        }
+      }
+      for(let i=0; i <= Math.round((Number(this.hasta) - Number(this.desde))/(1000*60*60*24)); i++){
+        this.completeResponse.push({bank: bankname.label, date: this.utils.getDate(new Date(Number(this.desde) + (1000*60*60*24*i))), id: i});
+      }
     }
   }
 
-  export(){
-      if(this.completeResponse != null){
-        var csvData = this.utils.ConvertToCSV(this.completeResponse);
-        var a = document.createElement("a");
-        a.setAttribute('style', 'display:none;');
-        document.body.appendChild(a);
-        var blob = new Blob([csvData], { type: 'text/csv' });
-        var url= window.URL.createObjectURL(blob);
-        a.href = url;
-        a.download = 'SampleExport.csv';
-        a.click();
-      }else{
-        this.message = "Realiza primero una búsqueda";
-        this.display = true;
-      }
+  download(){
+    console.log('bajando...');
   }
 
-  imprimir(){
-      if(this.completeResponse != null){
-        var htmlData = this.utils.ConvertToTable(this.completeResponse);
-        var w = window.open("about:blank");
-        w.document.write(htmlData);
-        if (navigator.appName == 'Microsoft Internet Explorer') window.print();
-        else w.print();
-        w.close();
-      }else{
-        this.message = "Realiza primero una búsqueda";
-        this.display = true;
-      }
+  seleccionar(source) {
+    console.log(source);
+    let checkboxes = document.getElementsByName('report');
+    for(var i = 0 ; i < checkboxes.length ; i++) {
+      let tmp = <HTMLInputElement>checkboxes[i];
+      tmp.checked = this.selected;
+    }
   }
 
 }

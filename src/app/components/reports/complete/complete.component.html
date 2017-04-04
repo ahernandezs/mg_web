@@ -16,51 +16,26 @@
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
-		<i class="icon icon-download float-right" (click)="export()"></i>
-		<i class="icon icon-printer float-right" (click)="imprimir()"></i>
+		<i class="icon icon-download float-right" (click)="download()"></i>
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-12 autoscroll">
+<div class="row justify-content-md-center">
+	<div class="col-md-7 autoscroll">
 		<table class="table generic shadow-second">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>SESION DE USUARIO</th>
 					<th>BANCO</th>
-					<th>NOMBRE DEL METODO DEL BANCO</th>
-					<th>TIEMPO TRANSCURRIDO</th>
-					<th>CREADO</th>
-					<th>NOMBRE DE METODO</th>
-					<th>HASH DEL USUARIO</th>
-					<th>TIPO DE USUARIO</th>
-					<th>AGENTE DEL USUARIO</th>
-					<th>VERSION DEL USUARIO</th>
-					<th>ID DEL DISPOSITIVO DE USUARIO</th>
-					<th>METODO DE PAGO</th>
-					<th>ESTADO DEL METODO</th>
-					<th>RESULTADO DEL METODO</th>
-					<th>IP</th>
+					<th>FECHA</th>
+					<th>TIPO</th>
+					<th>DESCARGAR&nbsp;&nbsp;&nbsp;<input type="checkbox" (click)="selected =!selected; seleccionar()"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let response of completeResponse">
-					<td>{{response.id}}</td>
-					<td>{{response.userSession}}</td>
 					<td>{{response.bank}}</td>
-					<td>{{response.bankMethodName}}</td>
-					<td>{{response.ellapsedTime}}</td>
-					<td>{{response.createdAt}}</td>
-					<td>{{response.methodName}}</td>
-					<td>{{response.userHash}}</td>
-					<td>{{response.userType}}</td>
-					<td>{{response.userAgent}}</td>
-					<td>{{response.userVersion}}</td>
-					<td>{{response.userDeviceId}}</td>
-					<td>{{response.methodPay}}</td>
-					<td>{{response.methodStatus}}</td>
-					<td>{{response.methodResult}}</td>
-					<td>{{response.ip}}</td>
+					<td>{{response.date}}</td>
+					<td>xls</td>
+					<td><input type="checkbox" name="report" value="{{response.id}}"></td>
 				</tr>
 			</tbody>
 		</table>
