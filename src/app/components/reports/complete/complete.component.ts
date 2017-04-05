@@ -42,14 +42,15 @@ export class CompleteComponent implements OnInit {
   ngOnInit() {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
-    console.log(localStorage.getItem('X-BANK-ID-MG'));
-    for(let i=0; i < this.banks.length; i++){
-      if(this.banks[i].value == localStorage.getItem('X-BANK-ID-MG')){
-        this.bankLogged = this.utils.banks[i].label;
-        break;
+    let bank = localStorage.getItem('X-BANK-ID-MG');
+    if(bank != 'admin'){
+      for(let i=0; i < this.banks.length; i++){
+        if(this.banks[i].value == localStorage.getItem('X-BANK-ID-MG')){
+          this.bank = ({label: this.utils.banks[i].label, value: this.banks[i].value});
+          break;
+        }
       }
     }
-    console.log('Banco: '+this.bankLogged);
   }
 
   search() {
