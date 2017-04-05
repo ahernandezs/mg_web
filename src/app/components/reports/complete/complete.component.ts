@@ -42,8 +42,9 @@ export class CompleteComponent implements OnInit {
   ngOnInit() {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
+    console.log(localStorage.getItem('X-BANK-ID-MG'));
     for(let i=0; i < this.banks.length; i++){
-      if(this.utils.banks[i].value === localStorage.getItem('X-BANK-ID-MG')){
+      if(this.banks[i].value == localStorage.getItem('X-BANK-ID-MG')){
         this.bankLogged = this.utils.banks[i].label;
         break;
       }
