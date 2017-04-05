@@ -5,7 +5,8 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<p-dropdown [options]="banks" [(ngModel)]="bank"></p-dropdown>
+			<p-dropdown *ngIf="bankLogged == 'admin'" [options]="banks" [(ngModel)]="bank"></p-dropdown>
+			<span *ngIf="bankLogged != 'admin'">{{bankLogged}}</span>
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
