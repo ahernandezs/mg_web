@@ -44,10 +44,11 @@ export class CompleteComponent implements OnInit {
     this.banks = this.utils.banks;
     for(let i=0; i < this.banks.length; i++){
       if(this.utils.banks[i].value === localStorage.getItem('X-BANK-ID-MG')){
-        this.bankLogged = this.utils.banks[i];
+        this.bankLogged = this.utils.banks[i].label;
         break;
       }
     }
+    console.log('Banco: '+this.bankLogged);
   }
 
   search() {
