@@ -20,6 +20,7 @@ export class CompleteComponent implements OnInit {
   banks;
 
   bank;
+  bankLogged;
   desde: Date;
   hasta: Date;
   es: any;
@@ -41,6 +42,12 @@ export class CompleteComponent implements OnInit {
   ngOnInit() {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
+    for(let i=0; i < this.banks.length; i++){
+      if(this.utils.banks[i].value === localStorage.getItem('X-BANK-ID-MG')){
+        this.bankLogged = this.utils.banks[i];
+        break;
+      }
+    }
   }
 
   search() {
@@ -73,7 +80,6 @@ export class CompleteComponent implements OnInit {
   }
 
   seleccionar(source) {
-    console.log(source);
     let checkboxes = document.getElementsByName('report');
     for(var i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
