@@ -57,7 +57,6 @@ export class CompleteComponent implements OnInit {
   }
 
   search() {
-    console.log(this.bankselected);
     if(this.bankselected === 0){
       this.message = "Selecciona un banco primero";
       this.display = true;

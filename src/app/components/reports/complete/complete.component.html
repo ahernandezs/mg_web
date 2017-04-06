@@ -4,9 +4,9 @@
 <p-blockUI [blocked]="blocked"></p-blockUI>
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
-		<label>{{bankinlocalstorage}}
-			<p-dropdown *ngIf="bankinlocalstorage == 'admin'" [options]="banks" [(ngModel)]="bankselected"></p-dropdown>
-			<span *ngIf="bankinlocalstorage != 'admin'">{{bankselectedLabel}}</span>
+		<label>
+			<p-dropdown *ngIf="bankinlocalstorage == 'admin' " [options]="banks" [(ngModel)]="bankselected"></p-dropdown>
+			<span *ngIf="bankinlocalstorage != 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
