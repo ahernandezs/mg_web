@@ -43,9 +43,10 @@ export class CompleteComponent implements OnInit {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     let bank = localStorage.getItem('X-BANK-ID-MG');
+    this.bank = {label: "Institución", value: 0};
     if(bank != 'admin'){
       for(let i=0; i < this.banks.length; i++){
-        if(this.banks[i].value == localStorage.getItem('X-BANK-ID-MG')){
+        if(this.banks[i].value == bank){
           this.bank = ({label: this.utils.banks[i].label, value: this.banks[i].value});
           break;
         }
