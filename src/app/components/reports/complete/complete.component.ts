@@ -17,10 +17,12 @@ export class CompleteComponent implements OnInit {
   completeResponse: Array<any>;
 
   utils: Utils;
-  banks;
 
-  bank;
-  bankLogged;
+  banks;
+  bankselected;
+  bankselectedLabel;
+  bankinlocalstorage;
+
   desde: Date;
   hasta: Date;
   es: any;
@@ -42,12 +44,12 @@ export class CompleteComponent implements OnInit {
   ngOnInit() {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
-    let bank = localStorage.getItem('X-BANK-ID-MG');
-    this.bank = {label: "Institución", value: 0};
-    if(bank != 'admin'){
+    this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
+    if(this.bankinlocalstorage != 'admin'){
       for(let i=0; i < this.banks.length; i++){
-        if(this.banks[i].value == bank){
-          this.bank = ({label: this.utils.banks[i].label, value: this.banks[i].value});
+        if(this.banks[i].value == this.bankinlocalstorage){
+          this.bankselected = this.banks[i].value;
+          this.bankselectedLabel = this.utils.banks[i].label
           break;
         }
       }
@@ -55,7 +57,8 @@ export class CompleteComponent implements OnInit {
   }
 
   search() {
-    if(this.bank === 0){
+    console.log(this.bankselected);
+    if(this.bankselected === 0){
       this.message = "Selecciona un banco primero";
       this.display = true;
     } else if(typeof this.desde == 'undefined' || typeof this.hasta == 'undefined' ){
@@ -68,13 +71,13 @@ export class CompleteComponent implements OnInit {
       this.completeResponse = new Array<any>();
       let bankname;
       for(let i=0; i < this.utils.banks.length; i++){
-        if(this.utils.banks[i].value === this.bank){
-          bankname = this.utils.banks[i];
+        if(this.utils.banks[i].value === this.bankselected){
+          this.bankselectedLabel = this.utils.banks[i].label;
           break;
         }
       }
       for(let i=0; i <= Math.round((Number(this.hasta) - Number(this.desde))/(1000*60*60*24)); i++){
-        this.completeResponse.push({bank: bankname.label, date: this.utils.getDate(new Date(Number(this.desde) + (1000*60*60*24*i))), id: i});
+        this.completeResponse.push({bank: this.bankselectedLabel, date: this.utils.getDate(new Date(Number(this.desde) + (1000*60*60*24*i))), id: i});
       }
     }
   }

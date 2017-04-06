@@ -5,8 +5,8 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<p-dropdown *ngIf="bank.value == 0" [options]="banks" [(ngModel)]="bank"></p-dropdown>
-			<span *ngIf="bank.value != 0">{{bank.label}}</span>
+			<p-dropdown *ngIf="bankinlocalstorage.value == 0" [options]="banks" [(ngModel)]="bankselected"></p-dropdown>
+			<span *ngIf="bankinlocalstorage.value != 0">{{bankselectedLabel}}</span>
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
