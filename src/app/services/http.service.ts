@@ -11,9 +11,7 @@ export class HttpClient {
 
   get(url: string) {
 
-    let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
-    headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-AUTH-USER-MG') + ":" + localStorage.getItem('X-AUTH-PASS-MG')));
-    headers.append('Access-Control-Allow-Headers', 'Authorization');
+    let headers = new Headers({'X-AUTH-TOKEN': this.getCookie()});
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(url, options);
