@@ -22,9 +22,11 @@ export class HttpClient {
   }
 
   getCookie(){
+    console.log('Trayendo la galleta: '+document.cookie);
     var x = document.cookie.split(';');
     var toquen = '';
     for(var i=0; i < x.length; i++) {
+      console.log('aquí casual buscando algo '+x[i]);
       var c = x[i];
       while (c.charAt(0)==' ') c = c.substring(1,c.length);
       if (c.indexOf('JSESSIONID=') == 0)

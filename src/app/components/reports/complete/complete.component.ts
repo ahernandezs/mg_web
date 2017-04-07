@@ -71,18 +71,6 @@ export class CompleteComponent implements OnInit {
         res => this.completeResponse = res,
         err => console.log(err)
       );
-      /*
-      this.completeResponse = new Array<any>();
-      let bankname;
-      for(let i=0; i < this.utils.banks.length; i++){
-        if(this.utils.banks[i].value === this.bankselected){
-          this.bankselectedLabel = this.utils.banks[i].label;
-          break;
-        }
-      }
-      for(let i=0; i <= Math.round((Number(this.hasta) - Number(this.desde))/(1000*60*60*24)); i++){
-        this.completeResponse.push({bank: this.bankselectedLabel, date: this.utils.getDate(new Date(Number(this.desde) + (1000*60*60*24*i))), id: i});
-      }*/
     }
   }
 
