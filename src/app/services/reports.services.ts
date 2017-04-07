@@ -14,10 +14,10 @@ export class ReportsService {
 
 	constructor(private http: HttpClient) {}
 
-	complete (desde, hasta, bank): Observable<CompleteResponse[]> {
-		return this.http.get(environment.baseURL + 'getLog?dateSince='+desde+'&dateUntil='+hasta+'&client='+bank)
+	complete(desde, hasta, bank): Observable<CompleteResponse[]> {
+		return this.http.get(environment.baseURL + 'getReportComplete?dateSince='+desde+'&dateUntil='+hasta+'&client='+bank)
 			.map(res => res.json())
-			.catch(err => Promise.reject("Error: "+err));
+			.catch(err => Promise.reject(err));
 	}
 
 }

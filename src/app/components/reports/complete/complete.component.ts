@@ -67,6 +67,11 @@ export class CompleteComponent implements OnInit {
       this.message = "La fecha final no debe ser anterior a la inicial";
       this.display = true;
     } else{
+      this.reportsService.complete(this.desde, this.hasta, this.bankselected).subscribe(
+        res => this.completeResponse = res,
+        err => console.log(err)
+      );
+      /*
       this.completeResponse = new Array<any>();
       let bankname;
       for(let i=0; i < this.utils.banks.length; i++){
@@ -77,7 +82,7 @@ export class CompleteComponent implements OnInit {
       }
       for(let i=0; i <= Math.round((Number(this.hasta) - Number(this.desde))/(1000*60*60*24)); i++){
         this.completeResponse.push({bank: this.bankselectedLabel, date: this.utils.getDate(new Date(Number(this.desde) + (1000*60*60*24*i))), id: i});
-      }
+      }*/
     }
   }
 
