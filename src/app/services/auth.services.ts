@@ -19,7 +19,9 @@ export class AuthService {
 
 		return this.http.get(environment.baseURL+'login', options)
 			.map((res: Response) => {
-				console.log(res.headers);
+				console.log(JSON.stringify(res));
+				let head = res.headers.getAll('set-cookie');
+				console.log(head);
 				return res.json();
 			})
 			.catch(this.handleError);
