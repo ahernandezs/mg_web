@@ -15,7 +15,7 @@ export class AuthService {
 		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
 		headers.append('Authorization', 'Basic ' + btoa(user + ":" + password));
 		headers.append('Access-Control-Allow-Headers', 'Authorization');
-        let options = new RequestOptions({ headers: headers });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
 
 		return this.http.get(environment.baseURL+'login', options)
 			.map((res: Response) => {
