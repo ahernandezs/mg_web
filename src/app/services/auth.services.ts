@@ -12,14 +12,16 @@ export class AuthService {
 	constructor(private http: Http) {}
 
 	login(user, password): Observable<any> {
-
 		let headers = new Headers({'X-CLIENT-TYPE': 'WEB', 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'});
 		headers.append('Authorization', 'Basic ' + btoa(user + ":" + password));
 		headers.append('Access-Control-Allow-Headers', 'Authorization');
         let options = new RequestOptions({ headers: headers });
 
 		return this.http.get(environment.baseURL+'login', options)
-			.map(res => res.json())
+			.map((res: Response) => {
+				console.log(res.headers);
+				return res.json();
+			})
 			.catch(this.handleError);
 	}
 
