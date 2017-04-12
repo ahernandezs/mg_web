@@ -67,8 +67,15 @@ export class CompleteComponent implements OnInit {
       this.message = "La fecha final no debe ser anterior a la inicial";
       this.display = true;
     } else{
-      console.log(this.bankselected);
-      this.bankselectedLabel = this.bankselected.label;
+      if(this.bankinlocalstorage == 'admin'){
+        for(let i=0; i < this.banks.length; i++){
+          if(this.banks[i].value == this.bankselected){
+            this.bankselectedLabel = this.utils.banks[i].label
+            break;
+          }
+        }
+      }
+      console.log('Voy a mandar la petición...');
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase()).subscribe(
         res => {
           console.log("respuesta: "+JSON.stringify(res));
