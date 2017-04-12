@@ -34,9 +34,8 @@ export class AccessComponent {
       this.authService.login(this.user, this.password).subscribe(
         response => {
           this.blocked = false;
-          this.utils.getCookie();
+          localStorage.setItem('X-AUTH-TOKEN', this.utils.getCookie());
           localStorage.setItem('X-BANK-ID-MG', response.bankId)
-          console.log(localStorage.getItem('X-BANK-ID-MG'));
           this.router.navigate(['/reports']);
         },
         err => {

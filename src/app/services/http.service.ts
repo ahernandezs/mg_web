@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Utils } from '../utils/utils'
 
 @Injectable()
 export class HttpClient {
 
   constructor(
-      private http: Http,
-      private utils: Utils
+      private http: Http
   ) {}
 
   get(url: string) {
 
-    let headers = new Headers({'X-AUTH-TOKEN': this.utils.getCookie()});
+    let headers = new Headers({'X-AUTH-TOKEN':  localStorage.getItem('X-AUTH-TOKEN')});
     let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(url, options);
