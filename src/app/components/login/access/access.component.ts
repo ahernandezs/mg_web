@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.services';
 import { Router } from '@angular/router';
+import { Utils } from '../../../utils/utils'
 
 @Component({
   selector: 'app-access',
@@ -17,7 +18,8 @@ export class AccessComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private utils: Utils
   ) {
     this.user = '';
     this.password = '';
@@ -32,6 +34,7 @@ export class AccessComponent {
       this.authService.login(this.user, this.password).subscribe(
         response => {
           this.blocked = false;
+          this.utils.getCookie();
           localStorage.setItem('X-BANK-ID-MG', response.bankId)
           console.log(localStorage.getItem('X-BANK-ID-MG'));
           this.router.navigate(['/reports']);

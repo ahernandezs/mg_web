@@ -28,6 +28,7 @@ import { AuthService } from './services/auth.services';
 import { HttpClient } from './services/http.service';
 
 import { AuthGuard } from './utils/auth.guards';
+import { Utils } from './utils/utils';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AuthGuard } from './utils/auth.guards';
     ReportsService,
     AuthService,
     HttpClient,
-    AuthGuard
+    AuthGuard,
+    Utils
   ],
   bootstrap: [AppComponent]
 })
