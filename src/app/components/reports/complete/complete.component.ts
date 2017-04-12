@@ -75,7 +75,6 @@ export class CompleteComponent implements OnInit {
           }
         }
       }
-      console.log('Voy a mandar la petición...');
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase()).subscribe(
         res => {
           console.log("respuesta: "+JSON.stringify(res));
