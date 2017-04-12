@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: '/mg/'
+  baseURL: 'http://ci.anzen.io/mg/'
 };
