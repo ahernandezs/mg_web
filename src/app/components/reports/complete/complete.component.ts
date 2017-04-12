@@ -68,7 +68,10 @@ export class CompleteComponent implements OnInit {
       this.display = true;
     } else{
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselected).subscribe(
-        res => this.completeResponse = res,
+        res => {
+          console.log("respuesta: "+JSON.stringify(res));
+          this.completeResponse = res
+        },
         err => console.log(err)
       );
     }

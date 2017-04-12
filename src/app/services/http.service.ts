@@ -12,7 +12,7 @@ export class HttpClient {
   get(url: string) {
 
     let headers = new Headers({'X-AUTH-TOKEN': this.getCookie()});
-    let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.http.get(url, options);
   }

@@ -19,20 +19,11 @@ export class AuthService {
 
 		return this.http.get(environment.baseURL+'login', options)
 			.map((res: Response) => {
-				console.log(JSON.stringify(res));
-				let head = res.headers.getAll('set-cookie');
-				console.log(head);
 				return res.json();
 			})
-			.catch(this.handleError);
-	}
-
-	private handleError(error: Response ){
-		if(error.status === 401){
-			console.log("Error 401");
-			return Promise.reject(error);;
-		}
-		return Promise.reject(error);
+			.catch(
+				err => Promise.reject(err)
+			);
 	}
 
 }

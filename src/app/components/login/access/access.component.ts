@@ -31,9 +31,9 @@ export class AccessComponent {
       this.blocked = true;
       this.authService.login(this.user, this.password).subscribe(
         response => {
-          console.log('sepa: '+JSON.stringify(response));
           this.blocked = false;
           localStorage.setItem('X-BANK-ID-MG', response.bankId)
+          console.log(localStorage.getItem('X-BANK-ID-MG'));
           this.router.navigate(['/reports']);
         },
         err => {
