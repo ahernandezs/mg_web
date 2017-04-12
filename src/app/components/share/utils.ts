@@ -16,8 +16,8 @@ export class Utils{
         };
         this.banks = [];
         this.banks.push({label: "Institución", value: 0})
-        this.banks.push({label: "Banca Afirme", value: 9});
-        this.banks.push({label: "Banca Mifel", value: 13});
+        this.banks.push({label: "Afirme", value: 9});
+        this.banks.push({label: "Mifel", value: 13});
         this.banks.push({label: "Invex", value: 11});
     }
 
