@@ -20,7 +20,7 @@ export class CompleteComponent implements OnInit {
 
   banks;
   bankselected;
-  bankselectedLabel;
+  bankselectedLabel: string;
   bankinlocalstorage;
 
   desde: Date;
@@ -67,7 +67,7 @@ export class CompleteComponent implements OnInit {
       this.message = "La fecha final no debe ser anterior a la inicial";
       this.display = true;
     } else{
-      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselected).subscribe(
+      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase()).subscribe(
         res => {
           console.log("respuesta: "+JSON.stringify(res));
           this.completeResponse = res
