@@ -4,4 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<router-outlet></router-outlet>`
 })
-export class AppComponent { }
+export class AppComponent {
+
+  constructor(){
+    window.onbeforeunload = function(e) {
+      localStorage.removeItem('X-AUTH-TOKEN');
+      localStorage.removeItem('X-BANK-ID-MG');
+    };
+  }
+
+}

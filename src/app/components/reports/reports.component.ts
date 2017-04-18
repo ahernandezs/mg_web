@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reports',
@@ -11,7 +12,9 @@ export class ReportsComponent implements OnInit {
     mainMenu: false;
     private myUrl: any;
 
-    constructor() { }
+    constructor(
+        private router: Router
+    ) { }
 
     ngOnInit() {
         this.myUrl = 'dashboard';
@@ -19,6 +22,12 @@ export class ReportsComponent implements OnInit {
 
     changeView(view: String) {
         this.myUrl = view;
+    }
+
+    logout(){
+      localStorage.removeItem('X-AUTH-TOKEN');
+      localStorage.removeItem('X-BANK-ID-MG');
+      this.router.navigate(['/login']);
     }
 
 }
