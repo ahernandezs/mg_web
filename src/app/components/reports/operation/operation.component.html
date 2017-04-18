@@ -1,12 +1,8 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<select name="" id="">
-				<option value="" disabled selected>Institución</option>
-				<option value="">Banca Afirme</option>
-				<option value="">Banca Mifel</option>
-				<option value="">Invex</option>
-			</select>
+			<p-dropdown *ngIf="bankinlocalstorage == 'admin' " [options]="banks" [(ngModel)]="bankselected"></p-dropdown>
+			<span *ngIf="bankinlocalstorage != 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
 			<input type="text" placeholder="Usuario">

@@ -16,10 +16,10 @@ export class CompleteComponent implements OnInit {
   completeRequest: Complete;
   completeResponse: Array<any>;
 
-  banks;
+  banks: Array<any>;
   bankselected;
-  bankselectedLabel: string;
-  bankinlocalstorage;
+  bankselectedLabel: String;
+  bankinlocalstorage: String;
 
   desde: Date;
   hasta: Date;
@@ -34,12 +34,11 @@ export class CompleteComponent implements OnInit {
   constructor(
     private reportsService: ReportsService,
     private utils: Utils
-  ) {
-    this.completeRequest = new Complete(0, '', '');
-    this.selected = false;
-  }
+  ) { }
 
   ngOnInit() {
+    this.completeRequest = new Complete(0, '', '');
+    this.selected = false;
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
@@ -86,7 +85,7 @@ export class CompleteComponent implements OnInit {
     console.log('bajando...');
   }
 
-  seleccionar(source) {
+  selectAll(source) {
     let checkboxes = document.getElementsByName('report');
     for (let i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
