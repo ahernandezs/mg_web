@@ -10,11 +10,11 @@ import { Utils } from '../../../utils/utils'
 })
 export class AccessComponent {
 
-  user: string;
-  password: string;
-  message: string
-  display: boolean = false;
-  blocked: boolean = false;
+  user: String;
+  password: String;
+  message: String;
+  display: Boolean = false;
+  blocked: Boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -25,11 +25,11 @@ export class AccessComponent {
     this.password = '';
   }
 
-  login(){
-    if(this.user === '' || this.password === '' ){
-      this.message = "Favor de introducir un usuario y una contraseña";
+  login() {
+    if (this.user === '' || this.password === '' ) {
+      this.message = 'Favor de introducir un usuario y una contraseña';
       this.display = true;
-    }else{
+    } else {
       this.blocked = true;
       this.authService.login(this.user, this.password).subscribe(
         response => {
@@ -41,7 +41,7 @@ export class AccessComponent {
         err => {
           console.log(err);
           this.blocked = false;
-          this.message = "Datos incorrectos";
+          this.message = 'Datos incorrectos';
           this.display = true;
         }
       )

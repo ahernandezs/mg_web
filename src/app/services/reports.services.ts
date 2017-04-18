@@ -12,12 +12,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ReportsService {
 
-	constructor(private http: HttpClient) {}
+ constructor(private http: HttpClient) {}
 
-	complete(desde, hasta, bank): Observable<CompleteResponse[]> {
-		return this.http.get(environment.baseURL + 'getLog?dateSince='+desde+'&dateUntil='+hasta+'&client='+bank)
-			.map(res => res.json())
-			.catch(err => Promise.reject(err));
-	}
+ complete(desde, hasta, bank): Observable<CompleteResponse[]> {
+  return this.http.get(environment.baseURL + 'getLog?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + bank)
+   .map(res => res.json())
+   .catch(err => Promise.reject(err));
+ }
 
 }

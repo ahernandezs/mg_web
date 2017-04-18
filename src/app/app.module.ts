@@ -13,7 +13,6 @@ import { BlockUIModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
 
 import { LoginComponent } from './components/login/index';
-import { PageNotFoundComponent } from './components/share/page-not-found/index';
 import { AccessComponent } from './components/login/access/index';
 
 import { DashboardComponent } from './components/reports/dashboard/index';
@@ -34,7 +33,6 @@ import { Utils } from './utils/utils';
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent,
     AccessComponent,
     DashboardComponent,
     OperationComponent,
