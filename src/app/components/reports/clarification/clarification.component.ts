@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-clarification',
   templateUrl: './clarification.component.html',
   styleUrls: ['./clarification.component.sass']
 })
-export class ClarificationComponent implements OnInit {
+export class ClarificationComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

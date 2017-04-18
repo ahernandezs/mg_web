@@ -6,8 +6,11 @@ export class Utils {
 
     es: any;
     banks: SelectItem[];
+    paths: Array<any>;
+    widgetURL: String;
 
-    constructor(){
+    constructor() {
+        this.widgetURL = 'https://insights-embed.newrelic.com/embedded_widget/';
         this.es = {
             firstDayOfWeek: 1,
             dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'],
@@ -21,6 +24,11 @@ export class Utils {
         this.banks.push({label: 'Afirme', value: 9});
         this.banks.push({label: 'Mifel', value: 13});
         this.banks.push({label: 'Invex', value: 11});
+        this.paths = new Array();
+        this.paths.push({key: 'admin', value: '7V6pORBldpv_fpRHxpi2H71IaX8cDkeG'});
+        this.paths.push({key: '9', value: 'xhdle4vNnLcLFOGKJzufawVB4JkSoMio'});
+        this.paths.push({key: '11', value: 'C7-D2Kl3Rn2YXXVxjCs4GMP8u_ei8jTc'});
+        this.paths.push({key: '13', value: '8OeKL3lhmHe1uOX_e2kHsHOrj_vimepD'});
     }
 
     getDate(fecha: Date): string{
@@ -98,29 +106,29 @@ export class Utils {
         for (let i = 0; i < array.length; i++) {
             let line = '';
             for (var index in array[i]) {
-              if (line != '') {
+                if (line != '') {
                 line += ',';
-              }
-              line += array[i][index];
+                }
+                line += array[i][index];
             }
             str += line + '\r\n';
         }
         return str;
     }
 
-  getCookie(){
-    let x = document.cookie.split(';');
-    let toquen = '';
-    for (let i = 0; i < x.length; i++) {
-      let c = x[i];
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1, c.length);
-      }
-      if (c.indexOf('X-AUTH-TOKEN') === 0) {
-        toquen = c.substring('X-AUTH-TOKEN='.length, c.length);
-      }
+    getCookie(){
+        let x = document.cookie.split(';');
+        let toquen = '';
+        for (let i = 0; i < x.length; i++) {
+        let c = x[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1, c.length);
+        }
+        if (c.indexOf('X-AUTH-TOKEN') === 0) {
+            toquen = c.substring('X-AUTH-TOKEN='.length, c.length);
+        }
+        }
+        return toquen;
     }
-    return toquen;
-  }
 
 }

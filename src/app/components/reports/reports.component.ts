@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ReportsComponent implements OnInit {
 
     mainMenu: false;
-    private myUrl:any;
+    private myUrl: any;
 
     constructor() { }
 

@@ -1,29 +1,9 @@
 <div class="row">
   <div class="col-md-9">
-
-  <div *ngIf="bank==='admin'"class="card shadow-second" style="width: 58vw; height: 75vh;">
-    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%">
-      <iframe width="384" height="216" src="https://insights-embed.newrelic.com/embedded_widget/7V6pORBldpv_fpRHxpi2H71IaX8cDkeG" frameborder="0" style="position:absolute;width:100%;height:100%">
-      </iframe>
-    </div>
-  </div>
-
-  <div *ngIf="bank==='11'"class="card shadow-second" style="width: 58vw; height: 75vh;">
-    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%">
-      <iframe width="384" height="216" src="https://insights-embed.newrelic.com/embedded_widget/C7-D2Kl3Rn2YXXVxjCs4GMP8u_ei8jTc" frameborder="0" style="position:absolute;width:100%;height:100%">
-      </iframe>
-    </div>
-  </div>
-  <div *ngIf="bank==='9'"class="card shadow-second" style="width: 58vw; height: 75vh;">
-    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%">
-      <iframe width="384" height="216" src="https://insights-embed.newrelic.com/embedded_widget/xhdle4vNnLcLFOGKJzufawVB4JkSoMio" frameborder="0" style="position:absolute;width:100%;height:100%">
-      </iframe>
-      </div>
-    </div>
-  <div *ngIf="bank==='13'"class="card shadow-second" style="width: 58vw; height: 75vh;">
-    <div style="position:relative;width:100%;height:0;padding-bottom:56.25%">
-      <iframe width="384" height="216" src="https://insights-embed.newrelic.com/embedded_widget/8OeKL3lhmHe1uOX_e2kHsHOrj_vimepD" frameborder="0" style="position:absolute;width:100%;height:100%">
-      </iframe>
+    <div class="card shadow-second" style="width: 58vw; height: 75vh;">
+      <div style="position:relative;width:100%;height:0;padding-bottom:56.25%">
+        <iframe width="384" height="216" [src]="path" frameborder="0" style="position:absolute;width:100%;height:100%">
+        </iframe>
       </div>
     </div>
   </div>
@@ -37,35 +17,10 @@
             <th>Mes actual</th>
             <th>Mes anterior</th>
           </tr>
-          <tr>
-              <td>Banco 1</td>
-              <td>324423</td>
-              <td>324453</td>
-          </tr>
-          <tr>
-              <td>Banco 1</td>
-              <td>324423</td>
-              <td>324453</td>
-          </tr>
-          <tr>
-              <td>Banco 1</td>
-              <td>324423</td>
-              <td>324453</td>
-          </tr>
-          <tr>
-              <td>Banco 1</td>
-              <td>324423</td>
-              <td>324453</td>
-          </tr>
-          <tr>
-              <td>Banco 1</td>
-              <td>324423</td>
-              <td>324453</td>
-          </tr>
-          <tr>
-              <td>Banco 1</td>
-              <td>324423</td>
-              <td>324453</td>
+          <tr *ngFor="let summary of summaries">
+              <td>{{summary.bank}}</td>
+              <td>{{summary.current}}</td>
+              <td>{{summary.last}}</td>
           </tr>
         </table>
       </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarModule } from 'primeng/primeng';
 
+import { Utils } from '../../../utils/utils';
+
 @Component({
   selector: 'app-operation',
   templateUrl: './operation.component.html',
@@ -12,17 +14,12 @@ export class OperationComponent implements OnInit {
   hasta: Date;
   es: any;
 
-  constructor() { }
+  constructor(
+    private utils: Utils
+  ) { }
 
   ngOnInit() {
-    this.es = {
-        firstDayOfWeek: 1,
-        dayNames: ['Doming', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'],
-        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-        monthNames: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        monthNamesShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ]
-    };
+    this.es = this.utils.es;
   }
 
 }

@@ -1,7 +1,7 @@
-<p-dialog header="Aviso" [(visible)]="display" modal="true" draggable="false" dismissableMask="true">
+<p-dialog header="Aviso" [(visible)]="showError" modal="true" draggable="false" dismissableMask="true">
     {{message}}
 </p-dialog>
-<p-blockUI [blocked]="blocked"></p-blockUI>
+<p-blockUI [blocked]="showLoading"></p-blockUI>
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>

@@ -4,7 +4,7 @@ import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
 import { Complete } from '../../../models/complete';
 
-import { Utils} from '../../../utils/utils';
+import { Utils } from '../../../utils/utils';
 
 @Component({
   selector: 'app-complete',
@@ -15,8 +15,6 @@ export class CompleteComponent implements OnInit {
 
   completeRequest: Complete;
   completeResponse: Array<any>;
-
-  utils: Utils;
 
   banks;
   bankselected;
@@ -30,16 +28,16 @@ export class CompleteComponent implements OnInit {
   selected: boolean;
 
   message: String;
-  display: Boolean = false;
-  blocked: Boolean = false;
+  showError: Boolean = false;
+  showLoading: Boolean = false;
 
   constructor(
-    private reportsService: ReportsService
+    private reportsService: ReportsService,
+    private utils: Utils
   ) {
-    this.utils = new Utils();
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
-   }
+  }
 
   ngOnInit() {
     this.es = this.utils.es;
@@ -59,13 +57,13 @@ export class CompleteComponent implements OnInit {
   search() {
     if (this.bankselected === 0) {
       this.message = 'Selecciona un banco primero';
-      this.display = true;
+      this.showError = true;
     } else if (typeof this.desde === 'undefined' || typeof this.hasta === 'undefined' ) {
       this.message = 'Selecciona un rango de fechas';
-      this.display = true;
+      this.showError = true;
     } else if (this.desde > this.hasta) {
       this.message = 'La fecha final no debe ser anterior a la inicial';
-      this.display = true;
+      this.showError = true;
     } else {
       if (this.bankinlocalstorage === 'admin') {
         for (let i = 0; i < this.banks.length; i++) {
@@ -77,7 +75,6 @@ export class CompleteComponent implements OnInit {
       }
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase()).subscribe(
         res => {
-          console.log('respuesta: ' + JSON.stringify(res));
           this.completeResponse = res;
         },
         err => console.log(err)
