@@ -25,18 +25,18 @@
 		<table class="table generic shadow-second">
 			<thead>
 				<tr>
-					<th>BANCO</th>
-					<th>FECHA</th>
-					<th>TIPO</th>
+					<!--th>BANCO</th>
+					<th>FECHA</th-->
+					<th>ARCHIVO</th>
 					<th>DESCARGAR&nbsp;&nbsp;&nbsp;<input type="checkbox" (click)="selected =!selected; selectAll()"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let response of completeResponse">
-					<td>{{response.bank}}</td>
-					<td>{{response.date}}</td>
-					<td>xls</td>
-					<td><input type="checkbox" name="report" value="{{response.url}}"></td>
+					<!--td>{{response.bank}}</td>
+					<td>{{response.date}}</td-->
+					<td>{{response}}</td>
+					<td><input type="checkbox" name="report" value="{{response}}"></td>
 				</tr>
 			</tbody>
 		</table>

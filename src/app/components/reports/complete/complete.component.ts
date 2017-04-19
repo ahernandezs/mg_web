@@ -90,7 +90,7 @@ export class CompleteComponent implements OnInit {
   }
 
   download() {
-    let selected: Array<any>;
+    let selected: Array<any> = new Array<any>();
     let checkboxes = document.getElementsByName('report');
     for (let i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
