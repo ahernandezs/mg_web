@@ -74,7 +74,7 @@ export class CompleteComponent implements OnInit {
         }
       }
       this.showLoading = true;
-      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase())
+      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel)
         .subscribe(
           res => {
             this.completeResponse = res;
