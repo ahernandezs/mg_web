@@ -5,11 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CalendarModule } from 'primeng/primeng';
-import { DropdownModule } from 'primeng/primeng';
-import { DialogModule } from 'primeng/primeng';
-import { BlockUIModule } from 'primeng/primeng';
-import { PanelModule } from 'primeng/primeng';
+import { CalendarModule, DropdownModule, DialogModule, BlockUIModule, PanelModule, ButtonModule, SharedModule } from 'primeng/primeng';
 
 import { LoginComponent } from './components/login/index';
 import { AccessComponent } from './components/login/access/index';
@@ -49,7 +45,9 @@ import { Utils } from './utils/utils';
     DropdownModule,
     DialogModule,
     BlockUIModule,
-    PanelModule
+    PanelModule,
+    ButtonModule,
+    SharedModule
   ],
   providers: [
     ReportsService,

@@ -1,11 +1,16 @@
-<p-dialog header="Aviso" [(visible)]="showError" modal="true" draggable="false" dismissableMask="true">
+<p-dialog header="Aviso" [(visible)]="showError" modal="true" draggable="false" dismissableMask="true" closable="true" responsive="true">
     {{message}}
+	<p-footer>
+		<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+			<button type="button" pButton icon="fa-check" (click)="showError=false" label="Aceptar"></button>
+		</div>
+	</p-footer>
 </p-dialog>
 <p-blockUI [blocked]="showLoading"></p-blockUI>
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected"></p-dropdown>
+			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body"></p-dropdown>
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>

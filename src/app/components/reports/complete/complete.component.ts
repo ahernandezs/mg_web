@@ -5,6 +5,7 @@ import { CompleteResponse } from '../../../models/complete-response';
 import { Complete } from '../../../models/complete';
 
 import { Utils } from '../../../utils/utils';
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-complete',
@@ -16,7 +17,7 @@ export class CompleteComponent implements OnInit {
   completeRequest: Complete;
   completeResponse: Array<any>;
 
-  banks: Array<any>;
+  banks: SelectItem[];
   bankselected: Number;
   bankselectedLabel: String;
   bankinlocalstorage: String;
