@@ -1,19 +1,24 @@
 <p-dialog header="Aviso" [(visible)]="showError" modal="true" draggable="false" dismissableMask="true">
     {{message}}
+	<p-footer>
+		<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+			<button type="button" pButton (click)="showError=false" label="Aceptar"></button>
+		</div>
+	</p-footer>
 </p-dialog>
 <p-blockUI [blocked]="showLoading"></p-blockUI>
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<p-dropdown *ngIf="bankinlocalstorage == 'admin' " [options]="banks" [(ngModel)]="bankselected"></p-dropdown>
-			<span *ngIf="bankinlocalstorage != 'admin' ">{{bankselectedLabel}}</span>
+			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body"></p-dropdown>
+			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es"></p-calendar>
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es"></p-calendar>
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm">Buscar</button>

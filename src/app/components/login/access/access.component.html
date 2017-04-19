@@ -1,5 +1,10 @@
 <p-dialog header="Aviso" [(visible)]="display" modal="true" draggable="false" dismissableMask="true">
     {{message}}
+	<p-footer>
+		<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+			<button type="button" pButton (click)="showError=false" label="Aceptar"></button>
+		</div>
+	</p-footer>
 </p-dialog>
 <p-blockUI [blocked]="blocked" [target]="entrar"></p-blockUI>
 <p-panel #entrar>
