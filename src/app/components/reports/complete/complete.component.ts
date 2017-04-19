@@ -16,7 +16,7 @@ export class CompleteComponent implements OnInit {
   completeRequest: Complete;
   completeResponse: Array<any>;
 
-  banks: Array<any>;
+  banks;
   bankselected;
   bankselectedLabel: String;
   bankinlocalstorage: String;
@@ -43,9 +43,9 @@ export class CompleteComponent implements OnInit {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
-    if (this.bankinlocalstorage !== 'admin') {
+    if (this.bankinlocalstorage != 'admin') {
       for (let i = 0; i < this.banks.length; i++) {
-        if (this.banks[i].value === this.bankinlocalstorage) {
+        if (this.banks[i].value == this.bankinlocalstorage) {
           this.bankselected = this.banks[i].value;
           this.bankselectedLabel = this.utils.banks[i].label;
           break;
@@ -58,16 +58,16 @@ export class CompleteComponent implements OnInit {
     if (this.bankselected === 0) {
       this.message = 'Selecciona un banco primero';
       this.showError = true;
-    } else if (typeof this.desde === 'undefined' || typeof this.hasta === 'undefined' ) {
+    } else if (typeof this.desde == 'undefined' || typeof this.hasta == 'undefined' ) {
       this.message = 'Selecciona un rango de fechas';
       this.showError = true;
     } else if (this.desde > this.hasta) {
       this.message = 'La fecha final no debe ser anterior a la inicial';
       this.showError = true;
     } else {
-      if (this.bankinlocalstorage === 'admin') {
+      if (this.bankinlocalstorage == 'admin') {
         for (let i = 0; i < this.banks.length; i++) {
-          if (this.banks[i].value === this.bankselected) {
+          if (this.banks[i].value == this.bankselected) {
             this.bankselectedLabel = this.utils.banks[i].label;
             break;
           }
