@@ -58,7 +58,7 @@ export class CompleteComponent implements OnInit {
     if (this.bankselected === 0) {
       this.message = 'Selecciona un banco primero';
       this.showError = true;
-    } else if (typeof this.desde == 'undefined' || typeof this.hasta == 'undefined' ) {
+    } else if (typeof this.desde === 'undefined' || typeof this.hasta === 'undefined' ) {
       this.message = 'Selecciona un rango de fechas';
       this.showError = true;
     } else if (this.desde > this.hasta) {
@@ -88,11 +88,16 @@ export class CompleteComponent implements OnInit {
     let checkboxes = document.getElementsByName('report');
     for (let i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
-      if(tmp.checked){
+      if (tmp.checked) {
         selected.push(tmp.value);
       }
     }
-    console.log('bajando ' + JSON.stringify(selected));
+    if (typeof selected === 'undefined' ) {
+      this.message = 'Selecciona los documentos a descargar';
+      this.showError = true;
+    }else{
+      console.log('bajando ' + JSON.stringify(selected));
+    }
   }
 
   selectAll(source) {
