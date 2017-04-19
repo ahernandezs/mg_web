@@ -43,18 +43,15 @@ export class CompleteComponent implements OnInit {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
-    console.log('1: ' + this.bankinlocalstorage);
     if (this.bankinlocalstorage !== 'admin') {
       for (let i = 0; i < this.banks.length; i++) {
-        if (this.banks[i].value == this.bankinlocalstorage) {
+        if (this.banks[i].value === Number(this.bankinlocalstorage)) {
           this.bankselected = this.banks[i].value;
           this.bankselectedLabel = this.utils.banks[i].label;
           break;
         }
       }
     }
-    console.log('2: ' + this.bankselected);
-    console.log('3: ' + this.bankselectedLabel);
   }
 
   search() {
@@ -76,12 +73,12 @@ export class CompleteComponent implements OnInit {
           }
         }
       }
+      this.showLoading = true;
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase())
         .subscribe(
-          res => {
-            this.completeResponse = res;
-          },
-          err => console.log(err)
+          res => this.completeResponse = res,
+          err => console.log(err),
+          () => this.showLoading = false
         );
     }
   }
@@ -91,14 +88,14 @@ export class CompleteComponent implements OnInit {
     let checkboxes = document.getElementsByName('report');
     for (let i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
-      if(tmp.checked) {
+      if (tmp.checked) {
         selected.push(tmp.value);
       }
     }
-    if (typeof selected === 'undefined' ){
-      this.message = 'Selecciona un rango de fechas';
+    if (typeof selected === 'undefined' ) {
+      this.message = 'Selecciona los reportes a descargar primero';
       this.showError = true;
-    }else{
+    } else {
       console.log('bajando ' + JSON.stringify(selected));
     }
   }
