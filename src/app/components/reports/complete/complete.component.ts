@@ -34,11 +34,12 @@ export class CompleteComponent implements OnInit {
   constructor(
     private reportsService: ReportsService,
     private utils: Utils
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
+  }
+
+  ngOnInit() {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
@@ -72,17 +73,26 @@ export class CompleteComponent implements OnInit {
           }
         }
       }
-      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase()).subscribe(
-        res => {
-          this.completeResponse = res;
-        },
-        err => console.log(err)
-      );
+      this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase())
+        .subscribe(
+          res => {
+            this.completeResponse = res;
+          },
+          err => console.log(err)
+        );
     }
   }
 
   download() {
-    console.log('bajando...');
+    let selected: Array<any>;
+    let checkboxes = document.getElementsByName('report');
+    for (let i = 0 ; i < checkboxes.length ; i++) {
+      let tmp = <HTMLInputElement>checkboxes[i];
+      if(tmp.checked){
+        selected.push(tmp.value);
+      }
+    }
+    console.log('bajando ' + JSON.stringify(selected));
   }
 
   selectAll(source) {
