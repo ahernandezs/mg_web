@@ -10,9 +10,9 @@ import { Utils } from '../../../utils/utils'
 })
 export class AccessComponent {
 
-  user: String;
-  password: String;
-  message: String;
+  user: string;
+  password: string;
+  message: string;
   display: Boolean = false;
   blocked: Boolean = false;
 
@@ -35,7 +35,10 @@ export class AccessComponent {
         response => {
           this.blocked = false;
           localStorage.setItem('X-AUTH-TOKEN', this.utils.getCookie());
-          localStorage.setItem('X-BANK-ID-MG', response.bankId)
+          localStorage.setItem('X-BANK-ID-MG', response.bankId);
+          localStorage.setItem('X-USER-MG', this.user);
+          localStorage.setItem('X-PASS-MG', this.password);
+
           this.router.navigate(['/reports']);
         },
         err => {

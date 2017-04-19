@@ -16,7 +16,7 @@ export class CompleteComponent implements OnInit {
   completeRequest: Complete;
   completeResponse: Array<any>;
 
-  banks;
+  banks: Array<any>;
   bankselected;
   bankselectedLabel: String;
   bankinlocalstorage: String;

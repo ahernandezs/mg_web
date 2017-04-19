@@ -20,7 +20,7 @@ export class AuthService {
   headers.append('Access-Control-Allow-Headers', 'Authorization');
   let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-  return this.http.get(environment.baseURL+'login', options)
+  return this.http.get(environment.baseURL + 'login', options)
    .map((res: Response) => {
     return res.json();
    })

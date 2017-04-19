@@ -27,6 +27,8 @@ export class ReportsComponent implements OnInit {
     logout(){
       localStorage.removeItem('X-AUTH-TOKEN');
       localStorage.removeItem('X-BANK-ID-MG');
+      localStorage.removeItem('X-USER-MG');
+      localStorage.removeItem('X-PASS-MG');
       this.router.navigate(['/login']);
     }
 

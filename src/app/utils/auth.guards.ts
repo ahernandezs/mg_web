@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate {
     constructor() { }
 
     canActivate() {
-        return localStorage.getItem('X-AUTH-TOKEN') ? true : false;
+        return localStorage.getItem('X-BANK-ID-MG') ? true : false;
     }
 
 }
