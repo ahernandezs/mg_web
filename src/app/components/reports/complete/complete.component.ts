@@ -76,9 +76,15 @@ export class CompleteComponent implements OnInit {
       this.showLoading = true;
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel.toLowerCase())
         .subscribe(
-          res => this.completeResponse = res,
-          err => console.log(err),
-          () => this.showLoading = false
+          res => {
+            this.completeResponse = res;
+            this.showLoading = false;
+          },
+          err => {
+            this.showLoading = false;
+            this.message = 'Hubo un error';
+            this.showError = true;
+          }
         );
     }
   }
