@@ -43,9 +43,9 @@ export class CompleteComponent implements OnInit {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
-    if (this.bankinlocalstorage != 'admin') {
+    if (this.bankinlocalstorage !== 'admin') {
       for (let i = 0; i < this.banks.length; i++) {
-        if (this.banks[i].value == this.bankinlocalstorage) {
+        if (this.banks[i].value === this.bankinlocalstorage) {
           this.bankselected = this.banks[i].value;
           this.bankselectedLabel = this.utils.banks[i].label;
           break;
@@ -55,7 +55,8 @@ export class CompleteComponent implements OnInit {
   }
 
   search() {
-    if (this.bankselected === 0) {
+    console.log(typeof this.bankselected);
+    if (this.bankselected === '0') {
       this.message = 'Selecciona un banco primero';
       this.showError = true;
     } else if (typeof this.desde === 'undefined' || typeof this.hasta === 'undefined' ) {
@@ -65,9 +66,9 @@ export class CompleteComponent implements OnInit {
       this.message = 'La fecha final no debe ser anterior a la inicial';
       this.showError = true;
     } else {
-      if (this.bankinlocalstorage == 'admin') {
+      if (this.bankinlocalstorage === 'admin') {
         for (let i = 0; i < this.banks.length; i++) {
-          if (this.banks[i].value == this.bankselected) {
+          if (this.banks[i].value === this.bankselected) {
             this.bankselectedLabel = this.utils.banks[i].label;
             break;
           }
@@ -88,12 +89,12 @@ export class CompleteComponent implements OnInit {
     let checkboxes = document.getElementsByName('report');
     for (let i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
-      if (tmp.checked) {
+      if(tmp.checked) {
         selected.push(tmp.value);
       }
     }
-    if (typeof selected === 'undefined' ) {
-      this.message = 'Selecciona los documentos a descargar';
+    if (typeof selected === 'undefined' ){
+      this.message = 'Selecciona un rango de fechas';
       this.showError = true;
     }else{
       console.log('bajando ' + JSON.stringify(selected));
