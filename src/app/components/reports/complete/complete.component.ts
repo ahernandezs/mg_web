@@ -17,7 +17,7 @@ export class CompleteComponent implements OnInit {
   completeResponse: Array<any>;
 
   banks: Array<any>;
-  bankselected;
+  bankselected: Number;
   bankselectedLabel: String;
   bankinlocalstorage: String;
 
@@ -55,8 +55,7 @@ export class CompleteComponent implements OnInit {
   }
 
   search() {
-    console.log(typeof this.bankselected);
-    if (this.bankselected === '0') {
+    if (typeof this.bankselected === 'undefined' || this.bankselected === 0 ) {
       this.message = 'Selecciona un banco primero';
       this.showError = true;
     } else if (typeof this.desde === 'undefined' || typeof this.hasta === 'undefined' ) {
