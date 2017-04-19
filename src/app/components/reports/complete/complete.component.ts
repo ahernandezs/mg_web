@@ -43,15 +43,18 @@ export class CompleteComponent implements OnInit {
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
+    console.log('1: ' + this.bankinlocalstorage);
     if (this.bankinlocalstorage !== 'admin') {
       for (let i = 0; i < this.banks.length; i++) {
-        if (this.banks[i].value === this.bankinlocalstorage) {
+        if (this.banks[i].value == this.bankinlocalstorage) {
           this.bankselected = this.banks[i].value;
           this.bankselectedLabel = this.utils.banks[i].label;
           break;
         }
       }
     }
+    console.log('2: ' + this.bankselected);
+    console.log('3: ' + this.bankselectedLabel);
   }
 
   search() {
