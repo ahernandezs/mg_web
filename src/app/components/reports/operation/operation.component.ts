@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarModule } from 'primeng/primeng';
-
+import { ReportsService } from '../../../services/reports.services';
 import { Utils } from '../../../utils/utils';
 
 @Component({
@@ -10,16 +9,21 @@ import { Utils } from '../../../utils/utils';
 })
 export class OperationComponent implements OnInit {
 
+  banks: Array<any>;
+  bankselected: Number;
+  bankselectedLabel: String;
+  bankinlocalstorage: String;
+
   desde: Date;
   hasta: Date;
   es: any;
 
-  banks: Array<any>;
-  bankselected;
-  bankselectedLabel: String;
-  bankinlocalstorage: String;
+  message: String;
+  showError: Boolean = false;
+  showLoading: Boolean = false;
 
   constructor(
+    private reportsService: ReportsService,
     private utils: Utils
   ) { }
 
@@ -29,7 +33,7 @@ export class OperationComponent implements OnInit {
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
     if (this.bankinlocalstorage !== 'admin') {
       for (let i = 0; i < this.banks.length; i++) {
-        if (this.banks[i].value === this.bankinlocalstorage) {
+        if (this.banks[i].value === Number(this.bankinlocalstorage)) {
           this.bankselected = this.banks[i].value;
           this.bankselectedLabel = this.utils.banks[i].label;
           break;

@@ -102,7 +102,7 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar primero';
       this.showError = true;
     } else {
-      console.log('bajando ' + JSON.stringify(selected));
+      // TODO mandar a bajar los archivos seleccionados
     }
   }
 
