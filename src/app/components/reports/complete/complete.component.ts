@@ -109,14 +109,9 @@ export class CompleteComponent implements OnInit {
         .subscribe(
           (data: Response) => {
             this.showLoading = false;
-            let headers = data.headers;
-            let contentType = headers['content-type'];
             let linkElement = document.createElement('a');
             try {
-
-               console.log(contentType);
-
-                let blob = new Blob([data], { type: contentType });
+                let blob = new Blob([data], { type: 'application/octet-stream' });
                 let url = window.URL.createObjectURL(blob);
 
                 linkElement.setAttribute('href', url);
