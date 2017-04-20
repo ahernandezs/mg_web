@@ -110,12 +110,18 @@ export class CompleteComponent implements OnInit {
           (data: Response) => {
             this.showLoading = false;
             let headers = data.headers;
-            let payload = data.json();
             let filename = headers['x-filename'];
             let contentType = headers['content-type'];
+
+            console.log(headers);
+            console.log(filename);
+
             let linkElement = document.createElement('a');
             try {
-                let blob = new Blob([payload], { type: contentType });
+
+                console.log(data);
+
+                let blob = new Blob([data], { type: contentType });
                 let url = window.URL.createObjectURL(blob);
 
                 linkElement.setAttribute('href', url);
