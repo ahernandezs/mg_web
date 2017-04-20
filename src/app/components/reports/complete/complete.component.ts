@@ -81,6 +81,7 @@ export class CompleteComponent implements OnInit {
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel)
         .subscribe(
           res => {
+            this.completeResponse = new Array<any>();
             for (let i = 0; i < res.length; i++){
               this.completeResponse.push({name: res[i], url: this.sanitizer.bypassSecurityTrustResourceUrl(environment.baseURL + res[i])});
             }
