@@ -110,23 +110,13 @@ export class CompleteComponent implements OnInit {
           (data: Response) => {
             this.showLoading = false;
             let headers = data.headers;
-            let filename = headers['x-filename'];
             let contentType = headers['content-type'];
-
-            console.log(headers);
-            console.log(filename);
-
             let linkElement = document.createElement('a');
             try {
-
-                console.log(data);
-
-                let blob = new Blob([data], { type: contentType });
+                let blob = data.blob();
                 let url = window.URL.createObjectURL(blob);
-
                 linkElement.setAttribute('href', url);
-                linkElement.setAttribute('download', filename);
-
+                linkElement.setAttribute('download', 'reporte.zip');
                 let clickEvent = new MouseEvent('click', {
                     'view': window,
                     'bubbles': true,
