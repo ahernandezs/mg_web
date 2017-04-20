@@ -99,7 +99,7 @@ export class CompleteComponent implements OnInit {
         selected.push(tmp.value);
       }
     }
-    if (typeof selected === 'undefined' ) {
+    if (selected.length === 0) {
       this.message = 'Selecciona los reportes a descargar primero';
       this.showError = true;
     } else {
