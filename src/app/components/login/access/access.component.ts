@@ -45,9 +45,6 @@ export class AccessComponent {
           this.showLoading = false;
           this.message = 'Datos incorrectos';
           this.showError = true;
-        },
-        () => {
-          this.showLoading = false;
         }
       );
     }

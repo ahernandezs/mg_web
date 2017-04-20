@@ -11,7 +11,6 @@ export class ReportsComponent implements OnInit {
 
     mainMenu: false;
     private myUrl: any;
-    showLoading: Boolean = false;
 
     constructor(
         private router: Router
