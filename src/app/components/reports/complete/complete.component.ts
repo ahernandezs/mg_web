@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
@@ -100,38 +101,35 @@ export class CompleteComponent implements OnInit {
       }
     }
     if (selected.length === 0) {
-      this.message = 'Selecciona los reportes a descargar primero';
+      this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
       this.showLoading = true;
       this.reportsService.download(selected)
         .subscribe(
-          (data) => {
-            console.log('Descargando... según');
-/*
-// TODO revisar que funcione
-let filename = headers['x-filename'];
-let contentType = headers['content-type'];
-
-let linkElement = document.createElement('a');
-try {
-    let blob = new Blob([data], { type: contentType });
-    let url = window.URL.createObjectURL(blob);
-
-    linkElement.setAttribute('href', url);
-    linkElement.setAttribute('download', filename);
-
-    let clickEvent = new MouseEvent('click', {
-        'view': window,
-        'bubbles': true,
-        'cancelable': false
-    });
-    linkElement.dispatchEvent(clickEvent);
-} catch (ex) {
-    console.log(ex);
-}
-*/
+          (data: Response) => {
             this.showLoading = false;
+            let headers = data.headers;
+            let payload = data.json();
+            let filename = headers['x-filename'];
+            let contentType = headers['content-type'];
+            let linkElement = document.createElement('a');
+            try {
+                let blob = new Blob([payload], { type: contentType });
+                let url = window.URL.createObjectURL(blob);
+
+                linkElement.setAttribute('href', url);
+                linkElement.setAttribute('download', filename);
+
+                let clickEvent = new MouseEvent('click', {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': false
+                });
+                linkElement.dispatchEvent(clickEvent);
+            } catch (ex) {
+                console.log(ex);
+            }
           },
           err => {
             this.showLoading = false;
