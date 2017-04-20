@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
 import { Complete } from '../../../models/complete';
-import { environment } from '../../../../environments/environment';
 
 import { Utils } from '../../../utils/utils';
 import { SelectItem } from 'primeng/primeng';
@@ -36,7 +34,6 @@ export class CompleteComponent implements OnInit {
 
   constructor(
     private reportsService: ReportsService,
-    private sanitizer: DomSanitizer,
     private utils: Utils
   ) {
     this.completeRequest = new Complete(0, '', '');
@@ -81,10 +78,7 @@ export class CompleteComponent implements OnInit {
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel)
         .subscribe(
           res => {
-            this.completeResponse = new Array<any>();
-            for (let i = 0; i < res.length; i++){
-              this.completeResponse.push({name: res[i], url: this.sanitizer.bypassSecurityTrustResourceUrl(environment.baseURL + res[i])});
-            }
+            this.completeResponse = res;
             this.showLoading = false;
           },
           err => {
@@ -114,7 +108,6 @@ export class CompleteComponent implements OnInit {
         .subscribe(
           (data) => {
             console.log('Descargando... según');
-
 /*
 // TODO revisar que funcione
 let filename = headers['x-filename'];
