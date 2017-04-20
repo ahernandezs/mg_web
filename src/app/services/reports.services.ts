@@ -20,4 +20,10 @@ export class ReportsService {
    .catch(err => Promise.reject(err));
  }
 
+ download(selected: Array<any>) {
+   return this.http.get(environment.baseURL + selected)
+    .map(res => res.json())
+    .catch(err => Promise.reject(err));
+ }
+
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
 import { Complete } from '../../../models/complete';
+import { environment } from '../../../../environments/environment';
 
 import { Utils } from '../../../utils/utils';
 import { SelectItem } from 'primeng/primeng';
@@ -34,6 +36,7 @@ export class CompleteComponent implements OnInit {
 
   constructor(
     private reportsService: ReportsService,
+    private sanitizer: DomSanitizer,
     private utils: Utils
   ) {
     this.completeRequest = new Complete(0, '', '');
@@ -78,7 +81,9 @@ export class CompleteComponent implements OnInit {
       this.reportsService.complete(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel)
         .subscribe(
           res => {
-            this.completeResponse = res;
+            for (let i = 0; i < res.length; i++){
+              this.completeResponse.push({name: res[i], url: this.sanitizer.bypassSecurityTrustResourceUrl(environment.baseURL + res[i])});
+            }
             this.showLoading = false;
           },
           err => {
@@ -103,7 +108,43 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar primero';
       this.showError = true;
     } else {
-      // TODO mandar a bajar los archivos seleccionados
+      this.showLoading = true;
+      this.reportsService.download(selected)
+        .subscribe(
+          (data) => {
+            console.log('Descargando... según');
+
+/*
+// TODO revisar que funcione
+let filename = headers['x-filename'];
+let contentType = headers['content-type'];
+
+let linkElement = document.createElement('a');
+try {
+    let blob = new Blob([data], { type: contentType });
+    let url = window.URL.createObjectURL(blob);
+
+    linkElement.setAttribute('href', url);
+    linkElement.setAttribute('download', filename);
+
+    let clickEvent = new MouseEvent('click', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': false
+    });
+    linkElement.dispatchEvent(clickEvent);
+} catch (ex) {
+    console.log(ex);
+}
+*/
+            this.showLoading = false;
+          },
+          err => {
+            this.showLoading = false;
+            this.message = 'Hubo un error';
+            this.showError = true;
+          }
+        );
     }
   }
 

@@ -40,7 +40,7 @@
 				<tr *ngFor="let response of completeResponse">
 					<!--td>{{response.bank}}</td>
 					<td>{{response.date}}</td-->
-					<td>{{response}}</td>
+					<td><a [href]="response.url">{{response.name}}</a></td>
 					<td><input type="checkbox" name="report" value="{{response}}"></td>
 				</tr>
 			</tbody>
