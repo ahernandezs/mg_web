@@ -21,7 +21,7 @@ export class ReportsService {
  }
 
  download(selected: Array<any>) {
-   return this.http.get(environment.baseURL + selected)
+   return this.http.post(environment.baseURL + 'getZip', selected)
     .map(res => res.json())
     .catch(err => Promise.reject(err));
  }

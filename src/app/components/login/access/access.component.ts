@@ -28,7 +28,7 @@ export class AccessComponent {
 
   login() {
     if (this.user === '' || this.password === '' ) {
-      this.message = 'Favor de introducir un usuario y una contraseña';
+      this.message = 'Introduce un usuario y una contraseña';
       this.showError = true;
     } else {
       this.showLoading = true;
@@ -39,15 +39,17 @@ export class AccessComponent {
           localStorage.setItem('X-BANK-ID-MG', response.bankId);
           localStorage.setItem('X-USER-MG', this.user);
           localStorage.setItem('X-PASS-MG', this.password);
-
           this.router.navigate(['/reports']);
         },
         err => {
           this.showLoading = false;
           this.message = 'Datos incorrectos';
           this.showError = true;
+        },
+        () => {
+          this.showLoading = false;
         }
-      )
+      );
     }
   }
 
