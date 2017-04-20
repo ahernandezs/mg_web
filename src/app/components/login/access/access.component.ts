@@ -12,9 +12,10 @@ export class AccessComponent {
 
   user: string;
   password: string;
-  message: string;
-  display: Boolean = false;
-  blocked: Boolean = false;
+
+  message: String;
+  showError: Boolean = false;
+  showLoading: Boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -28,12 +29,12 @@ export class AccessComponent {
   login() {
     if (this.user === '' || this.password === '' ) {
       this.message = 'Favor de introducir un usuario y una contraseña';
-      this.display = true;
+      this.showError = true;
     } else {
-      this.blocked = true;
+      this.showLoading = true;
       this.authService.login(this.user, this.password).subscribe(
         response => {
-          this.blocked = false;
+          this.showLoading = false;
           localStorage.setItem('X-AUTH-TOKEN', this.utils.getCookie());
           localStorage.setItem('X-BANK-ID-MG', response.bankId);
           localStorage.setItem('X-USER-MG', this.user);
@@ -42,9 +43,9 @@ export class AccessComponent {
           this.router.navigate(['/reports']);
         },
         err => {
-          this.blocked = false;
+          this.showLoading = false;
           this.message = 'Datos incorrectos';
-          this.display = true;
+          this.showError = true;
         }
       )
     }

@@ -1,4 +1,4 @@
-<p-dialog header="Aviso" [(visible)]="display" modal="true" draggable="false" dismissableMask="true">
+<p-dialog header="Aviso" [(visible)]="showError" modal="true" draggable="false" dismissableMask="true">
     {{message}}
 	<p-footer>
 		<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
@@ -6,7 +6,7 @@
 		</div>
 	</p-footer>
 </p-dialog>
-<p-blockUI [blocked]="blocked" [target]="entrar"></p-blockUI>
+<p-blockUI [blocked]="showLoading"></p-blockUI>
 <p-panel #entrar>
     <div class="row">
         <div class="col-md-8 offset-md-2">
