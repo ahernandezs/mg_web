@@ -28,7 +28,7 @@ export class HttpClient {
   post(url: string, data: any) {
     let headers = new Headers();
     headers.append('X-CLIENT-TYPE', 'WEB');
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
     headers.append('Access-Control-Allow-Headers', 'Authorization');
