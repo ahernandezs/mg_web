@@ -113,10 +113,15 @@ export class CompleteComponent implements OnInit {
             let contentType = headers['content-type'];
             let linkElement = document.createElement('a');
             try {
-                let blob = data.blob();
+
+               console.log(contentType);
+
+                let blob = new Blob([data], { type: contentType });
                 let url = window.URL.createObjectURL(blob);
+
                 linkElement.setAttribute('href', url);
                 linkElement.setAttribute('download', 'reporte.zip');
+
                 let clickEvent = new MouseEvent('click', {
                     'view': window,
                     'bubbles': true,
