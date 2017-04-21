@@ -116,7 +116,6 @@ export class CompleteComponent implements OnInit {
       console.log('Voy a descargar...');
       let headers = new Headers();
       headers.append('X-CLIENT-TYPE', 'WEB');
-      headers.append('Content-Type', 'application/zip');
       headers.append('Accept', 'application/zip');
       headers.append('Access-Control-Allow-Origin', '*');
       headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
@@ -134,7 +133,8 @@ export class CompleteComponent implements OnInit {
 /*
           .subscribe(
             res => this.savefile(res),
-            error => console.log('Error!: ' + error)
+            error => console.log('Error!: ' + 
+            error)
           );
 */
 
