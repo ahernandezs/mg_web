@@ -116,7 +116,6 @@ export class CompleteComponent implements OnInit {
       console.log('Voy a descargar...');
       let headers = new Headers();
       headers.append('X-CLIENT-TYPE', 'WEB');
-      headers.append('Accept', 'application/zip');
       headers.append('Access-Control-Allow-Origin', '*');
       headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
       headers.append('Access-Control-Allow-Headers', 'Authorization');
