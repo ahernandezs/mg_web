@@ -111,53 +111,49 @@ export class CompleteComponent implements OnInit {
     } else {
       this.showLoading = true;
 
-console.log('Voy a descargar...');
-    let headers = new Headers();
-    headers.append('X-CLIENT-TYPE', 'WEB');
-    headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-    headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
-    headers.append('Access-Control-Allow-Headers', 'Authorization');
-    headers.append('responseType', 'arraybuffer');
-    let options = new RequestOptions({ headers: headers, withCredentials: true });
-    console.log('Opciones: ' + options);
-    console.log('peticionando: ' + environment.baseURL + 'getZip');
-    console.log(JSON.stringify(selected));
-    this.http.post(environment.baseURL + 'getZip', selected, options)
-        .subscribe(res => {
-            console.log('Datos: ' + res);
-            this.showLoading = false;
-            let linkElement = document.createElement('a');
-            try {
-                let blob = new Blob([res], { type: 'application/octet-stream' });
-                let url = window.URL.createObjectURL(blob);
+      console.log('Voy a descargar...');
+      let headers = new Headers();
+      headers.append('X-CLIENT-TYPE', 'WEB');
+      headers.append('Content-Type', 'application/json');
+      headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
+      headers.append('Access-Control-Allow-Headers', 'Authorization');
+      headers.append('responseType', 'arraybuffer');
+      let options = new RequestOptions({ headers: headers, withCredentials: true });
+      console.log('Opciones: ' + JSON.stringify(options));
+      this.http.post(environment.baseURL + 'getZip', selected, options)
+          .subscribe(
+            res => this.savefile(res),
+            error => console.log('Error!: ' + error)
+          );
+      }
+  }
 
-                console.log('URL: ' + url);
+  savefile(res: Response) {
+      console.log('Datos: ' + res);
+      let blob = new Blob([res], { type: 'text/octet-stream' });
+      let url = window.URL.createObjectURL(blob);
+      window.open(url);
+/*      this.showLoading = false;
+      let linkElement = document.createElement('a');
+      try {
+          let blob = new Blob([res], { type: 'application/octet-stream' });
+          let url = window.URL.createObjectURL(blob);
 
-                linkElement.setAttribute('href', url);
-                linkElement.setAttribute('download', 'reporte.zip');
+          console.log('URL: ' + url);
 
-                let clickEvent = new MouseEvent('click', {
-                    'view': window,
-                    'bubbles': true,
-                    'cancelable': false
-                });
-                linkElement.dispatchEvent(clickEvent);
-            } catch (ex) {
-                console.log(ex);
-            }
-        });
+          linkElement.setAttribute('href', url);
+          linkElement.setAttribute('download', 'reporte.zip');
 
-      /*this.reportsService.download(selected)
-        .subscribe(
-          (data: Response) => {},
-          err => {
-            this.showLoading = false;
-            this.message = 'Hubo un error';
-            this.showError = true;
-          }
-        );*/
-    }
+          let clickEvent = new MouseEvent('click', {
+              'view': window,
+              'bubbles': true,
+              'cancelable': false
+          });
+          linkElement.dispatchEvent(clickEvent);
+      } catch (ex) {
+          console.log(ex);
+      }*/
   }
 
   selectAll(source) {
