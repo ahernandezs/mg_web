@@ -32,6 +32,7 @@ export class HttpClient {
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
     headers.append('Access-Control-Allow-Headers', 'Authorization');
+    headers.append('responseType', 'arraybuffer' );
     let options = new RequestOptions({ headers: headers, withCredentials: true });
     return this.http.post(url, data, options);
   }
