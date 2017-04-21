@@ -117,8 +117,11 @@ export class CompleteComponent implements OnInit {
     headers.append('Access-Control-Allow-Headers', 'Authorization');
     headers.append('responseType', 'arraybuffer' );
     let options = new RequestOptions({ headers: headers, withCredentials: true });
+    console.log('Opciones: ' + options);
+    console.log('peticionando: ' + environment.baseURL + 'getZip');
+    console.log(JSON.stringify(selected));
     this.http.post(environment.baseURL + 'getZip', selected)
-        .map(res => {
+        .subscribe(res => {
             console.log('Datos: ' + res);
             this.showLoading = false;
             let linkElement = document.createElement('a');
