@@ -121,17 +121,20 @@ export class CompleteComponent implements OnInit {
       let options = new RequestOptions({ headers: headers, withCredentials: true, responseType: ResponseContentType.ArrayBuffer });
       console.log('Opciones: ' + JSON.stringify(options));
       let tempReq = this.http.post(environment.baseURL + 'getZip', selected, options)
-        .map((res: Response) => res['_body'])
+        .map((res: Response) => {
+          console.log('sepa XD'+res);
+            res['_body']
+        })
         .catch(err => Promise.reject(err) );
 
       tempReq.subscribe(
                   res => {
                     console.log("lo que viene del res: "+res);
-                    window.open(window.URL.createObjectURL(res);
-                  }),
+                    window.open(window.URL.createObjectURL(res));
+                  },
                   error => console.log('Error downloading the file.'),
-                  () => console.log('Completed file download.'));
-
+                  () => console.log('Completed file download.')
+          );
 /*
           .subscribe(
             res => this.savefile(res),
