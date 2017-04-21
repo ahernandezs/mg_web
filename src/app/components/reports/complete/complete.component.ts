@@ -118,14 +118,24 @@ export class CompleteComponent implements OnInit {
       headers.append('Access-Control-Allow-Origin', '*');
       headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
       headers.append('Access-Control-Allow-Headers', 'Authorization');
-      headers.append('responseType', 'arraybuffer');
-      let options = new RequestOptions({ headers: headers, withCredentials: true });
+      let options = new RequestOptions({ headers: headers, withCredentials: true, responseType: 2 });
       console.log('Opciones: ' + JSON.stringify(options));
-      this.http.post(environment.baseURL + 'getZip', selected, options)
+      let tempReq = this.http.post(environment.baseURL + 'getZip', selected, options)
+        .map(res => new Blob([res], { type: 'application/octet-stream' }))
+        .catch(err => Promise.reject(err) );
+
+      tempReq.subscribe(data => window.open(window.URL.createObjectURL(data)),
+                  error => console.log('Error downloading the file.'),
+                  () => console.log('Completed file download.'));
+
+/*
           .subscribe(
             res => this.savefile(res),
             error => console.log('Error!: ' + error)
           );
+*/
+
+
       }
   }
 
