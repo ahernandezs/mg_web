@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { environment } from '../../../../environments/environment';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
@@ -35,7 +37,8 @@ export class CompleteComponent implements OnInit {
 
   constructor(
     private reportsService: ReportsService,
-    private utils: Utils
+    private utils: Utils,
+    private http: Http
   ) {
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
@@ -105,14 +108,22 @@ export class CompleteComponent implements OnInit {
       this.showError = true;
     } else {
       this.showLoading = true;
-      this.reportsService.download(selected)
-        .subscribe(
-          (data: Response) => {
-            console.log('Datos: ' + data);
+
+    let headers = new Headers();
+    headers.append('X-CLIENT-TYPE', 'WEB');
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
+    headers.append('Access-Control-Allow-Headers', 'Authorization');
+    headers.append('responseType', 'arraybuffer' );
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    this.http.post(environment.baseURL + 'getZip', selected)
+        .map(res => {
+            console.log('Datos: ' + res);
             this.showLoading = false;
             let linkElement = document.createElement('a');
             try {
-                let blob = new Blob([data], { type: 'application/octet-stream' });
+                let blob = new Blob([res], { type: 'application/octet-stream' });
                 let url = window.URL.createObjectURL(blob);
 
                 console.log('URL: ' + url);
@@ -129,13 +140,18 @@ export class CompleteComponent implements OnInit {
             } catch (ex) {
                 console.log(ex);
             }
-          },
+        })
+        .catch(err => Promise.reject(err) );
+
+      /*this.reportsService.download(selected)
+        .subscribe(
+          (data: Response) => {},
           err => {
             this.showLoading = false;
             this.message = 'Hubo un error';
             this.showError = true;
           }
-        );
+        );*/
     }
   }
 
