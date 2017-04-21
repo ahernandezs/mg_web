@@ -3,6 +3,8 @@ import { Response } from '@angular/http';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../../../environments/environment';
 
+import { ResponseContentType } from '@angular/http';
+
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
 import { Complete } from '../../../models/complete';
@@ -109,22 +111,23 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-      this.showLoading = true;
+    //  this.showLoading = true;
 
       console.log('Voy a descargar...');
       let headers = new Headers();
       headers.append('X-CLIENT-TYPE', 'WEB');
-      headers.append('Content-Type', 'application/json');
+      headers.append('Content-Type', 'application/zip');
+      headers.append('Accept', 'application/zip');
       headers.append('Access-Control-Allow-Origin', '*');
       headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
       headers.append('Access-Control-Allow-Headers', 'Authorization');
-      let options = new RequestOptions({ headers: headers, withCredentials: true, responseType: 2 });
+      let options = new RequestOptions({ headers: headers, withCredentials: true, responseType: ResponseContentType.ArrayBuffer });
       console.log('Opciones: ' + JSON.stringify(options));
       let tempReq = this.http.post(environment.baseURL + 'getZip', selected, options)
-        .map(res => new Blob([res], { type: 'application/octet-stream' }))
+        .map((res: Response) => res['_body'])
         .catch(err => Promise.reject(err) );
 
-      tempReq.subscribe(data => window.open(window.URL.createObjectURL(data)),
+      tempReq.subscribe(res => window.open(window.URL.createObjectURL(res)),
                   error => console.log('Error downloading the file.'),
                   () => console.log('Completed file download.'));
 
