@@ -108,11 +108,14 @@ export class CompleteComponent implements OnInit {
       this.reportsService.download(selected)
         .subscribe(
           (data: Response) => {
+            console.log('Datos: ' + data);
             this.showLoading = false;
             let linkElement = document.createElement('a');
             try {
                 let blob = new Blob([data], { type: 'application/octet-stream' });
                 let url = window.URL.createObjectURL(blob);
+
+                console.log('URL: ' + url);
 
                 linkElement.setAttribute('href', url);
                 linkElement.setAttribute('download', 'reporte.zip');
