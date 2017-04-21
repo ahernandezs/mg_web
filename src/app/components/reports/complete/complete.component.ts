@@ -124,7 +124,11 @@ export class CompleteComponent implements OnInit {
         .map((res: Response) => res['_body'])
         .catch(err => Promise.reject(err) );
 
-      tempReq.subscribe(res => window.open(window.URL.createObjectURL(res)),
+      tempReq.subscribe(
+                  res => {
+                    console.log("lo que viene del res: "+res);
+                    window.open(window.URL.createObjectURL(res);
+                  }),
                   error => console.log('Error downloading the file.'),
                   () => console.log('Completed file download.'));
 
