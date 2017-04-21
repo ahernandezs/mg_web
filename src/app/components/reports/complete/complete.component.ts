@@ -10,6 +10,8 @@ import { Complete } from '../../../models/complete';
 import { Utils } from '../../../utils/utils';
 import { SelectItem } from 'primeng/primeng';
 
+import 'rxjs/Rx' ;
+
 @Component({
   selector: 'app-complete',
   templateUrl: './complete.component.html',
@@ -109,18 +111,19 @@ export class CompleteComponent implements OnInit {
     } else {
       this.showLoading = true;
 
+console.log('Voy a descargar...');
     let headers = new Headers();
     headers.append('X-CLIENT-TYPE', 'WEB');
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
     headers.append('Access-Control-Allow-Headers', 'Authorization');
-    headers.append('responseType', 'arraybuffer' );
+    headers.append('responseType', 'arraybuffer');
     let options = new RequestOptions({ headers: headers, withCredentials: true });
     console.log('Opciones: ' + options);
     console.log('peticionando: ' + environment.baseURL + 'getZip');
     console.log(JSON.stringify(selected));
-    this.http.post(environment.baseURL + 'getZip', selected)
+    this.http.post(environment.baseURL + 'getZip', selected, options)
         .subscribe(res => {
             console.log('Datos: ' + res);
             this.showLoading = false;
@@ -143,8 +146,7 @@ export class CompleteComponent implements OnInit {
             } catch (ex) {
                 console.log(ex);
             }
-        })
-        .catch(err => Promise.reject(err) );
+        });
 
       /*this.reportsService.download(selected)
         .subscribe(
