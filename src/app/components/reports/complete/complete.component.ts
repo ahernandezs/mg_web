@@ -111,8 +111,7 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-    //  this.showLoading = true;
-
+      this.showLoading = true;
       console.log('Voy a descargar...');
       let headers = new Headers();
       headers.append('X-CLIENT-TYPE', 'WEB');
