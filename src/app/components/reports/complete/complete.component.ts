@@ -108,7 +108,7 @@ export class CompleteComponent implements OnInit {
     for (let i = 0 ; i < checkboxes.length ; i++) {
       let tmp = <HTMLInputElement>checkboxes[i];
       if (tmp.checked) {
-        selected.push(tmp.value);
+        selected.push('"' + tmp.value + '"');
       }
     }
     if (selected.length === 0) {
@@ -126,11 +126,12 @@ export class CompleteComponent implements OnInit {
   request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
   request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
   request.overrideMimeType('text/octet-stream');
+  request.setRequestHeader('content-type', 'application/json')
   request.withCredentials = true;
 
   console.log('mandando: ' + selected);
 
-  request.send(selected);
+  request.send('[' + selected + ']');
 
   console.log('Mandada');
 
