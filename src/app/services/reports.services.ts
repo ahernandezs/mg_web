@@ -22,6 +22,7 @@ export class ReportsService {
 
  download(selected: Array<any>): any {
    return this.http.post(environment.baseURL + 'getZip', selected)
+    .map(res => res.json())
     .catch(err => Promise.reject(err) );
  }
 
