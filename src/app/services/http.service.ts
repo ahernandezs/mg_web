@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { ResponseContentType } from '@angular/http';
 
 @Injectable()
 export class HttpClient {
@@ -28,12 +29,10 @@ export class HttpClient {
   post(url: string, data: any) {
     let headers = new Headers();
     headers.append('X-CLIENT-TYPE', 'WEB');
-    headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
     headers.append('Access-Control-Allow-Headers', 'Authorization');
-    headers.append('responseType', 'arraybuffer' );
-    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    let options = new RequestOptions({ headers: headers, withCredentials: true, responseType: ResponseContentType.ArrayBuffer });
     return this.http.post(url, data, options);
   }
 
