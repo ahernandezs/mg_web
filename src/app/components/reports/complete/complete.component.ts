@@ -120,7 +120,7 @@ export class CompleteComponent implements OnInit {
   let request = new XMLHttpRequest();
   request.responseType = 'blob';
   request.onload = this.handleFile;
-  request.open('POST', environment.baseURL + 'getZip');
+  request.open('POST', environment.baseURL + 'getZip', true);
   request.setRequestHeader('Access-Control-Allow-Origin', '*');
   request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
   request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
@@ -161,11 +161,13 @@ export class CompleteComponent implements OnInit {
 
   handleFile(data) {
 
-    console.log('En el handlefile: ' + data);
+    console.log('En el handlefile: ' + JSON.stringify(data));
 
 let binaryData = [];
 binaryData.push(data);
-let file = window.URL.createObjectURL(new Blob(binaryData, {type: 'application/zip'}))
+let file = window.URL.createObjectURL(new Blob(binaryData, {type: 'application/zip'}));
+
+    this.showLoading = true;
 
     console.log('Llegó :D' + file);
     let filename = 'archivo.zip';
