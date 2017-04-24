@@ -158,6 +158,10 @@ export class CompleteComponent implements OnInit {
   }
 
   handleFile(data) {
+
+    console.log('en el handleFile' + typeof data);
+    console.log(data);
+
     let file = URL.createObjectURL(data);
     console.log('Llegó :D' + file);
     let filename = 'archivo.zip';
