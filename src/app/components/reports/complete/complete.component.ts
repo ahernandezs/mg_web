@@ -122,8 +122,8 @@ export class CompleteComponent implements OnInit {
             console.log('-1: ' + data);
             console.log('0: ' + JSON.stringify(data));
             console.log('1: ' + data['_body']);
-            console.log('2: ' + JSON.stringify(data['_body']));
-            this.leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
+            console.log('2: ' + JSON.stringify(data.json()._body));
+            this.leBlob = new Blob(data.json()._body, { type: 'text/octet-stream' });
             reader.readAsDataURL(this.leBlob);
           },
           error => console.log('Error downloading the file.'),

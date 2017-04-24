@@ -26,7 +26,7 @@ export class HttpClient {
     return this.http.get(url, options);
   }
 
-  post(url: string, data: any) {
+  post(url: string, data: any): any {
     let headers = new Headers();
     headers.append('X-CLIENT-TYPE', 'WEB');
     headers.append('Access-Control-Allow-Origin', '*');
