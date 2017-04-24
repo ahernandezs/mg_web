@@ -116,7 +116,7 @@ export class CompleteComponent implements OnInit {
       this.showError = true;
     } else {
       this.showLoading = true;
-
+/*
   let request = new XMLHttpRequest();
   request.responseType = 'blob';
   request.onload = this.handleFile;
@@ -131,7 +131,9 @@ export class CompleteComponent implements OnInit {
   request.send('[' + selected + ']');
 
   console.log('Mandada');
-      /*this.reportsService.download(selected)
+*/
+
+      this.reportsService.download(selected)
         .subscribe(
           (data) => {
             this.showLoading = false;
@@ -149,7 +151,7 @@ export class CompleteComponent implements OnInit {
         reader.onloadend = function (e) {
           console.log('4: ' + this.result);
           window.open(reader.result, 'archivo', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
-    };*/
+    };
 
     }
   }
