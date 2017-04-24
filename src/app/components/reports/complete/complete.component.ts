@@ -116,15 +116,32 @@ export class CompleteComponent implements OnInit {
       this.showError = true;
     } else {
       this.showLoading = true;
-      this.reportsService.download(selected)
-        .map(response => { response.json().data; })
+
+  let request = new XMLHttpRequest();
+  request.responseType = 'blob';
+  request.onload = this.handleFile;
+  request.open('POST', environment.baseURL + 'getZip');
+  request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
+  request.setRequestHeader('Access-Control-Allow-Origin', '*');
+  request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
+  request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
+  request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
+  request.overrideMimeType('text/octet-stream');
+  request.withCredentials = true;
+
+  console.log('Mandando la petición ' + request);
+
+  request.send(selected);
+
+  console.log('Mandada');
+      /*this.reportsService.download(selected)
         .subscribe(
           (data) => {
             this.showLoading = false;
             console.log('-1: ' + data);
             console.log('0: ' + JSON.stringify(data));
             console.log('1: ' + data['_body']);
-            console.log('2: ' + data);
+            console.log('2: ' + data.json());
             this.leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
             reader.readAsDataURL(this.leBlob);
           },
@@ -135,8 +152,26 @@ export class CompleteComponent implements OnInit {
         reader.onloadend = function (e) {
           console.log('4: ' + this.result);
           window.open(reader.result, 'archivo', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
-        };
+    };*/
 
+    }
+  }
+
+  handleFile(data) {
+    let file = URL.createObjectURL(data);
+    console.log('Llegó :D' + file);
+    let filename = 'archivo.zip';
+    let a = document.createElement('a');
+    // if `a` element has `download` property
+    if ('download' in a) {
+      a.href = file;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      // use `window.open()` if `download` not defined at `a` element
+      window.open(file);
     }
   }
 
