@@ -117,8 +117,9 @@ export class CompleteComponent implements OnInit {
     } else {
       this.showLoading = true;
       this.reportsService.download(selected)
+        .map(response => { response.json().data; })
         .subscribe(
-          (data: ResponseContentType) => {
+          (data) => {
             this.showLoading = false;
             console.log('-1: ' + data);
             console.log('0: ' + JSON.stringify(data));
