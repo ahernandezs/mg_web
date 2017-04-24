@@ -122,7 +122,7 @@ export class CompleteComponent implements OnInit {
             console.log('-1: ' + data);
             console.log('0: ' + JSON.stringify(data));
             console.log('1: ' + data['_body']);
-            console.log('2: ' + data.json());
+            console.log('2: ' + data);
             this.leBlob = new Blob(data, { type: 'text/octet-stream' });
             reader.readAsDataURL(this.leBlob);
           },
