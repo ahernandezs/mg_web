@@ -117,7 +117,8 @@ export class CompleteComponent implements OnInit {
         .subscribe(
           (data: any) => {
             this.showLoading = false;
-            reader.readAsDataURL(data);
+            let leBlob = new Blob([data], { type: 'text/octet-stream' });
+            reader.readAsDataURL(leBlob);
             console.log(data);
           },
           error => console.log("Error downloading the file."),
@@ -126,7 +127,7 @@ export class CompleteComponent implements OnInit {
 
         reader.onloadend = function (e) {
         window.open(reader.result, 'Excel', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
-  }
+       }
     }
   }
 
