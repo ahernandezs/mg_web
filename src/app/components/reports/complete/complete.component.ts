@@ -126,7 +126,7 @@ export class CompleteComponent implements OnInit {
         );
 
         reader.onloadend = function (e) {
-        window.open(reader.result, 'Excel', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
+          window.open(reader.result, 'archivo', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
        }
     }
   }
