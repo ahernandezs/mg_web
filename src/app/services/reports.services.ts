@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from './http.service';
+import { ResponseContentType } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -20,9 +21,8 @@ export class ReportsService {
    .catch(err => Promise.reject(err));
  }
 
- download(selected: Array<any>): any {
+ download(selected: Array<any>): Observable<ResponseContentType> {
    return this.http.post(environment.baseURL + 'getZip', selected)
-    .map(res => res.json())
     .catch(err => Promise.reject(err) );
  }
 

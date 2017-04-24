@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { ResponseContentType } from '@angular/http';
+import { ResponseContentType, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class HttpClient {
@@ -26,7 +27,7 @@ export class HttpClient {
     return this.http.get(url, options);
   }
 
-  post(url: string, data: any): any {
+  post(url: string, data: any): Observable<Response> {
     let headers = new Headers();
     headers.append('X-CLIENT-TYPE', 'WEB');
     headers.append('Access-Control-Allow-Origin', '*');
