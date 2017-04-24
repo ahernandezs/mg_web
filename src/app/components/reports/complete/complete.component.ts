@@ -116,10 +116,10 @@ export class CompleteComponent implements OnInit {
       this.reportsService.download(selected)
         .subscribe(
           (data: any) => {
-            this.showLoading = false;
-            let leBlob = new Blob([data], { type: 'text/octet-stream' });
-            reader.readAsDataURL(leBlob);
             console.log(data);
+            this.showLoading = false;
+            let leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
+            reader.readAsDataURL(leBlob);
           },
           error => console.log("Error downloading the file."),
           () => console.log('Completed file download.')
