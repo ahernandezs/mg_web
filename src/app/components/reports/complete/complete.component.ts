@@ -119,10 +119,11 @@ export class CompleteComponent implements OnInit {
         .subscribe(
           (data: any) => {
             this.showLoading = false;
-            console.log('0: ' + data);
-            console.log('1: ' + JSON.stringify(data));
-            console.log('2: ' + data['_body']);
-            this.leBlob = new Blob(data, { type: 'text/octet-stream' });
+            console.log('-1: ' + data);
+            console.log('0: ' + JSON.stringify(data));
+            console.log('1: ' + data['_body']);
+            console.log('2: ' + JSON.stringify(data['_body']));
+            this.leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
             reader.readAsDataURL(this.leBlob);
           },
           error => console.log('Error downloading the file.'),
