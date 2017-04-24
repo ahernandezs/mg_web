@@ -128,8 +128,6 @@ export class CompleteComponent implements OnInit {
   request.overrideMimeType('text/octet-stream');
   request.withCredentials = true;
 
-  console.log('Mandando la petición ' + JSON.stringify(request));
-
   request.send('[' + selected + ']');
 
   console.log('Mandada');
