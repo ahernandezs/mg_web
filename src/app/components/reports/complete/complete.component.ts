@@ -39,6 +39,8 @@ export class CompleteComponent implements OnInit {
   showError: Boolean = false;
   showLoading: Boolean = false;
 
+  leBlob;
+
   constructor(
     private reportsService: ReportsService,
     private utils: Utils,
@@ -99,7 +101,7 @@ export class CompleteComponent implements OnInit {
   }
 
   download() {
-    var reader = new FileReader();
+    let reader = new FileReader();
     let selected: Array<any> = new Array<any>();
     let checkboxes = document.getElementsByName('report');
     for (let i = 0 ; i < checkboxes.length ; i++) {
@@ -116,18 +118,22 @@ export class CompleteComponent implements OnInit {
       this.reportsService.download(selected)
         .subscribe(
           (data: any) => {
-            console.log(data);
             this.showLoading = false;
-            let leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
-            reader.readAsDataURL(leBlob);
+            console.log('0: ' + data);
+            console.log('1: ' + JSON.stringify(data));
+            console.log('2: ' + data['_body']);
+            this.leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
+            reader.readAsDataURL(this.leBlob);
           },
-          error => console.log("Error downloading the file."),
-          () => console.log('Completed file download.')
+          error => console.log('Error downloading the file.'),
+          () => console.log('3: ' + this.leBlob)
         );
 
         reader.onloadend = function (e) {
+          console.log('4: ' + this.result);
           window.open(reader.result, 'archivo', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
-       }
+        };
+
     }
   }
 
