@@ -118,9 +118,16 @@ export class CompleteComponent implements OnInit {
       this.showLoading = true;
 
   let request = new XMLHttpRequest();
-  request.responseType = 'blob';
-  request.onloadend = this.handleFile;
-  request.open('POST', environment.baseURL + 'getZip', true);
+
+  request.open('POST', environment.baseURL + 'getZip', false);
+  request.responseType = 'arraybuffer';
+  request.onload = function(){
+    let link = document.createElement('a');
+    document.body.appendChild(link);
+    link.href = window.URL.createObjectURL(request.response);
+    link.download = 'archivo.zip';
+    link.click();
+  };
   request.setRequestHeader('Access-Control-Allow-Origin', '*');
   request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
   request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
