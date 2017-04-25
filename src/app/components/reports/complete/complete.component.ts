@@ -40,8 +40,6 @@ export class CompleteComponent implements OnInit {
   showError: Boolean = false;
   showLoading: Boolean = false;
 
-  request;
-
   constructor(
     private reportsService: ReportsService,
     private utils: Utils,
@@ -49,7 +47,6 @@ export class CompleteComponent implements OnInit {
   ) {
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
-    this.request = new XMLHttpRequest();
   }
 
   ngOnInit() {
@@ -117,23 +114,12 @@ export class CompleteComponent implements OnInit {
       this.showError = true;
     } else {
       this.showLoading = true;
-      this.request.open('POST', environment.baseURL + 'getZip', true);
-      this.request.onload = this.openfile;
-      this.request.setRequestHeader('Access-Control-Allow-Origin', '*');
-      this.request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
-      this.request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
-      this.request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
-      // request.overrideMimeType('text/octet-stream');
-      this.request.setRequestHeader('content-type', 'application/json')
-      this.request.withCredentials = true;
-      this.request.send('[' + selected + ']');
-    }
-  }
-
-    openfile() {
+      let request = new XMLHttpRequest();
+      request.open('POST', environment.baseURL + 'getZip', true);
+      request.onload = function(){
         let link = document.createElement('a');
         document.body.appendChild(link);
-        let file = window.URL.createObjectURL(new Blob([this.request.response], {type: 'application/zip'}));
+        let file = window.URL.createObjectURL(new Blob([request.response], {type: 'application/zip'}));
         let filename = 'archivo.zip';
         let a = document.createElement('a');
         if ('download' in a) {
@@ -145,7 +131,16 @@ export class CompleteComponent implements OnInit {
         } else {
           window.open(file);
         }
-        this.showLoading = false;
+      };
+      request.setRequestHeader('Access-Control-Allow-Origin', '*');
+      request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
+      request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
+      request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
+      //request.overrideMimeType('text/octet-stream');
+      request.setRequestHeader('content-type', 'application/json')
+      request.withCredentials = true;
+      request.send('[' + selected + ']');
+    }
   }
 
   selectAll(source) {
