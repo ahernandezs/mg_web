@@ -123,10 +123,6 @@ export class CompleteComponent implements OnInit {
         document.body.appendChild(link);
         // :') ya tengo el zip en el request.response
 
-
-        link.href = request.response.readAsDataURL();
-        console.log('linq: ' + link.href);
-
     let file = window.URL.createObjectURL(new Blob(request.response, {type: 'application/zip'}));
     let filename = 'archivo.zip';
     let a = document.createElement('a');
