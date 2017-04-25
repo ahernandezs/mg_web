@@ -118,14 +118,14 @@ export class CompleteComponent implements OnInit {
 
       let request = new XMLHttpRequest();
       request.open('POST', environment.baseURL + 'getZip', true);
-      request.responseType = 'arraybuffer';
+//      request.responseType = 'arraybuffer';
       request.onload = function(){
         let link = document.createElement('a');
         document.body.appendChild(link);
         console.log('en el onload: ' + request.response);
-        console.log(request.DONE);
         console.log(request.response);
-        link.href = window.URL.createObjectURL(request.response);
+        link.href = request.response.readAsDataURL();
+        console.log('linq: ' + link.href);
         link.download = 'archivo.zip';
         link.click();
       };
