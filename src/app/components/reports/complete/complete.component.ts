@@ -113,7 +113,7 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-      this.showLoading = true;
+//      this.showLoading = true;
       let request = new XMLHttpRequest();
       request.open('POST', environment.baseURL + 'getZip', true);
       request.onload = function(){
@@ -131,13 +131,13 @@ export class CompleteComponent implements OnInit {
         } else {
           window.open(file);
         }
-      };
+      }
       request.setRequestHeader('Access-Control-Allow-Origin', '*');
       request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
       request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
       request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
-      //request.overrideMimeType('text/octet-stream');
-      request.setRequestHeader('content-type', 'application/json')
+      request.overrideMimeType('text/octet-stream');
+      // request.setRequestHeader('content-type', 'application/json')
       request.withCredentials = true;
       request.send('[' + selected + ']');
     }
