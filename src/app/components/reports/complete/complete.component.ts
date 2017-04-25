@@ -40,7 +40,7 @@ export class CompleteComponent implements OnInit {
   showError: Boolean = false;
   showLoading: Boolean = false;
 
-  leBlob: Blob;
+  request;
 
   constructor(
     private reportsService: ReportsService,
@@ -49,6 +49,7 @@ export class CompleteComponent implements OnInit {
   ) {
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
+    this.request = new XMLHttpRequest();
   }
 
   ngOnInit() {
@@ -115,81 +116,37 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-
-      let request = new XMLHttpRequest();
-      request.open('POST', environment.baseURL + 'getZip', true);
-      request.onload = function(){
-        let link = document.createElement('a');
-        document.body.appendChild(link);
-        // :') ya tengo el zip en el request.response
-
-    let file = window.URL.createObjectURL(new Blob([request.response], {type: 'application/zip'}));
-    let filename = 'archivo.zip';
-    let a = document.createElement('a');
-    // if `a` element has `download` property
-    if ('download' in a) {
-      a.href = file;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } else {
-      // use `window.open()` if `download` not defined at `a` element
-      window.open(file);
-    }
-
-
-      };
-      request.setRequestHeader('Access-Control-Allow-Origin', '*');
-      request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
-      request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
-      request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
-      request.overrideMimeType('text/octet-stream');
-      request.setRequestHeader('content-type', 'application/json')
-      request.withCredentials = true;
-      request.send('[' + selected + ']');
-
-/*
-      this.reportsService.download(selected)
-        .subscribe(
-          (data) => {
-            this.showLoading = false;
-            console.log('-1: ' + data);
-            console.log('0: ' + JSON.stringify(data));
-            console.log('1: ' + data['_body']);
-            console.log('2: ' + data.json());
-            this.leBlob = new Blob(data['_body'], { type: 'text/octet-stream' });
-            reader.readAsDataURL(this.leBlob);
-          },
-          error => console.log('Error downloading the file.'),
-          () => console.log('3: ' + this.leBlob)
-        );
-
-        reader.onloadend = function (e) {
-          console.log('4: ' + this.result);
-          window.open(reader.result, 'archivo', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
-      };
-*/
+      this.showLoading = true;
+      this.request.open('POST', environment.baseURL + 'getZip', true);
+      this.request.onload = this.openfile;
+      this.request.setRequestHeader('Access-Control-Allow-Origin', '*');
+      this.request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
+      this.request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
+      this.request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
+      // request.overrideMimeType('text/octet-stream');
+      this.request.setRequestHeader('content-type', 'application/json')
+      this.request.withCredentials = true;
+      this.request.send('[' + selected + ']');
     }
   }
 
-  /*handleFile(data) {
-    let file = window.URL.createObjectURL(new Blob(data, {type: 'application/zip'}));
-    console.log('Llegó :D' + file);
-    let filename = 'archivo.zip';
-    let a = document.createElement('a');
-    // if `a` element has `download` property
-    if ('download' in a) {
-      a.href = file;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } else {
-      // use `window.open()` if `download` not defined at `a` element
-      window.open(file);
-    }
-  }*/
+    openfile() {
+        let link = document.createElement('a');
+        document.body.appendChild(link);
+        let file = window.URL.createObjectURL(new Blob([this.request.response], {type: 'application/zip'}));
+        let filename = 'archivo.zip';
+        let a = document.createElement('a');
+        if ('download' in a) {
+          a.href = file;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          window.open(file);
+        }
+        this.showLoading = false;
+  }
 
   selectAll(source) {
     let checkboxes = document.getElementsByName('report');
