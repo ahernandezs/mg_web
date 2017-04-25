@@ -119,7 +119,7 @@ export class CompleteComponent implements OnInit {
 
   let request = new XMLHttpRequest();
   request.responseType = 'blob';
-  request.onload = this.handleFile;
+  request.onloadend = this.handleFile;
   request.open('POST', environment.baseURL + 'getZip', true);
   request.setRequestHeader('Access-Control-Allow-Origin', '*');
   request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
@@ -127,7 +127,7 @@ export class CompleteComponent implements OnInit {
   request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
   request.overrideMimeType('text/octet-stream');
   request.setRequestHeader('content-type', 'application/json')
-  request.withCredentials = true;
+  request.withCredentials = false;
 
   console.log('mandando: ' + selected);
 
