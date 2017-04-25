@@ -127,13 +127,9 @@ export class CompleteComponent implements OnInit {
   request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
   request.overrideMimeType('text/octet-stream');
   request.setRequestHeader('content-type', 'application/json')
-  request.withCredentials = false;
-
-  console.log('mandando: ' + selected);
-
+  request.withCredentials = true;
+  this.showLoading = false;
   request.send('[' + selected + ']');
-
-  console.log('Mandada');
 
 /*
       this.reportsService.download(selected)
@@ -160,15 +156,7 @@ export class CompleteComponent implements OnInit {
   }
 
   handleFile(data) {
-
-    console.log('En el handlefile: ' + JSON.stringify(data));
-
-let binaryData = [];
-binaryData.push(data);
-let file = window.URL.createObjectURL(new Blob(binaryData, {type: 'application/zip'}));
-
-    this.showLoading = true;
-
+    let file = window.URL.createObjectURL(new Blob(data, {type: 'application/zip'}));
     console.log('Llegó :D' + file);
     let filename = 'archivo.zip';
     let a = document.createElement('a');
