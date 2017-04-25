@@ -124,8 +124,8 @@ export class CompleteComponent implements OnInit {
         document.body.appendChild(link);
         console.log('en el onload: ' + request.response);
         console.log(request.DONE);
-        console.log(request.responseURL);
-        link.href = window.URL.createObjectURL(request.responseURL);
+        console.log(request.response);
+        link.href = window.URL.createObjectURL(request.response);
         link.download = 'archivo.zip';
         link.click();
       };
