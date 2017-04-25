@@ -118,16 +118,31 @@ export class CompleteComponent implements OnInit {
 
       let request = new XMLHttpRequest();
       request.open('POST', environment.baseURL + 'getZip', true);
-//      request.responseType = 'arraybuffer';
       request.onload = function(){
         let link = document.createElement('a');
         document.body.appendChild(link);
-        console.log('en el onload: ' + request.response);
-        console.log(request.response);
+        // :') ya tengo el zip en el request.response
+
+
         link.href = request.response.readAsDataURL();
         console.log('linq: ' + link.href);
-        link.download = 'archivo.zip';
-        link.click();
+
+    let file = window.URL.createObjectURL(new Blob(request.response, {type: 'application/zip'}));
+    let filename = 'archivo.zip';
+    let a = document.createElement('a');
+    // if `a` element has `download` property
+    if ('download' in a) {
+      a.href = file;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      // use `window.open()` if `download` not defined at `a` element
+      window.open(file);
+    }
+
+
       };
       request.setRequestHeader('Access-Control-Allow-Origin', '*');
       request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
