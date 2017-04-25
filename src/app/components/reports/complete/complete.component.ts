@@ -115,28 +115,28 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-      this.showLoading = true;
 
-  let request = new XMLHttpRequest();
-
-  request.open('POST', environment.baseURL + 'getZip', true);
-  request.responseType = 'arraybuffer';
-  request.onload = function(){
-    let link = document.createElement('a');
-    document.body.appendChild(link);
-    link.href = window.URL.createObjectURL(request.response);
-    link.download = 'archivo.zip';
-    link.click();
-  };
-  request.setRequestHeader('Access-Control-Allow-Origin', '*');
-  request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
-  request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
-  request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
-  request.overrideMimeType('text/octet-stream');
-  request.setRequestHeader('content-type', 'application/json')
-  request.withCredentials = true;
-  this.showLoading = false;
-  request.send('[' + selected + ']');
+      let request = new XMLHttpRequest();
+      request.open('POST', environment.baseURL + 'getZip', true);
+      request.responseType = 'arraybuffer';
+      request.onload = function(){
+        let link = document.createElement('a');
+        document.body.appendChild(link);
+        console.log('en el onload: ' + request.response);
+        console.log(request.DONE);
+        console.log(request.responseURL);
+        link.href = window.URL.createObjectURL(request.responseURL);
+        link.download = 'archivo.zip';
+        link.click();
+      };
+      request.setRequestHeader('Access-Control-Allow-Origin', '*');
+      request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
+      request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
+      request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
+      request.overrideMimeType('text/octet-stream');
+      request.setRequestHeader('content-type', 'application/json')
+      request.withCredentials = true;
+      request.send('[' + selected + ']');
 
 /*
       this.reportsService.download(selected)
@@ -162,7 +162,7 @@ export class CompleteComponent implements OnInit {
     }
   }
 
-  handleFile(data) {
+  /*handleFile(data) {
     let file = window.URL.createObjectURL(new Blob(data, {type: 'application/zip'}));
     console.log('Llegó :D' + file);
     let filename = 'archivo.zip';
@@ -178,7 +178,7 @@ export class CompleteComponent implements OnInit {
       // use `window.open()` if `download` not defined at `a` element
       window.open(file);
     }
-  }
+  }*/
 
   selectAll(source) {
     let checkboxes = document.getElementsByName('report');
