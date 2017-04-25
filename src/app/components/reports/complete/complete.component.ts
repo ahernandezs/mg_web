@@ -119,7 +119,7 @@ export class CompleteComponent implements OnInit {
 
   let request = new XMLHttpRequest();
 
-  request.open('POST', environment.baseURL + 'getZip', false);
+  request.open('POST', environment.baseURL + 'getZip', true);
   request.responseType = 'arraybuffer';
   request.onload = function(){
     let link = document.createElement('a');
