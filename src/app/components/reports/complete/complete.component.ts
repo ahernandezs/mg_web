@@ -123,7 +123,7 @@ export class CompleteComponent implements OnInit {
         document.body.appendChild(link);
         // :') ya tengo el zip en el request.response
 
-    let file = window.URL.createObjectURL(new Blob(request.response, {type: 'application/zip'}));
+    let file = window.URL.createObjectURL(new Blob([request.response], {type: 'application/zip'}));
     let filename = 'archivo.zip';
     let a = document.createElement('a');
     // if `a` element has `download` property
