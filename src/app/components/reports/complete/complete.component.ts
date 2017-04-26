@@ -137,6 +137,7 @@ export class CompleteComponent implements OnInit {
       request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
       request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
       request.overrideMimeType('text/octet-stream');
+      request.responseType = 'arraybuffer';
       // request.setRequestHeader('content-type', 'application/json')
       request.withCredentials = true;
       request.send('[' + selected + ']');
