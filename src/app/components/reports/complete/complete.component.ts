@@ -34,12 +34,15 @@ export class CompleteComponent implements OnInit {
   showError: Boolean = false;
   showLoading: Boolean = false;
 
+  request: XMLHttpRequest;
+
   constructor(
     private reportsService: ReportsService,
     private utils: Utils
   ) {
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
+    this.request = new XMLHttpRequest();
   }
 
   ngOnInit() {
@@ -111,35 +114,45 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-      // this.showLoading = true;
-      let request = new XMLHttpRequest();
-      request.open('POST', environment.baseURL + 'getZip', true);
-      request.onload = function(){
-        let link = document.createElement('a');
-        document.body.appendChild(link);
-        let file = window.URL.createObjectURL(new Blob([request.response], {type: 'application/zip'}));
-        let filename = 'archivo.zip';
-        let a = document.createElement('a');
-        if ('download' in a) {
-          a.href = file;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } else {
-          window.open(file);
-        }
-      };
-      request.setRequestHeader('Access-Control-Allow-Origin', '*');
-      request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
-      request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
-      request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
-      request.overrideMimeType('text/octet-stream');
-      request.responseType = 'arraybuffer';
-      request.setRequestHeader('content-type', 'application/json')
-      request.withCredentials = true;
-      request.send('[' + selected + ']');
+      this.showLoading = true;
+      this.request.open('POST', environment.baseURL + 'getZip', true);
+      this.request.onload = this.saveFile;
+      this.request.onerror = this.errorDownload;
+      this.request.setRequestHeader('Access-Control-Allow-Origin', '*');
+      let auth = 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG'));
+      this.request.setRequestHeader('Authorization', auth);
+      this.request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');
+      this.request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
+      this.request.overrideMimeType('text/octet-stream');
+      this.request.responseType = 'arraybuffer';
+      this.request.setRequestHeader('content-type', 'application/json')
+      this.request.withCredentials = true;
+      this.request.send('[' + selected + ']');
     }
+  }
+
+  errorDownload() {
+    this.showLoading = false;
+    this.message = 'Hubo un error';
+    this.showError = true;
+  }
+
+  saveFile() {
+    let link = document.createElement('a');
+    document.body.appendChild(link);
+    let file = window.URL.createObjectURL(new Blob([this.request.response], {type: 'application/zip'}));
+    let filename = 'archivo.zip';
+    let a = document.createElement('a');
+    if ('download' in a) {
+      a.href = file;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      window.open(file);
+    }
+    this.showLoading = false;
   }
 
   selectAll(source) {
