@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../../../environments/environment';
-import { Observable } from 'rxjs/Observable';
-
-import { ResponseContentType } from '@angular/http';
 
 import { ReportsService } from '../../../services/reports.services';
 import { CompleteResponse } from '../../../models/complete-response';
@@ -12,8 +8,6 @@ import { Complete } from '../../../models/complete';
 
 import { Utils } from '../../../utils/utils';
 import { SelectItem } from 'primeng/primeng';
-
-import 'rxjs/Rx' ;
 
 @Component({
   selector: 'app-complete',
@@ -42,8 +36,7 @@ export class CompleteComponent implements OnInit {
 
   constructor(
     private reportsService: ReportsService,
-    private utils: Utils,
-    private http: Http
+    private utils: Utils
   ) {
     this.completeRequest = new Complete(0, '', '');
     this.selected = false;
@@ -88,6 +81,11 @@ export class CompleteComponent implements OnInit {
         .subscribe(
           res => {
             this.completeResponse = res;
+            let checkboxes = document.getElementsByName('report');
+            for (let i = 0 ; i < checkboxes.length ; i++) {
+              let tmp = <HTMLInputElement>checkboxes[i];
+              tmp.checked = false;
+            }
             this.showLoading = false;
           },
           err => {
@@ -113,7 +111,7 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-//      this.showLoading = true;
+      this.showLoading = true;
       let request = new XMLHttpRequest();
       request.open('POST', environment.baseURL + 'getZip', true);
       request.onload = function(){
@@ -131,7 +129,7 @@ export class CompleteComponent implements OnInit {
         } else {
           window.open(file);
         }
-      }
+      };
       request.setRequestHeader('Access-Control-Allow-Origin', '*');
       request.setRequestHeader('Authorization', 'Basic ' + btoa(localStorage.getItem('X-USER-MG') + ':' + localStorage.getItem('X-PASS-MG')));
       request.setRequestHeader('Access-Control-Allow-Headers', 'Authorization');

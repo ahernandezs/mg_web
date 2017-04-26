@@ -21,9 +21,4 @@ export class ReportsService {
    .catch(err => Promise.reject(err));
  }
 
- download(selected: Array<any>): Observable<Response> {
-   return this.http.post(environment.baseURL + 'getZip', selected)
-    .catch(err => Promise.reject(err) );
- }
-
 }
