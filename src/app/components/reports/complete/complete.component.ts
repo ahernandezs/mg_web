@@ -111,7 +111,7 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona los reportes a descargar';
       this.showError = true;
     } else {
-      this.showLoading = true;
+      // this.showLoading = true;
       let request = new XMLHttpRequest();
       request.open('POST', environment.baseURL + 'getZip', true);
       request.onload = function(){
