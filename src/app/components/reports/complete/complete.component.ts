@@ -138,7 +138,7 @@ export class CompleteComponent implements OnInit {
       request.setRequestHeader('X-CLIENT-TYPE', 'WEB');
       request.overrideMimeType('text/octet-stream');
       request.responseType = 'arraybuffer';
-      // request.setRequestHeader('content-type', 'application/json')
+      request.setRequestHeader('content-type', 'application/json')
       request.withCredentials = true;
       request.send('[' + selected + ']');
     }
