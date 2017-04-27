@@ -25,8 +25,6 @@ export class BillingComponent implements OnInit {
   hasta: Date;
   es: any;
 
-  showResult = true;
-
   message: String;
   showError: Boolean = false;
   showLoading: Boolean = false;
@@ -57,8 +55,8 @@ export class BillingComponent implements OnInit {
         res => {
           console.log(res);
           this.completeResponse = res;
-          if (typeof res.entries === 'undefined' || res.entries.length === 0) {
-            this.showResult = false;
+          if (typeof res.entries == 'undefined') {
+            this.completeResponse.push('entries', new Array());
           }
           this.showLoading = false;
         },
