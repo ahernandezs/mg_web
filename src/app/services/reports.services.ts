@@ -21,4 +21,10 @@ export class ReportsService {
    .catch(err => Promise.reject(err));
  }
 
+ validate(desde, hasta, bank): Observable<CompleteResponse[]> {
+  return this.http.get(environment.baseURL + 'reporteValidacion?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + bank)
+   .map(res => res.json())
+   .catch(err => Promise.reject(err));
+ }
+
 }

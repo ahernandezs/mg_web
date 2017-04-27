@@ -21,9 +21,8 @@
 			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
-		<button class="btn-confirm">Buscar</button>
+		<button class="btn-confirm" (click)="search()">Buscar</button>
 		<i class="icon icon-download float-right"></i>
-		<i class="icon icon-printer float-right"></i>
 	</div>
 </div>
 <div class="row">
@@ -53,10 +52,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>x</td>
-					<td>x</td>
-					<td>x</td>
+				<tr *ngFor="let response of completeResponse">
+					<td>{{response.bank}}</td>
+					<td>{{response.date}}</td>
+					<td>{{response}}</td>
 				</tr>
 			</tbody>
 		</table>
