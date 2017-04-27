@@ -53,11 +53,12 @@ export class BillingComponent implements OnInit {
     this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Invex')
       .subscribe(
         res => {
-          console.log(res);
           this.completeResponse = res;
           if (typeof res.entries == 'undefined') {
             this.completeResponse.push('entries', new Array());
+            console.log('Resultó indefinido: ' + this.completeResponse);
           }
+          console.log('No es indefinido');
           this.showLoading = false;
         },
         err => {
