@@ -73,7 +73,6 @@ export class BillingComponent implements OnInit {
         .subscribe(
           res => {
             this.completeResponse = res;
-            console.log("lo que regresa: " + JSON.stringify(this.completeResponse));
             this.showLoading = false;
           },
           err => {

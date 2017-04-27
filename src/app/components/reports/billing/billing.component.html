@@ -14,11 +14,11 @@
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy" defaultDate="new Date()"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy" defaultDate="new Date()"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
@@ -29,16 +29,16 @@
 	<div class="col-md-4">
 		<div class="card">
 			<h3>
-				Invex
-				<span>25 Noviembre -24 Noviembre</span>
+				{{completeResponse.bankName}}
+				<span>{{completeResponse.date}}</span>
 			</h3>
 			<h4 class="charged">
 				Total de transacciones a cobrar
-				<span>3244009</span>
+				<span>{{completeResponse.numTransToPay}}</span>
 			</h4>
 			<h4 class="no-charged">
 				transacciones no cobradas
-				<span>41242</span>
+				<span>{{completeResponse.numTransFree}}</span>
 			</h4>
 		</div>
 	</div>
@@ -52,10 +52,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let response of completeResponse">
+				<tr *ngFor="let response of completeResponse.entries">
 					<td>{{response.bank}}</td>
 					<td>{{response.date}}</td>
-					<td>{{response}}</td>
+					<td>:O</td>
 				</tr>
 			</tbody>
 		</table>
