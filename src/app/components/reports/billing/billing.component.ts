@@ -48,7 +48,7 @@ export class BillingComponent implements OnInit {
       }
     }
     let today = new Date();
-    let yesterday = new Date(today.getMilliseconds() - 1000 * 60 * 60 * 24 * 1);
+    let yesterday = new Date(today.getMilliseconds() - 1);
     console.log(today);
     console.log(yesterday);
     this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Invex')
