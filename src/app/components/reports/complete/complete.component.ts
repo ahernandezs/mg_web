@@ -57,7 +57,9 @@ export class CompleteComponent implements OnInit {
     }
     let today = new Date();
     let fiveDaysAgo = new Date(today.getMilliseconds() - 1000 * 60 * 60 * 24 * 5);
-    this.reportsService.complete(this.utils.getDate(new Date()), this.utils.getDate(fiveDaysAgo), 'Invex')
+    console.log(today);
+    console.log(fiveDaysAgo)
+    this.reportsService.complete(this.utils.getDate(fiveDaysAgo), this.utils.getDate(today), 'Invex')
       .subscribe(
         res => {
           this.completeResponse = res;
