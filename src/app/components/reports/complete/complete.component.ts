@@ -55,6 +55,23 @@ export class CompleteComponent implements OnInit {
         }
       }
     }
+    this.reportsService.complete(this.utils.getDate(new Date()), this.utils.getDate(new Date()), 'Invex')
+      .subscribe(
+        res => {
+          this.completeResponse = res;
+          let checkboxes = document.getElementsByName('report');
+          for (let i = 0 ; i < checkboxes.length ; i++) {
+            let tmp = <HTMLInputElement>checkboxes[i];
+            tmp.checked = false;
+          }
+          this.showLoading = false;
+        },
+        err => {
+          this.showLoading = false;
+          this.message = 'Hubo un error';
+          this.showError = true;
+        }
+      );
   }
 
   search() {

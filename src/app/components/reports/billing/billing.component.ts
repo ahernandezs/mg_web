@@ -29,6 +29,8 @@ export class BillingComponent implements OnInit {
   showError: Boolean = false;
   showLoading: Boolean = false;
 
+  searchDone = false;
+
   constructor(
     private reportsService: ReportsService,
     private utils: Utils
@@ -74,6 +76,7 @@ export class BillingComponent implements OnInit {
           res => {
             this.completeResponse = res;
             this.showLoading = false;
+            this.searchDone = true;
           },
           err => {
             this.showLoading = false;
