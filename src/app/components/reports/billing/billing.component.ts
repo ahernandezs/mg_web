@@ -50,12 +50,12 @@ export class BillingComponent implements OnInit {
     let today = new Date();
     let yesterday = new Date(today.getTime() - (1 * 24 * 60 * 60 * 1000));
     this.completeResponse = new Array();
-    this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Invex')
+    this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Afirme')
       .subscribe(
         res => {
           this.completeResponse = res;
           if (typeof res.entries == 'undefined') {
-            this.completeResponse.push('entries', new Array());
+            this.completeResponse.push('entries', []);
             console.log('Resultó indefinido: ' + this.completeResponse);
           }
           console.log('No es indefinido');
