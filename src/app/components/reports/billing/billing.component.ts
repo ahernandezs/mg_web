@@ -14,7 +14,9 @@ import { SelectItem } from 'primeng/primeng';
 export class BillingComponent implements OnInit {
 
   completeRequest: Complete;
-  completeResponse: Array<any>;
+  completeResponse: Array<any> = new Array();
+
+  datos: any = [];
 
   banks: Array<any>;
   bankselected: Number;
@@ -49,17 +51,16 @@ export class BillingComponent implements OnInit {
     }
     let today = new Date();
     let yesterday = new Date(today.getTime() - (1 * 24 * 60 * 60 * 1000));
-    this.completeResponse = new Array();
     this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Invex')
       .subscribe(
         res => {
           this.completeResponse = res;
           if (typeof res.entries == 'undefined') {
-            console.log('vale madres'+this.completeResponse);
-            this.completeResponse.push('entries', []);
-            console.log('despues'+this.completeResponse);
+            this.datos = [];
+          }else{
+            this.datos = this.completeResponse.entries;
           }
-          console.log('No es indefinido');
+          console.log('ya están los datos: ' + this.datos);
           this.showLoading = false;
         },
         err => {
@@ -94,6 +95,12 @@ export class BillingComponent implements OnInit {
         .subscribe(
           res => {
             this.completeResponse = res;
+            if (typeof res.entries == 'undefined') {
+              this.datos = [];
+            }else{
+              this.datos = this.completeResponse.entries;
+            }
+            console.log('ya están los datos: ' + this.datos);
             this.showLoading = false;
           },
           err => {
