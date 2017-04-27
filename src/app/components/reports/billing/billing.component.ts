@@ -25,6 +25,8 @@ export class BillingComponent implements OnInit {
   hasta: Date;
   es: any;
 
+  notShow = true;
+
   message: String;
   showError: Boolean = false;
   showLoading: Boolean = false;
@@ -48,14 +50,18 @@ export class BillingComponent implements OnInit {
       }
     }
     let today = new Date();
-    let yesterday = new Date(today.getMilliseconds() - 1);
+    let yesterday = new Date(today.getTime() - (1 * 24 * 60 * 60 * 1000));
     console.log(today);
     console.log(yesterday);
     this.completeResponse = new Array();
     this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Invex')
       .subscribe(
         res => {
+          console.log(res);
           this.completeResponse = res;
+          if( typeof res.entries === 'undefined' || res.entries.length === 0){
+            this.notShow = true;
+          }
           this.showLoading = false;
         },
         err => {
