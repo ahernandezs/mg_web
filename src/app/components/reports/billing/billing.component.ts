@@ -49,6 +49,21 @@ export class BillingComponent implements OnInit {
         }
       }
     }
+    let today = new Date();
+    let yesterday = new Date(today.getMilliseconds() - 1000 * 60 * 60 * 24 * 1);
+    this.reportsService.validate(this.utils.getDate(today), this.utils.getDate(yesterday), 'Invex')
+      .subscribe(
+        res => {
+          this.completeResponse = res;
+          this.showLoading = false;
+          this.searchDone = true;
+        },
+        err => {
+          this.showLoading = false;
+          this.message = 'Hubo un error';
+          this.showError = true;
+        }
+      );
   }
 
   search() {
