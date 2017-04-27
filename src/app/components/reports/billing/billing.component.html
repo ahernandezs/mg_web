@@ -14,11 +14,11 @@
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy" defaultDate="new Date()"></p-calendar>
+			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<label>
-			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy" defaultDate="new Date()"></p-calendar>
+			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
