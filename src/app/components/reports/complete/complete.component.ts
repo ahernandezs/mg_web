@@ -57,7 +57,8 @@ export class CompleteComponent implements OnInit {
     }
     let today = new Date();
     let fiveDaysAgo = new Date(today.getTime() - (5 * 24 * 60 * 60 * 1000));
-    this.reportsService.complete(this.utils.getDate(fiveDaysAgo), this.utils.getDate(today), 'Invex')
+    let bancoinicial = this.bankinlocalstorage === 'admin' ? 'Invex' : this.bankselectedLabel;
+    this.reportsService.complete(this.utils.getDate(fiveDaysAgo), this.utils.getDate(today), bancoinicial)
       .subscribe(
         res => {
           this.completeResponse = res;
