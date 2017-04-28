@@ -84,7 +84,7 @@ export class CompleteComponent implements OnInit {
       this.message = 'Selecciona un rango de fechas';
       this.showError = true;
     } else if (this.desde > this.hasta) {
-      this.message = 'La fecha inicial debe ser menor a la final';
+      this.message = 'La fecha inicial debe ser anterior a la final';
       this.showError = true;
     } else {
       if (this.bankinlocalstorage === 'admin') {
