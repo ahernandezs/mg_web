@@ -10,7 +10,7 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label>
-			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body"></p-dropdown>
+			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body" class="select"></p-dropdown>
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
