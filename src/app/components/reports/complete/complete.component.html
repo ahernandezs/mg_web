@@ -11,8 +11,8 @@
 	<div class="col-md-12">
 		<label>
 			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body">
-			<i _ngcontent-ppw-23="" class="icon icon-calendar"></i>
 			</p-dropdown>
+			<i class="iconoselect"></i>
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 		</label>
 		<label>
