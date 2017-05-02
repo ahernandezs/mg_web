@@ -51,7 +51,8 @@ export class BillingComponent implements OnInit {
     }
     let today = new Date();
     let yesterday = new Date(today.getTime() - (1 * 24 * 60 * 60 * 1000));
-    this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), 'Invex')
+    let bancoinicial = this.bankinlocalstorage === 'admin' ? 'Invex' : this.bankselectedLabel;
+    this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(today), bancoinicial)
       .subscribe(
         res => {
           this.completeResponse = res;

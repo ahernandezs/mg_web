@@ -55,7 +55,7 @@
 				<tr *ngFor="let response of datos">
 					<td>{{response.bankMethodName}}</td>
 					<td>{{response.numTransactions}}</td>
-					<td>{{response.methodPay}}</td>
+					<td>{{response.methodPay | yesorno }}</td>
 				</tr>
 			</tbody>
 		</table>
