@@ -20,7 +20,7 @@ export class Utils {
             monthNamesShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ]
         };
         this.banks = [];
-        this.banks.push({label: 'Institución&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼', value: 0});
+        this.banks.push({label: 'Institución    ▼', value: 0});
         this.banks.push({label: 'Afirme', value: 9});
         this.banks.push({label: 'Mifel', value: 13});
         this.banks.push({label: 'Invex', value: 11});
