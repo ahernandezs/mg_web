@@ -32,7 +32,7 @@ export class CompleteComponent implements OnInit {
 
   message: String;
   showError: Boolean = false;
-  showLoading: Boolean = false;
+  showLoading: Boolean = true;
 
   constructor(
     private reportsService: ReportsService,
@@ -43,7 +43,6 @@ export class CompleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showLoading = true;
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
