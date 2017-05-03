@@ -43,6 +43,7 @@ export class CompleteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showLoading = true;
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
@@ -67,13 +68,12 @@ export class CompleteComponent implements OnInit {
             let tmp = <HTMLInputElement>checkboxes[i];
             tmp.checked = false;
           }
-          this.showLoading = false;
         },
         err => {
-          this.showLoading = false;
           this.message = 'Hubo un error';
           this.showError = true;
-        }
+        },
+        () => this.showLoading = false
       );
   }
 
