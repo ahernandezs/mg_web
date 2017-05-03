@@ -12,7 +12,7 @@
 		<label class="select">
 			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body"></p-dropdown>		
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
-			<i class="icon icon-ico-arrow-down"></i>
+			<i *ngIf="bankinlocalstorage === 'admin'" class="icon icon-ico-arrow-down"></i>
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
