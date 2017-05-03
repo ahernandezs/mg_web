@@ -5,6 +5,7 @@ input
         box-shadow: none
 
 label
+	position: relative
 	display: block
 	margin: 1em 0
 	border-bottom: 1px solid $primary-text-color
@@ -14,8 +15,18 @@ label
 		border: none
 		text-align: left
 	&.select
-		background: url(assets/images/ico-arrow-down.svg) no-repeat 98% center
-		background-size: 15px
+		span
+			display: inline-block
+			width: 100%
+			padding: 0.5em 1em
+			border: none
+			text-align: left
+		.icon-ico-arrow-down
+			position: absolute
+			right: 0
+			bottom: 2px
+			font-size: 0.6em
+
 .control-box
 	background: white
 	+border-radius(0.2em)
@@ -26,9 +37,15 @@ label
 		input
 			font-size: 0.8em
 			padding: 0.2em
-			width: auto		
+			width: auto	
 		.icon
 			margin-right: 0.2em
+		&.select
+			padding-right: 1em
+			span
+				font-size: 0.8em
+				padding: 0.25em 0.2em
+				width: auto	
 	.btn-confirm
 		font-size: 0.8em
 		font-weight: normal
