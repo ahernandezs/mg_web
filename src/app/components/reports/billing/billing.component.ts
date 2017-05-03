@@ -37,6 +37,7 @@ export class BillingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.showLoading = true;
     this.es = this.utils.es;
     this.banks = this.utils.banks;
     this.bankinlocalstorage = localStorage.getItem('X-BANK-ID-MG');
@@ -68,7 +69,8 @@ export class BillingComponent implements OnInit {
           this.showLoading = false;
           this.message = 'Hubo un error';
           this.showError = true;
-        }
+        },
+        () => this.showLoading = false
       );
   }
 
