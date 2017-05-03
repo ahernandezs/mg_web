@@ -59,3 +59,12 @@
 .icon-download:before {
   content: "\67";
 }
+.icon-ico-arrow-down:before {
+  content: "\68";
+}
+.icon-ico-arrow-left:before {
+  content: "\69";
+}
+.icon-ico-arrow-right:before {
+  content: "\6a";
+}
