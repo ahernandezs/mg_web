@@ -53,6 +53,7 @@ export class BillingComponent implements OnInit {
     }
     let today = new Date();
     let yesterday = new Date(today.getTime() - (1 * 24 * 60 * 60 * 1000));
+    yesterday = new Date(2017, 4, 20, 12, 12, 12, 0); // para pruebas
     let bancoinicial = this.bankinlocalstorage === 'admin' ? 'Invex' : this.bankselectedLabel;
     this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(yesterday), bancoinicial)
       .subscribe(
