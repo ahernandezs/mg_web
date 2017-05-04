@@ -105,7 +105,8 @@ export class BillingComponent implements OnInit {
             }else{
               this.datos = this.billingResponse.entries;
             }
-            console.log('ya están los datos: ' + this.datos);
+            let tmp = this.billingResponse.date.split(' ');
+            this.lafecha = tmp[0] === tmp[2] ? tmp[0] : tmp[0] + ' hasta ' + tmp[2];
             this.showLoading = false;
           },
           err => {
