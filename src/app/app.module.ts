@@ -22,12 +22,13 @@ import { AuthService } from './services/auth.services';
 import { HttpClient } from './services/http.service';
 
 import { AuthGuard } from './utils/auth.guards';
-import { YesorNo } from './utils/pipes';
+import { YesorNo, DateRange } from './utils/pipes';
 import { Utils } from './utils/utils';
 
 @NgModule({
   declarations: [
     YesorNo,
+    DateRange,
     AppComponent,
     LoginComponent,
     AccessComponent,
