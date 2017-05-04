@@ -30,16 +30,16 @@
 	<div class="col-md-4">
 		<div class="card">
 			<h3>
-				{{completeResponse.bankName}}
-				<span>{{completeResponse.date | dateRange }}</span>
+				{{billingResponse.bankName}}
+				<span>{{lafecha}}</span>
 			</h3>
 			<h4 class="charged">
 				Total de transacciones a cobrar
-				<span>{{completeResponse.numTransToPay}}</span>
+				<span>{{billingResponse.numTransToPay}}</span>
 			</h4>
 			<h4 class="no-charged">
 				transacciones no cobradas
-				<span>{{completeResponse.numTransFree}}</span>
+				<span>{{billingResponse.numTransFree}}</span>
 			</h4>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompleteResponse } from '../../../models/complete-response';
+import { BillingResponse } from '../../../models/billing-response';
 import { Complete } from '../../../models/complete';
 
 import { ReportsService } from '../../../services/reports.services';
@@ -13,8 +13,7 @@ import { SelectItem } from 'primeng/primeng';
 })
 export class BillingComponent implements OnInit {
 
-  completeRequest: Complete;
-  completeResponse: Array<any> = new Array();
+  billingResponse: BillingResponse = new BillingResponse('','','','','');
 
   datos: any = [];
 
@@ -30,6 +29,8 @@ export class BillingComponent implements OnInit {
   message: String;
   showError: Boolean = false;
   showLoading: Boolean = false;
+
+  lafecha;
 
   constructor(
     private reportsService: ReportsService,
@@ -56,13 +57,14 @@ export class BillingComponent implements OnInit {
     this.reportsService.validate(this.utils.getDate(yesterday), this.utils.getDate(yesterday), bancoinicial)
       .subscribe(
         res => {
-          this.completeResponse = res;
+          this.billingResponse = res;
           if (typeof res.entries == 'undefined') {
             this.datos = [];
           }else{
-            this.datos = this.completeResponse.entries;
+            this.datos = this.billingResponse.entries;
           }
-          console.log('ya están los datos: ' + this.datos);
+          let tmp = this.billingResponse.date.split(' ');
+          this.lafecha = tmp[0] === tmp[2] ? tmp[0] : tmp[0] + ' hasta ' + tmp[2];
           this.showLoading = false;
         },
         err => {
@@ -97,11 +99,11 @@ export class BillingComponent implements OnInit {
       this.reportsService.validate(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel)
         .subscribe(
           res => {
-            this.completeResponse = res;
+            this.billingResponse = res;
             if (typeof res.entries == 'undefined') {
               this.datos = [];
             }else{
-              this.datos = this.completeResponse.entries;
+              this.datos = this.billingResponse.entries;
             }
             console.log('ya están los datos: ' + this.datos);
             this.showLoading = false;
