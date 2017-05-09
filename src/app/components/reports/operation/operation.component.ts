@@ -77,15 +77,16 @@ export class OperationComponent implements OnInit {
         }
       }
       this.showLoading = true;
-      this.reportsService.search(this.desde, this.hasta, this.bankselected, this.device, this.user, this.method).subscribe(
+      this.reportsService.search(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel, this.device, this.user, this.method).subscribe(
             res => {
+              this.showLoading = false
               this.operationResponse = res;
             },
             err => {
+              this.showLoading = false
               this.message = 'Hubo un error';
               this.showError = true;
-            },
-            () =>  this.showLoading = false
+            }
       );
     }
   }
