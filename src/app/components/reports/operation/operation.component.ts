@@ -27,6 +27,7 @@ export class OperationComponent implements OnInit {
   showLoading: Boolean = false;
 
   operationResponse;
+  operations;
 
   constructor(
     private reportsService: ReportsService,
@@ -81,6 +82,22 @@ export class OperationComponent implements OnInit {
             res => {
               this.showLoading = false
               this.operationResponse = res;
+            },
+            err => {
+              this.showLoading = false
+              this.message = 'Hubo un error';
+              this.showError = true;
+            }
+      );
+    }
+  }
+
+  getMethodsByBank(){
+    if (typeof this.bankselected !== 'undefined'){
+      this.reportsService.getMethodsByBank(this.bankselectedLabel).subscribe(
+            res => {
+              this.showLoading = false
+              this.operations = res;
             },
             err => {
               this.showLoading = false

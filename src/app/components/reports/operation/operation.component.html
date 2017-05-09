@@ -10,7 +10,7 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label class="select">
-			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body">
+			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body" onBlur="getMethodsByBank()">
 			</p-dropdown>
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 			<i *ngIf="bankinlocalstorage === 'admin'" class="icon icon-ico-arrow-down"></i>
@@ -22,7 +22,8 @@
 			<input type="text" placeholder="Dispositivo" [(ngModel)]="device">
 		</label>
 		<label>
-			<input type="text" placeholder="Metodo" [(ngModel)]="method">
+			<p-dropdown [options]="operations" [(ngModel)]="method" appendTo="body" placeholder="Método">
+			</p-dropdown>
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
