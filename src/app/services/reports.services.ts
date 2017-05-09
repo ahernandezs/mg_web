@@ -28,10 +28,16 @@ export class ReportsService {
    .catch(err => Promise.reject(err));
  }
 
+ getMethodsByBank(banco): Observable<Array<any>>{
+  return this.http.get(environment.baseURL + 'getMethodsByBank?client=' + banco)
+    .map(res => res.json())
+    .catch(err => Promise.reject(err));   
+ }
+
  search(desde, hasta, banco, dispositivo, usuario, metodo): Observable<Array<any>> {
- return this.http.get(environment.baseURL + 'search?client=' + banco + '&device=' + dispositivo + '&dateSince=' + desde + '&dateUntil=' + hasta + '&user=' + usuario + '&method=' + metodo )
-   .map(res => res.json())
-   .catch(err => Promise.reject(err));
+  return this.http.get(environment.baseURL + 'search?client=' + banco + '&device=' + dispositivo + '&dateSince=' + desde + '&dateUntil=' + hasta + '&user=' + usuario + '&method=' + metodo )
+    .map(res => res.json())
+    .catch(err => Promise.reject(err));
  }
 
 }
