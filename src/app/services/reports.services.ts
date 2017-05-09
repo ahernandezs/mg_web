@@ -16,14 +16,20 @@ export class ReportsService {
 
  constructor(private http: HttpClient) {}
 
- complete(desde, hasta, bank): Observable<CompleteResponse[]> {
-  return this.http.get(environment.baseURL + 'getLog?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + bank)
+ complete(desde, hasta, banco): Observable<CompleteResponse[]> {
+  return this.http.get(environment.baseURL + 'getLog?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + banco)
    .map(res => res.json())
    .catch(err => Promise.reject(err));
  }
 
- validate(desde, hasta, bank): Observable<BillingResponse> {
-  return this.http.get(environment.baseURL + 'reporteValidacion?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + bank)
+ validate(desde, hasta, banco): Observable<BillingResponse> {
+  return this.http.get(environment.baseURL + 'reporteValidacion?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + banco)
+   .map(res => res.json())
+   .catch(err => Promise.reject(err));
+ }
+
+ search(desde, hasta, banco, dispositivo, usuario, metodo): Observable<Array<any>> {
+ return this.http.get(environment.baseURL + 'search?dateSince=' + desde + '&dateUntil=' + hasta + '&client=' + banco + '&device=' + dispositivo + '&user=' + usuario + '&method=' + metodo )
    .map(res => res.json())
    .catch(err => Promise.reject(err));
  }

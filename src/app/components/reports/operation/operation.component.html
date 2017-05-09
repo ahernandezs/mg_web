@@ -34,7 +34,7 @@
 			<p-calendar [(ngModel)]="hasta" placeholder="Hasta" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
 			<i class="icon icon-calendar"></i>
 		</label>
-		<button class="btn-confirm">Buscar</button>
+		<button class="btn-confirm" (click)="search()">Buscar</button>
 		<i class="icon icon-download float-right"></i>
 		<i class="icon icon-printer float-right"></i>
 	</div>

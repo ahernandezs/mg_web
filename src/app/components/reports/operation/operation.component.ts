@@ -17,10 +17,15 @@ export class OperationComponent implements OnInit {
   desde: Date;
   hasta: Date;
   es: any;
+  device: String;
+  user: String;
+  method: String;
 
   message: String;
   showError: Boolean = false;
   showLoading: Boolean = false;
+
+  operationResponse;
 
   constructor(
     private reportsService: ReportsService,
@@ -41,5 +46,19 @@ export class OperationComponent implements OnInit {
       }
     }
   }
+
+  search() {
+    this.reportsService.search(this.desde, this.hasta, this.bankselected, this.device, this.user, this.method).subscribe(
+          res => {
+            this.operationResponse = res;
+          },
+          err => {
+            this.message = 'Hubo un error';
+            this.showError = true;
+          },
+          () =>  this.showLoading = false
+        );
+  }
+
 
 }
