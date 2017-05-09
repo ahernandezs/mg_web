@@ -29,7 +29,7 @@ export class ReportsService {
  }
 
  search(desde, hasta, banco, dispositivo, usuario, metodo): Observable<Array<any>> {
- return this.http.get(environment.baseURL + 'search?client=' + banco + '&device=' + dispositivo + 'dateSince=' + desde + '&dateUntil=' + hasta + '&user=' + usuario + '&method=' + metodo )
+ return this.http.get(environment.baseURL + 'search?client=' + banco + '&device=' + dispositivo + '&dateSince=' + desde + '&dateUntil=' + hasta + '&user=' + usuario + '&method=' + metodo )
    .map(res => res.json())
    .catch(err => Promise.reject(err));
  }
