@@ -48,7 +48,13 @@ export class OperationComponent implements OnInit {
   }
 
   search() {
-    this.reportsService.search(this.desde, this.hasta, this.bankselected, this.device, this.user, this.method).subscribe(
+    console.log(this.desde);
+    console.log(this.hasta);
+    console.log(this.bankselectedLabel);
+    console.log(this.device);
+    console.log(this.user);
+    console.log(this.method);
+    /*this.reportsService.search(this.desde, this.hasta, this.bankselected, this.device, this.user, this.method).subscribe(
           res => {
             this.operationResponse = res;
           },
@@ -57,7 +63,7 @@ export class OperationComponent implements OnInit {
             this.showError = true;
           },
           () =>  this.showLoading = false
-        );
+    );*/
   }
 
 

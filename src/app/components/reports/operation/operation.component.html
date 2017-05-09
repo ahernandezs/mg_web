@@ -10,21 +10,19 @@
 <div class="row shadow-second control-box">
 	<div class="col-md-12">
 		<label class="select">
-			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body"></p-dropdown>
+			<p-dropdown *ngIf="bankinlocalstorage === 'admin' " [options]="banks" [(ngModel)]="bankselected" appendTo="body">
+			</p-dropdown>
 			<span *ngIf="bankinlocalstorage !== 'admin' ">{{bankselectedLabel}}</span>
 			<i *ngIf="bankinlocalstorage === 'admin'" class="icon icon-ico-arrow-down"></i>
 		</label>
 		<label>
-			<input type="text" placeholder="Usuario">
+			<input type="text" placeholder="Usuario" [(ngModel)]="user">
 		</label>
 		<label>
-			<input type="text" placeholder="Dispositivo">
+			<input type="text" placeholder="Dispositivo" [(ngModel)]="device">
 		</label>
 		<label>
-			<input type="text" placeholder="Sesi&oacute;n">
-		</label>
-		<label>
-			<input type="text" placeholder="Metodo">
+			<input type="text" placeholder="Metodo" [(ngModel)]="method">
 		</label>
 		<label>
 			<p-calendar [(ngModel)]="desde" placeholder="Desde" [required]="true" [locale]="es" dateFormat="dd/mm/yy"></p-calendar>
@@ -36,7 +34,6 @@
 		</label>
 		<button class="btn-confirm" (click)="search()">Buscar</button>
 		<i class="icon icon-download float-right"></i>
-		<i class="icon icon-printer float-right"></i>
 	</div>
 </div>
 <div class="row">
