@@ -80,11 +80,11 @@ export class OperationComponent implements OnInit {
       this.showLoading = true;
       this.reportsService.search(this.utils.getDate(this.desde), this.utils.getDate(this.hasta), this.bankselectedLabel, this.device, this.user, this.method).subscribe(
             res => {
-              this.showLoading = false
+              this.showLoading = false;
               this.operationResponse = res;
             },
             err => {
-              this.showLoading = false
+              this.showLoading = false;
               this.message = 'Hubo un error';
               this.showError = true;
             }
@@ -92,15 +92,23 @@ export class OperationComponent implements OnInit {
     }
   }
 
-  getMethodsByBank(){
-    if (typeof this.bankselected !== 'undefined'){
+  getMethodsByBank() {
+    if (this.bankinlocalstorage === 'admin') {
+      for (let i = 0; i < this.banks.length; i++) {
+        if (this.banks[i].value === this.bankselected) {
+          this.bankselectedLabel = this.utils.banks[i].label;
+          break;
+        }
+      }
+    }
+    if (typeof this.bankselected !== 'undefined') {
       this.reportsService.getMethodsByBank(this.bankselectedLabel).subscribe(
             res => {
-              this.showLoading = false
+              this.showLoading = false;
               this.operations = res;
             },
             err => {
-              this.showLoading = false
+              this.showLoading = false;
               this.message = 'Hubo un error';
               this.showError = true;
             }
