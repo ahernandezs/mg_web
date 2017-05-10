@@ -22,7 +22,7 @@
 			<input type="text" placeholder="Dispositivo" [(ngModel)]="device">
 		</label>
 		<label>
-			<p-dropdown [options]="operations" [(ngModel)]="method" appendTo="body" placeholder="Método">
+			<p-dropdown [(options)]="operations" [(ngModel)]="method" appendTo="body" (placeholder)="Método">
 			</p-dropdown>
 		</label>
 		<label>
