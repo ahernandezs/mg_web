@@ -106,6 +106,7 @@ export class OperationComponent implements OnInit {
             res => {
               this.showLoading = false;
               this.operations = res;
+              console.log(this.operations);
             },
             err => {
               this.showLoading = false;
