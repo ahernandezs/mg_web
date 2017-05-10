@@ -105,6 +105,7 @@ export class OperationComponent implements OnInit {
       this.reportsService.getMethodsByBank(this.bankselectedLabel).subscribe(
             res => {
               this.showLoading = false;
+              this.operations = [];
               for(let i=0; i<res.length; i++){
                 this.operations.push({label: res[i], value: res[i]});
               }
