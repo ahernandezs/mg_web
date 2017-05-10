@@ -27,7 +27,7 @@ export class OperationComponent implements OnInit {
   showLoading: Boolean = false;
 
   operationResponse;
-  operations;
+  operations: SelectItem[];
 
   constructor(
     private reportsService: ReportsService,
@@ -105,8 +105,9 @@ export class OperationComponent implements OnInit {
       this.reportsService.getMethodsByBank(this.bankselectedLabel).subscribe(
             res => {
               this.showLoading = false;
-              this.operations = res;
-              console.log(this.operations);
+              for(let i=0; i<res.length; i++){
+                this.operations.push({label: res[i], value: res[i]});
+              }
             },
             err => {
               this.showLoading = false;
